@@ -21,7 +21,7 @@ namespace ShippingApplication
         private String password;
         private String phone;
         private String email;
-        private Int64 cardNumber;
+        private String cardNumber;
         private char status;
 
         public Customer()
@@ -35,11 +35,12 @@ namespace ShippingApplication
             this.password = "password";
             this.phone = "0860000000";
             this.email = "null@gmail.com";
-            this.cardNumber = 1111111111111111;
+            this.cardNumber = "Null";
         }
 
-        public Customer(Int32 custId, String surname, String forename, String town, String county, String EIRCode, String password, String phone, String email, Int32 cardNumber, char status)
+        public Customer(Int32 custId, String surname, String forename, String town, String county, String EIRCode, String password, String phone, String email, String cardNumber, char status)
         {
+            // Not sure what I'd use the full constructor for, but it's there anyway.
             this.custId = custId;
             this.surname = surname;
             this.forename = forename;
@@ -51,6 +52,20 @@ namespace ShippingApplication
             this.email = email;
             this.cardNumber = cardNumber;
             this.status = status;
+        }
+
+        public Customer(String surname, String forename, String town, String county, String EIRCode, String password, String phone, String email, String cardNumber)
+        {
+            // Main instance of constructor from frmRegisterCustomer. Status and ID number assigned Automatically.
+            this.surname = surname;
+            this.forename = forename;
+            this.town = town;
+            this.county = county;
+            this.EIRCode = EIRCode;
+            this.password = password;
+            this.phone = phone;
+            this.email = email;
+            this.cardNumber = cardNumber;
         }
 
         public int getCustomerId()
@@ -158,13 +173,19 @@ namespace ShippingApplication
             this.email = Email;
         }
 
-        public Int64 getCardNumber()
+        public String getCardNumber()
         {
             return this.cardNumber;
         }
-        public void setCardNumber(Int64 CardNumber)
+        public void setCardNumber(String CardNumber)
         {
-            this.cardNumber = CardNumber;
+            if (CardNumber.Length == 20 || CardNumber.Length == 16)
+                CardNumber.Trim(' ');
+                foreach(char c in CardNumber)
+                {
+                if (c >= '0' || c <= '9')
+                    this.cardNumber = CardNumber;
+                }
         }
         
         public char getStatus()
@@ -183,21 +204,57 @@ namespace ShippingApplication
 
         private static bool isValidEircode(String EIRCode)
         {
+            // This regex string should allow the user to type a recognisable EIR Code in a few different ways.
             return Regex.IsMatch(EIRCode, @"(?:^[AC-FHKNPRTV-Y][0-9]{2}|D6W)[ -]?[0-9AC-FHKNPRTV-Y]{4}$");
         }
 
-        public bool IsValid(string emailaddress)
+        public static bool isValidPassword(String password)
         {
-            try
-            {
-                MailAddress m = new MailAddress(emailaddress);
+            char[] symbols = { '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '.', ',', '?', '+', '_', '-', '='};
+            int numOfNumbers = 0;
+            int numSymbols = 0;
+            int upperCaseChars = 0;
+            int lowerCaseChars = 0;
 
-                return true;
-            }
-            catch (FormatException)
-            {
+            if (password.Length > 20 || password.Length < 8)
                 return false;
+
+            foreach(char c in password)
+            {
+                if (c >= 'a' && c <= 'z')
+                    lowerCaseChars++;
+                else if (c >= 'A' && c <= 'Z')
+                    upperCaseChars++;
+                else if (c >= 0 && c <= 9)
+                    numOfNumbers++;
+                foreach (char a in symbols) 
+                {
+                    if(c == symbols[a])
+                            numSymbols++;
+                }
+                if (lowerCaseChars > 0 && upperCaseChars > 0 && numOfNumbers > 0 && numSymbols > 0)
+                {
+                    return true;
+                }
             }
+
+            return false;
+        }
+
+        public bool IsValidEmail(string emailaddress)
+        {
+            int numOfAtSymbols = 0;
+            int domainSize = 0;
+            foreach(char c in emailaddress)
+            {
+                if (c == '@')
+                    numOfAtSymbols++;
+                if (c == '.')
+                    domainSize++;
+                if (domainSize <= 3 && numOfAtSymbols == 1)
+                    return true;
+            }
+            return false;
         }
 
         public void addCustomer()
@@ -217,19 +274,19 @@ namespace ShippingApplication
 
             connection.Close();
         }
-        public void updateGame()
+        public void updateCustomer()
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
             String sqlQuery = "UPDATE Customer SET " +
-                "Customer Id = " + this.custId + "," +
+                "CustId = " + this.custId + "," +
                 "Forename = '" + this.forename + "'," +
                 "Surname = '" + this.surname + "'," +
                 "Town = '" + this.town + "'," +
                 "County = " + this.county + "," +
-                "EIR Code = " + this.EIRCode + "," +
+                "EIRCode = " + this.EIRCode + "," +
                 "Status = '" + this.status + "' " +
-                "Card Number = '" + this.cardNumber + "' " +
+                "CardNumber = '" + this.cardNumber + "' " +
                 "WHERE CustId = " + this.custId;
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
@@ -237,12 +294,12 @@ namespace ShippingApplication
             cmd.ExecuteNonQuery();
             conn.Close();
         }
-        public static DataSet findGame(String forename)
+        public static DataSet findCustomer(String forename)
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
             String sqlQuery = "SELECT CustId, forename, surname FROM Customers " +
-                "WHERE forname LIKE '%" + forename + "%' ORDER BY Name";
+                "WHERE forename LIKE '%" + forename + "%' ORDER BY forename";
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
             OracleDataAdapter da = new OracleDataAdapter(cmd);
@@ -271,19 +328,10 @@ namespace ShippingApplication
             conn.Close();
             return nextId;
         }
+        public String toString()
+        {
+            return "Customer Id: " + this.custId + " Forename: " + getForename() + "\nSurname: " + this.surname + " Town: " + this.town + "\nCounty: " + this.county + 
+                " EIR Code: " + this.EIRCode + "\nPhone: " + this.phone + " Email: " + this.email + "\nStatus: " + getStatus();
+        }
     }
 }
-/*  Code copied from Stack Overflow at https://stackoverflow.com/questions/7587110/basic-user-input-string-validation
- *  Used for reference.
- * public string Name
-{
-    get { return _name; }
-
-    set 
-    {
-        if (! Regex.IsMatch(value, @"\w{1-35}"))
-           throw new ArgumentException("Name must be 1-35 alfanum");
-        _name = value;
-    }
-}
- */

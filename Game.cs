@@ -119,12 +119,12 @@ namespace ShippingApplication
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
             String sqlQuery = "UPDATE Game SET " +
-                "Game Id = " + this.gameId + "," +
+                "GameId = " + this.gameId + "," +
                 "Title = '" + this.title + "'," +
                 "Developer = '" + this.developer + "'," +
                 "Publisher = '" + this.publisher + "'," +
                 "Cost to Buy = " + this.buyPrice + "," +
-                "Selling Price = " + this.salePrice + "," +
+                "SalePrice = " + this.salePrice + "," +
                 "Status = '" + this.status + "' " +
                 "WHERE GameId = " + this.gameId;
 

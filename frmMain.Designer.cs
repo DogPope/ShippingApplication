@@ -99,6 +99,7 @@ namespace ShippingApplication
             this.btnCustomers.Text = "Manage Customers";
             this.btnCustomers.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCustomers.UseVisualStyleBackColor = false;
+            this.btnCustomers.Click += new System.EventHandler(this.btnCustomers_Click);
             // 
             // pnlImage
             // 

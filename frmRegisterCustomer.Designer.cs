@@ -38,21 +38,23 @@ namespace ShippingApplication
             this.cboCounty = new System.Windows.Forms.ComboBox();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.lblForename = new System.Windows.Forms.Label();
-            this.txtbxForename = new System.Windows.Forms.TextBox();
-            this.txtbxSurname = new System.Windows.Forms.TextBox();
+            this.txtForename = new System.Windows.Forms.TextBox();
+            this.txtSurname = new System.Windows.Forms.TextBox();
             this.lblSurname = new System.Windows.Forms.Label();
-            this.txtbxEircode = new System.Windows.Forms.TextBox();
+            this.txtEircode = new System.Windows.Forms.TextBox();
             this.lblEircode = new System.Windows.Forms.Label();
-            this.txtbxTown = new System.Windows.Forms.TextBox();
+            this.txtTown = new System.Windows.Forms.TextBox();
             this.lblTown = new System.Windows.Forms.Label();
-            this.txtbxPassword = new System.Windows.Forms.TextBox();
+            this.txtPassword = new System.Windows.Forms.TextBox();
             this.lblPassword = new System.Windows.Forms.Label();
-            this.txtbxEmail = new System.Windows.Forms.TextBox();
+            this.txtEmail = new System.Windows.Forms.TextBox();
             this.lblEmail = new System.Windows.Forms.Label();
-            this.txtbxPhone = new System.Windows.Forms.TextBox();
+            this.txtPhone = new System.Windows.Forms.TextBox();
             this.lblPhone = new System.Windows.Forms.Label();
-            this.txtbxCardnumber = new System.Windows.Forms.TextBox();
+            this.txtCardnumber = new System.Windows.Forms.TextBox();
             this.lblCard = new System.Windows.Forms.Label();
+            this.txtCustId = new System.Windows.Forms.TextBox();
+            this.lblCustId = new System.Windows.Forms.Label();
             this.pnlMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -103,6 +105,7 @@ namespace ShippingApplication
             this.btnReturn.Text = "Return";
             this.btnReturn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnReturn.UseVisualStyleBackColor = false;
+            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
             // 
             // pnlImage
             // 
@@ -181,6 +184,7 @@ namespace ShippingApplication
             this.btnSubmit.TabIndex = 3;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.UseVisualStyleBackColor = false;
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
             // 
             // lblForename
             // 
@@ -192,21 +196,23 @@ namespace ShippingApplication
             this.lblForename.TabIndex = 4;
             this.lblForename.Text = "Forename";
             // 
-            // txtbxForename
+            // txtForename
             // 
-            this.txtbxForename.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtbxForename.Location = new System.Drawing.Point(302, 89);
-            this.txtbxForename.Name = "txtbxForename";
-            this.txtbxForename.Size = new System.Drawing.Size(141, 26);
-            this.txtbxForename.TabIndex = 5;
+            this.txtForename.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtForename.Location = new System.Drawing.Point(302, 89);
+            this.txtForename.MaxLength = 20;
+            this.txtForename.Name = "txtForename";
+            this.txtForename.Size = new System.Drawing.Size(141, 26);
+            this.txtForename.TabIndex = 5;
             // 
-            // txtbxSurname
+            // txtSurname
             // 
-            this.txtbxSurname.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtbxSurname.Location = new System.Drawing.Point(518, 89);
-            this.txtbxSurname.Name = "txtbxSurname";
-            this.txtbxSurname.Size = new System.Drawing.Size(141, 26);
-            this.txtbxSurname.TabIndex = 7;
+            this.txtSurname.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSurname.Location = new System.Drawing.Point(518, 89);
+            this.txtSurname.MaxLength = 20;
+            this.txtSurname.Name = "txtSurname";
+            this.txtSurname.Size = new System.Drawing.Size(141, 26);
+            this.txtSurname.TabIndex = 7;
             // 
             // lblSurname
             // 
@@ -218,13 +224,14 @@ namespace ShippingApplication
             this.lblSurname.TabIndex = 6;
             this.lblSurname.Text = "Surname";
             // 
-            // txtbxEircode
+            // txtEircode
             // 
-            this.txtbxEircode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtbxEircode.Location = new System.Drawing.Point(518, 201);
-            this.txtbxEircode.Name = "txtbxEircode";
-            this.txtbxEircode.Size = new System.Drawing.Size(141, 26);
-            this.txtbxEircode.TabIndex = 9;
+            this.txtEircode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEircode.Location = new System.Drawing.Point(518, 201);
+            this.txtEircode.MaxLength = 8;
+            this.txtEircode.Name = "txtEircode";
+            this.txtEircode.Size = new System.Drawing.Size(141, 26);
+            this.txtEircode.TabIndex = 9;
             // 
             // lblEircode
             // 
@@ -236,13 +243,14 @@ namespace ShippingApplication
             this.lblEircode.TabIndex = 8;
             this.lblEircode.Text = "EIR Code";
             // 
-            // txtbxTown
+            // txtTown
             // 
-            this.txtbxTown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtbxTown.Location = new System.Drawing.Point(302, 201);
-            this.txtbxTown.Name = "txtbxTown";
-            this.txtbxTown.Size = new System.Drawing.Size(141, 26);
-            this.txtbxTown.TabIndex = 11;
+            this.txtTown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTown.Location = new System.Drawing.Point(302, 201);
+            this.txtTown.MaxLength = 20;
+            this.txtTown.Name = "txtTown";
+            this.txtTown.Size = new System.Drawing.Size(141, 26);
+            this.txtTown.TabIndex = 11;
             // 
             // lblTown
             // 
@@ -254,13 +262,15 @@ namespace ShippingApplication
             this.lblTown.TabIndex = 10;
             this.lblTown.Text = "Town";
             // 
-            // txtbxPassword
+            // txtPassword
             // 
-            this.txtbxPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtbxPassword.Location = new System.Drawing.Point(303, 301);
-            this.txtbxPassword.Name = "txtbxPassword";
-            this.txtbxPassword.Size = new System.Drawing.Size(141, 26);
-            this.txtbxPassword.TabIndex = 13;
+            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassword.Location = new System.Drawing.Point(303, 301);
+            this.txtPassword.MaxLength = 20;
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
+            this.txtPassword.Size = new System.Drawing.Size(141, 26);
+            this.txtPassword.TabIndex = 13;
             // 
             // lblPassword
             // 
@@ -272,13 +282,14 @@ namespace ShippingApplication
             this.lblPassword.TabIndex = 12;
             this.lblPassword.Text = "Password";
             // 
-            // txtbxEmail
+            // txtEmail
             // 
-            this.txtbxEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtbxEmail.Location = new System.Drawing.Point(518, 301);
-            this.txtbxEmail.Name = "txtbxEmail";
-            this.txtbxEmail.Size = new System.Drawing.Size(141, 26);
-            this.txtbxEmail.TabIndex = 15;
+            this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEmail.Location = new System.Drawing.Point(518, 301);
+            this.txtEmail.MaxLength = 30;
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(141, 26);
+            this.txtEmail.TabIndex = 15;
             // 
             // lblEmail
             // 
@@ -290,13 +301,14 @@ namespace ShippingApplication
             this.lblEmail.TabIndex = 14;
             this.lblEmail.Text = "E-mail Address";
             // 
-            // txtbxPhone
+            // txtPhone
             // 
-            this.txtbxPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtbxPhone.Location = new System.Drawing.Point(303, 390);
-            this.txtbxPhone.Name = "txtbxPhone";
-            this.txtbxPhone.Size = new System.Drawing.Size(141, 26);
-            this.txtbxPhone.TabIndex = 17;
+            this.txtPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPhone.Location = new System.Drawing.Point(303, 390);
+            this.txtPhone.MaxLength = 10;
+            this.txtPhone.Name = "txtPhone";
+            this.txtPhone.Size = new System.Drawing.Size(141, 26);
+            this.txtPhone.TabIndex = 17;
             // 
             // lblPhone
             // 
@@ -308,13 +320,13 @@ namespace ShippingApplication
             this.lblPhone.TabIndex = 16;
             this.lblPhone.Text = "Phone Number";
             // 
-            // txtbxCardnumber
+            // txtCardnumber
             // 
-            this.txtbxCardnumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtbxCardnumber.Location = new System.Drawing.Point(518, 390);
-            this.txtbxCardnumber.Name = "txtbxCardnumber";
-            this.txtbxCardnumber.Size = new System.Drawing.Size(141, 26);
-            this.txtbxCardnumber.TabIndex = 19;
+            this.txtCardnumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCardnumber.Location = new System.Drawing.Point(518, 390);
+            this.txtCardnumber.Name = "txtCardnumber";
+            this.txtCardnumber.Size = new System.Drawing.Size(141, 26);
+            this.txtCardnumber.TabIndex = 19;
             // 
             // lblCard
             // 
@@ -326,26 +338,47 @@ namespace ShippingApplication
             this.lblCard.TabIndex = 18;
             this.lblCard.Text = "Credit Card Number";
             // 
+            // txtCustId
+            // 
+            this.txtCustId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCustId.Location = new System.Drawing.Point(918, 390);
+            this.txtCustId.MaxLength = 5;
+            this.txtCustId.Name = "txtCustId";
+            this.txtCustId.Size = new System.Drawing.Size(141, 26);
+            this.txtCustId.TabIndex = 21;
+            // 
+            // lblCustId
+            // 
+            this.lblCustId.AutoSize = true;
+            this.lblCustId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCustId.Location = new System.Drawing.Point(915, 372);
+            this.lblCustId.Name = "lblCustId";
+            this.lblCustId.Size = new System.Drawing.Size(86, 20);
+            this.lblCustId.TabIndex = 20;
+            this.lblCustId.Text = "ID Number";
+            // 
             // frmRegisterCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 611);
-            this.Controls.Add(this.txtbxCardnumber);
+            this.Controls.Add(this.txtCustId);
+            this.Controls.Add(this.lblCustId);
+            this.Controls.Add(this.txtCardnumber);
             this.Controls.Add(this.lblCard);
-            this.Controls.Add(this.txtbxPhone);
+            this.Controls.Add(this.txtPhone);
             this.Controls.Add(this.lblPhone);
-            this.Controls.Add(this.txtbxEmail);
+            this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.lblEmail);
-            this.Controls.Add(this.txtbxPassword);
+            this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.lblPassword);
-            this.Controls.Add(this.txtbxTown);
+            this.Controls.Add(this.txtTown);
             this.Controls.Add(this.lblTown);
-            this.Controls.Add(this.txtbxEircode);
+            this.Controls.Add(this.txtEircode);
             this.Controls.Add(this.lblEircode);
-            this.Controls.Add(this.txtbxSurname);
+            this.Controls.Add(this.txtSurname);
             this.Controls.Add(this.lblSurname);
-            this.Controls.Add(this.txtbxForename);
+            this.Controls.Add(this.txtForename);
             this.Controls.Add(this.lblForename);
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.cboCounty);
@@ -369,20 +402,22 @@ namespace ShippingApplication
         private System.Windows.Forms.ComboBox cboCounty;
         private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.Label lblForename;
-        private System.Windows.Forms.TextBox txtbxForename;
-        private System.Windows.Forms.TextBox txtbxSurname;
+        private System.Windows.Forms.TextBox txtForename;
+        private System.Windows.Forms.TextBox txtSurname;
         private System.Windows.Forms.Label lblSurname;
-        private System.Windows.Forms.TextBox txtbxEircode;
+        private System.Windows.Forms.TextBox txtEircode;
         private System.Windows.Forms.Label lblEircode;
-        private System.Windows.Forms.TextBox txtbxTown;
+        private System.Windows.Forms.TextBox txtTown;
         private System.Windows.Forms.Label lblTown;
-        private System.Windows.Forms.TextBox txtbxPassword;
+        private System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Label lblPassword;
-        private System.Windows.Forms.TextBox txtbxEmail;
+        private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Label lblEmail;
-        private System.Windows.Forms.TextBox txtbxPhone;
+        private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.Label lblPhone;
-        private System.Windows.Forms.TextBox txtbxCardnumber;
+        private System.Windows.Forms.TextBox txtCardnumber;
         private System.Windows.Forms.Label lblCard;
+        private System.Windows.Forms.TextBox txtCustId;
+        private System.Windows.Forms.Label lblCustId;
     }
 }

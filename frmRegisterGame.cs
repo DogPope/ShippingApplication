@@ -10,18 +10,11 @@ using System.Windows.Forms;
 
 namespace ShippingApplication
 {
-    public partial class frmMain : Form
+    public partial class frmRegisterGame : Form
     {
-        public frmMain()
+        public frmRegisterGame()
         {
             InitializeComponent();
-        }
-
-        private void btnCustomers_Click(object sender, EventArgs e)
-        {
-            this.Hide();
-            frmRegisterCustomer form = new frmRegisterCustomer();
-            form.Show();
         }
     }
 }
