@@ -28,13 +28,11 @@ namespace ShippingApplication
             this.salePrice = 0;
             this.status = 'U';
         }
-        public Game(Int32 gameId, String title, String developer, String publisher, decimal buyPrice, decimal salePrice, char status)
+        public Game(String title, String developer, String publisher, decimal salePrice, char status)
         {
-            this.gameId = gameId;
             this.title = title;
             this.developer = developer;
             this.publisher = publisher;
-            this.buyPrice = buyPrice;
             this.salePrice = salePrice;
             this.status = status;
         }
@@ -72,6 +70,7 @@ namespace ShippingApplication
         }
         public void setPublisher(String Publisher)
         {
+            char.ToUpper(Publisher[0]);
             this.publisher = Publisher;
         }
 
@@ -100,18 +99,30 @@ namespace ShippingApplication
 
         public void addGame()
         {
-            OracleConnection connection = new OracleConnection(DBConnect.oradb);
+            try
+            {
+                OracleConnection connection = new OracleConnection(DBConnect.oradb);
 
-            String sqlQuery = "INSERT INTO Games Values (" +
-                this.gameId + ",'" + this.title + "','" + this.developer + "','" +
-                this.publisher + "'," + this.buyPrice + "," + this.salePrice + ",'" + this.status + "')";
+                String sqlQuery = "INSERT INTO Games Values (" + getNextGameID() + ",'" +
+                    this.title + "','" + this.developer + "','" + this.publisher + "'," +
+                    this.salePrice + ",'" + this.status + "')";
 
-            OracleCommand cmd = new OracleCommand(sqlQuery, connection);
-            connection.Open();
+                OracleCommand cmd = new OracleCommand(sqlQuery, connection);
+                connection.Open();
+                // ORA-12541: TNS: No listener
+                // No connection could be made because the target machine actively refused it?
 
-            cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
 
-            connection.Close();
+                connection.Close();
+            }catch (Exception ex)
+            {
+                if (ex.Source != null)
+                {
+                    Console.WriteLine("IOException source: {0}", ex.Source);
+                }
+                throw;
+            }
         }
 
         public void updateGame()
@@ -166,6 +177,11 @@ namespace ShippingApplication
             }
             conn.Close();
             return nextId;
+        }
+        public String toString()
+        {
+            return "Title: " + getTitle() + " Developer: " + getDeveloper() + "\nPublisher: " + getPublisher() + 
+                " Cost to buy: " + getBuyingPrice() + "\nSale Price: " + getSalePrice() + "Status: " + getStatus();
         }
     }
 }

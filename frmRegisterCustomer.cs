@@ -12,7 +12,7 @@ namespace ShippingApplication
 {
     public partial class frmRegisterCustomer : Form
     {
-        frmMain parent;
+        //frmMain parent;
         public frmRegisterCustomer()
         {
             InitializeComponent();
@@ -21,7 +21,7 @@ namespace ShippingApplication
         public frmRegisterCustomer(frmMain Parent)
         {
             InitializeComponent();
-            parent = Parent;
+            //parent = Parent;
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
@@ -51,8 +51,9 @@ namespace ShippingApplication
 
         private void btnReturn_Click(object sender, EventArgs e)
         {
+            this.DialogResult = DialogResult.OK;
             this.Close();
-            parent.Visible = true;
+            //parent.Visible = true;
         }
     }
 }

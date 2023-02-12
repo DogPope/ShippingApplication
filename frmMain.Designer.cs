@@ -63,6 +63,7 @@ namespace ShippingApplication
             this.btnAnalysis.Text = "System Analysis";
             this.btnAnalysis.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAnalysis.UseVisualStyleBackColor = false;
+            this.btnAnalysis.Click += new System.EventHandler(this.btnAnalysis_Click);
             // 
             // btnOrders
             // 
@@ -87,6 +88,7 @@ namespace ShippingApplication
             this.btnGames.Text = "Manage Games";
             this.btnGames.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnGames.UseVisualStyleBackColor = false;
+            this.btnGames.Click += new System.EventHandler(this.btnGames_Click);
             // 
             // btnCustomers
             // 

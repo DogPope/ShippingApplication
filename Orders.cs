@@ -99,7 +99,11 @@ namespace ShippingApplication
 
         public String toString()
         {
-            return "";
+            //private Int32 orderId;
+        //private decimal cost;
+       // private char status;
+        //List<Game> games;
+            return "Order ID: " + getOrderId() + " Cost" + getCost() + "\nStatus" + getStatus();
         }
 
     }

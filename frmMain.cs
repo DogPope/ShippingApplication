@@ -21,7 +21,21 @@ namespace ShippingApplication
         {
             this.Hide();
             frmRegisterCustomer form = new frmRegisterCustomer();
-            form.Show();
+            form.ShowDialog();
+            this.Show();
+        }
+
+        private void btnAnalysis_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("You need Administrative Priveleges to enter this part of the site. Please enter your Username and Password");
+        }
+
+        private void btnGames_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmRegisterGame form = new frmRegisterGame();
+            form.ShowDialog();
+            this.Show();
         }
     }
 }

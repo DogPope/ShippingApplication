@@ -35,14 +35,17 @@ namespace ShippingApplication
             this.btnReturn = new System.Windows.Forms.Button();
             this.pnlImage = new System.Windows.Forms.Panel();
             this.pnlMenu = new System.Windows.Forms.Panel();
-            this.txtbxPublisher = new System.Windows.Forms.TextBox();
+            this.txtPublisher = new System.Windows.Forms.TextBox();
             this.lblPublisher = new System.Windows.Forms.Label();
-            this.txtbxEircode = new System.Windows.Forms.TextBox();
+            this.txtPrice = new System.Windows.Forms.TextBox();
             this.lblCost = new System.Windows.Forms.Label();
-            this.txtbxSurname = new System.Windows.Forms.TextBox();
+            this.txtDeveloper = new System.Windows.Forms.TextBox();
             this.lblDeveloper = new System.Windows.Forms.Label();
-            this.txtbxTitle = new System.Windows.Forms.TextBox();
+            this.txtTitle = new System.Windows.Forms.TextBox();
             this.lblTitle = new System.Windows.Forms.Label();
+            this.btnRegister = new System.Windows.Forms.Button();
+            this.txtStatus = new System.Windows.Forms.TextBox();
+            this.lblStatus = new System.Windows.Forms.Label();
             this.pnlMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -116,14 +119,14 @@ namespace ShippingApplication
             this.pnlMenu.Size = new System.Drawing.Size(200, 611);
             this.pnlMenu.TabIndex = 2;
             // 
-            // txtbxPublisher
+            // txtPublisher
             // 
-            this.txtbxPublisher.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtbxPublisher.Location = new System.Drawing.Point(308, 226);
-            this.txtbxPublisher.MaxLength = 20;
-            this.txtbxPublisher.Name = "txtbxPublisher";
-            this.txtbxPublisher.Size = new System.Drawing.Size(141, 26);
-            this.txtbxPublisher.TabIndex = 19;
+            this.txtPublisher.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPublisher.Location = new System.Drawing.Point(308, 226);
+            this.txtPublisher.MaxLength = 20;
+            this.txtPublisher.Name = "txtPublisher";
+            this.txtPublisher.Size = new System.Drawing.Size(141, 26);
+            this.txtPublisher.TabIndex = 19;
             // 
             // lblPublisher
             // 
@@ -135,14 +138,14 @@ namespace ShippingApplication
             this.lblPublisher.TabIndex = 18;
             this.lblPublisher.Text = "Publisher";
             // 
-            // txtbxEircode
+            // txtPrice
             // 
-            this.txtbxEircode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtbxEircode.Location = new System.Drawing.Point(524, 226);
-            this.txtbxEircode.MaxLength = 8;
-            this.txtbxEircode.Name = "txtbxEircode";
-            this.txtbxEircode.Size = new System.Drawing.Size(141, 26);
-            this.txtbxEircode.TabIndex = 17;
+            this.txtPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrice.Location = new System.Drawing.Point(524, 226);
+            this.txtPrice.MaxLength = 8;
+            this.txtPrice.Name = "txtPrice";
+            this.txtPrice.Size = new System.Drawing.Size(141, 26);
+            this.txtPrice.TabIndex = 17;
             // 
             // lblCost
             // 
@@ -154,14 +157,14 @@ namespace ShippingApplication
             this.lblCost.TabIndex = 16;
             this.lblCost.Text = "Price";
             // 
-            // txtbxSurname
+            // txtDeveloper
             // 
-            this.txtbxSurname.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtbxSurname.Location = new System.Drawing.Point(524, 114);
-            this.txtbxSurname.MaxLength = 20;
-            this.txtbxSurname.Name = "txtbxSurname";
-            this.txtbxSurname.Size = new System.Drawing.Size(141, 26);
-            this.txtbxSurname.TabIndex = 15;
+            this.txtDeveloper.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDeveloper.Location = new System.Drawing.Point(524, 114);
+            this.txtDeveloper.MaxLength = 20;
+            this.txtDeveloper.Name = "txtDeveloper";
+            this.txtDeveloper.Size = new System.Drawing.Size(141, 26);
+            this.txtDeveloper.TabIndex = 15;
             // 
             // lblDeveloper
             // 
@@ -173,14 +176,14 @@ namespace ShippingApplication
             this.lblDeveloper.TabIndex = 14;
             this.lblDeveloper.Text = "Developer";
             // 
-            // txtbxTitle
+            // txtTitle
             // 
-            this.txtbxTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtbxTitle.Location = new System.Drawing.Point(308, 114);
-            this.txtbxTitle.MaxLength = 20;
-            this.txtbxTitle.Name = "txtbxTitle";
-            this.txtbxTitle.Size = new System.Drawing.Size(141, 26);
-            this.txtbxTitle.TabIndex = 13;
+            this.txtTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtTitle.Location = new System.Drawing.Point(308, 114);
+            this.txtTitle.MaxLength = 20;
+            this.txtTitle.Name = "txtTitle";
+            this.txtTitle.Size = new System.Drawing.Size(141, 26);
+            this.txtTitle.TabIndex = 13;
             // 
             // lblTitle
             // 
@@ -192,18 +195,52 @@ namespace ShippingApplication
             this.lblTitle.TabIndex = 12;
             this.lblTitle.Text = "Title";
             // 
+            // btnRegister
+            // 
+            this.btnRegister.BackColor = System.Drawing.Color.CornflowerBlue;
+            this.btnRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegister.Location = new System.Drawing.Point(838, 415);
+            this.btnRegister.Name = "btnRegister";
+            this.btnRegister.Size = new System.Drawing.Size(210, 42);
+            this.btnRegister.TabIndex = 20;
+            this.btnRegister.Text = "Register";
+            this.btnRegister.UseVisualStyleBackColor = false;
+            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
+            // 
+            // txtStatus
+            // 
+            this.txtStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStatus.Location = new System.Drawing.Point(308, 338);
+            this.txtStatus.MaxLength = 1;
+            this.txtStatus.Name = "txtStatus";
+            this.txtStatus.Size = new System.Drawing.Size(141, 26);
+            this.txtStatus.TabIndex = 22;
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Location = new System.Drawing.Point(305, 320);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(56, 20);
+            this.lblStatus.TabIndex = 21;
+            this.lblStatus.Text = "Status";
+            // 
             // frmRegisterGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 611);
-            this.Controls.Add(this.txtbxPublisher);
+            this.Controls.Add(this.txtStatus);
+            this.Controls.Add(this.lblStatus);
+            this.Controls.Add(this.btnRegister);
+            this.Controls.Add(this.txtPublisher);
             this.Controls.Add(this.lblPublisher);
-            this.Controls.Add(this.txtbxEircode);
+            this.Controls.Add(this.txtPrice);
             this.Controls.Add(this.lblCost);
-            this.Controls.Add(this.txtbxSurname);
+            this.Controls.Add(this.txtDeveloper);
             this.Controls.Add(this.lblDeveloper);
-            this.Controls.Add(this.txtbxTitle);
+            this.Controls.Add(this.txtTitle);
             this.Controls.Add(this.lblTitle);
             this.Controls.Add(this.pnlMenu);
             this.Name = "frmRegisterGame";
@@ -222,13 +259,16 @@ namespace ShippingApplication
         private System.Windows.Forms.Button btnReturn;
         private System.Windows.Forms.Panel pnlImage;
         private System.Windows.Forms.Panel pnlMenu;
-        private System.Windows.Forms.TextBox txtbxPublisher;
+        private System.Windows.Forms.TextBox txtPublisher;
         private System.Windows.Forms.Label lblPublisher;
-        private System.Windows.Forms.TextBox txtbxEircode;
+        private System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.Label lblCost;
-        private System.Windows.Forms.TextBox txtbxSurname;
+        private System.Windows.Forms.TextBox txtDeveloper;
         private System.Windows.Forms.Label lblDeveloper;
-        private System.Windows.Forms.TextBox txtbxTitle;
+        private System.Windows.Forms.TextBox txtTitle;
         private System.Windows.Forms.Label lblTitle;
+        private System.Windows.Forms.Button btnRegister;
+        private System.Windows.Forms.TextBox txtStatus;
+        private System.Windows.Forms.Label lblStatus;
     }
 }

@@ -89,6 +89,7 @@ namespace ShippingApplication
             if (surname.Length > 20)
             {
                 isValidName(Surname);
+                char.ToUpper(Surname[0]);
                 this.surname = Surname;
             }
             else
@@ -104,7 +105,8 @@ namespace ShippingApplication
             if (surname.Length > 20)
             {
                 isValidName(Forename);
-                this.surname = Forename;
+                char.ToUpper(Forename[0]);
+                this.forename = Forename;
             }
             else
                 surname = "Null";
@@ -117,7 +119,10 @@ namespace ShippingApplication
         public void setTown(String Town)
         {
             if (town.Length < 30)
+            {
+                char.ToUpper(Town[0]);
                 this.town = Town;
+            }
             else
                 town = "Null";
         }
@@ -128,6 +133,8 @@ namespace ShippingApplication
         }
         public void setCounty(String County)
         {
+            //if(County == )
+            // TODO find where cboCounty gets generated and put the setter in Customers to only equal that array.
             this.county = County;
         }
 
@@ -259,20 +266,33 @@ namespace ShippingApplication
 
         public void addCustomer()
         {
-            OracleConnection connection = new OracleConnection(DBConnect.oradb);
+            try
+            {
+                OracleConnection connection = new OracleConnection(DBConnect.oradb);
 
-            String sqlQuery = "INSERT INTO Customers Values (" +
-                this.custId + ",'" + this.forename + "','" + this.surname + "','" +
-                this.town + "'," + this.county + "," + this.EIRCode + ",'" + 
-                this.password + ",'" + this.phone + "','" + this.email + "','" + 
-                this.cardNumber + "','" + this.status + "')";
+                // TODO Finish editing this query for numbers.
+                String sqlQuery = "INSERT INTO Customers Values (" + getNextCustomerID() + ",'" +
+                    this.forename + "','" + this.surname + "','" +
+                    this.town + "','" + this.county + "','" + this.EIRCode + "','" +
+                    this.password + "','" + this.phone + "','" + this.email + "','" +
+                    this.cardNumber + "','" + this.status + "')";
 
-            OracleCommand cmd = new OracleCommand(sqlQuery, connection);
-            connection.Open();
+                OracleCommand cmd = new OracleCommand(sqlQuery, connection);
+                Console.WriteLine("Success?");
+                connection.Open();
 
-            cmd.ExecuteNonQuery();
+                cmd.ExecuteNonQuery();
 
-            connection.Close();
+                connection.Close();
+            }
+            catch(Exception ex)
+            {
+                if (ex.Source != null)
+                {
+                    Console.WriteLine("IOException source: {0}", ex.Source);
+                }
+                throw;
+            }
         }
         public void updateCustomer()
         {
@@ -330,8 +350,8 @@ namespace ShippingApplication
         }
         public String toString()
         {
-            return "Customer Id: " + this.custId + " Forename: " + getForename() + "\nSurname: " + this.surname + " Town: " + this.town + "\nCounty: " + this.county + 
-                " EIR Code: " + this.EIRCode + "\nPhone: " + this.phone + " Email: " + this.email + "\nStatus: " + getStatus();
+            return "Customer Id: " + getCustomerId() + " Forename: " + getForename() + "\nSurname: " + getSurname() + " Town: " + getTown() + "\nCounty: " + getCounty() + 
+                " EIR Code: " + getEircode() + "\nPhone: " + getPhoneNumber() + " Email: " + getEmail() + "\nStatus: " + getStatus();
         }
     }
 }
