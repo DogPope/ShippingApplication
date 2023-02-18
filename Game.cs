@@ -52,6 +52,7 @@ namespace ShippingApplication
         }
         public void setTitle(String Title)
         {
+            char.ToUpper(Title[0]);
             this.title = Title;
         }
 
@@ -61,6 +62,7 @@ namespace ShippingApplication
         }
         public void setDeveloper(String Developer)
         {
+            char.ToUpper(Developer[0]);
             this.developer = Developer;
         }
 
@@ -94,6 +96,7 @@ namespace ShippingApplication
         }
         public void setStatus(char Status)
         {
+            Char.ToUpper(Status);
             this.status = Status;
         }
 
@@ -109,9 +112,6 @@ namespace ShippingApplication
 
                 OracleCommand cmd = new OracleCommand(sqlQuery, connection);
                 connection.Open();
-                // ORA-12541: TNS: No listener
-                // No connection could be made because the target machine actively refused it?
-
                 cmd.ExecuteNonQuery();
 
                 connection.Close();
@@ -137,7 +137,15 @@ namespace ShippingApplication
                 "Cost to Buy = " + this.buyPrice + "," +
                 "SalePrice = " + this.salePrice + "," +
                 "Status = '" + this.status + "' " +
-                "WHERE GameId = " + this.gameId;
+                "WHERE GameId = " + this.gameId + ";";
+
+            /*
+             *  Commenting the above string to get a clearer look at its output.
+             UPDATE Game SET GameId = 1,Title = 'titleString',Developer = 'developerString',Publisher = 'publisherString',CosttoBuy = priceDouble,
+            salePrice = salePriceDouble,Status = ''WHERE GameId = gameIdInt;
+             */
+
+            Console.WriteLine(sqlQuery);
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
             conn.Open();
@@ -148,13 +156,13 @@ namespace ShippingApplication
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            String sqlQuery = "SELECT ProductId, Name, Manufacturer FROM Products " +
-                "WHERE Name LIKE '%" + title + "%' ORDER BY Name";
+            String sqlQuery = "SELECT GameId, Title, Developer, Publisher FROM Games " +
+                "WHERE Title LIKE '%" + title + "%' ORDER BY Title";
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             DataSet ds = new DataSet();
-            da.Fill(ds, "prod");
+            da.Fill(ds, "Games");
             conn.Close();
             return ds;
         }

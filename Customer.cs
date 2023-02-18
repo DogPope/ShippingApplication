@@ -133,8 +133,6 @@ namespace ShippingApplication
         }
         public void setCounty(String County)
         {
-            //if(County == )
-            // TODO find where cboCounty gets generated and put the setter in Customers to only equal that array.
             this.county = County;
         }
 
@@ -186,7 +184,7 @@ namespace ShippingApplication
         }
         public void setCardNumber(String CardNumber)
         {
-            if (CardNumber.Length == 20 || CardNumber.Length == 16)
+            if (CardNumber.Length <= 20 || CardNumber.Length >= 16)
                 CardNumber.Trim(' ');
                 foreach(char c in CardNumber)
                 {
@@ -206,12 +204,13 @@ namespace ShippingApplication
 
         private static bool isValidName(String name)
         {
+            // Makes sure all characters entered are alphabetical
             return Regex.IsMatch(name, @"^[a-zA-Z]+$");
         }
 
         private static bool isValidEircode(String EIRCode)
         {
-            // This regex string should allow the user to type a recognisable EIR Code in a few different ways.
+            // This regex string should allow the user to type a recognisable EIR Code.
             return Regex.IsMatch(EIRCode, @"(?:^[AC-FHKNPRTV-Y][0-9]{2}|D6W)[ -]?[0-9AC-FHKNPRTV-Y]{4}$");
         }
 
@@ -270,7 +269,6 @@ namespace ShippingApplication
             {
                 OracleConnection connection = new OracleConnection(DBConnect.oradb);
 
-                // TODO Finish editing this query for numbers.
                 String sqlQuery = "INSERT INTO Customers Values (" + getNextCustomerID() + ",'" +
                     this.forename + "','" + this.surname + "','" +
                     this.town + "','" + this.county + "','" + this.EIRCode + "','" +
@@ -324,7 +322,7 @@ namespace ShippingApplication
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
             OracleDataAdapter da = new OracleDataAdapter(cmd);
             DataSet ds = new DataSet();
-            da.Fill(ds, "prod");
+            da.Fill(ds, "Customers");
             conn.Close();
             return ds;
         }

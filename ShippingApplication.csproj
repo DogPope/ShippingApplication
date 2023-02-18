@@ -99,7 +99,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConnectionTest.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="DBConnect.cs" />
     <Compile Include="frmRegisterCustomer.cs">
