@@ -14,6 +14,9 @@ namespace ShippingApplication
         private String title;
         private String developer;
         private String publisher;
+        private String description;
+        private String genre;
+        private Int32 quantity;
         private decimal buyPrice;
         private decimal salePrice;
         private char status;
@@ -21,18 +24,43 @@ namespace ShippingApplication
         public Game()
         {
             this.gameId = 0;
-            this.title = "Not known";
-            this.developer = "Not known";
-            this.publisher = "Not known";
+            this.title = "No title available.";
+            this.developer = "No developer available.";
+            this.publisher = "No publisher available.";
+            this.description = "No description available.";
+            this.genre = "No genre available.";
+            this.quantity = 0;
             this.buyPrice = 0;
             this.salePrice = 0;
             this.status = 'U';
         }
-        public Game(String title, String developer, String publisher, decimal salePrice, char status)
+        public Game(String title, String developer, String publisher, String description, String genre, Int32 quantity, decimal buyPrice, decimal salePrice, char status)
         {
+            // This constructor to be used for the creation of a new game object.
+            /* In this case, putting in a status is neccesary, because the item may or may not be available on creation, where a customer will always be registered on
+            *  creation of a customer object.*/
             this.title = title;
             this.developer = developer;
             this.publisher = publisher;
+            this.description = description;
+            this.genre = genre;
+            this.quantity = quantity;
+            this.buyPrice = buyPrice;
+            this.salePrice = salePrice;
+            this.status = status;
+        }
+
+        public Game(Int32 gameId, String title, String developer, String publisher, String description, String genre, Int32 quantity, decimal buyPrice, decimal salePrice, char status)
+        {
+            // This constructor should be used for update queries.
+            this.gameId = gameId;
+            this.title = title;
+            this.developer = developer;
+            this.publisher = publisher;
+            this.description = description;
+            this.genre = genre;
+            this.quantity = quantity;
+            this.buyPrice = buyPrice;
             this.salePrice = salePrice;
             this.status = status;
         }
@@ -43,7 +71,10 @@ namespace ShippingApplication
         }
         public void setGameId(Int32 GameID)
         {
-            this.gameId = GameID;
+            if(gameId > 0 && gameId < Int32.MaxValue)
+                this.gameId = GameID;
+            else
+                this.gameId = 0;
         }
 
         public String getTitle()
@@ -52,8 +83,11 @@ namespace ShippingApplication
         }
         public void setTitle(String Title)
         {
-            char.ToUpper(Title[0]);
-            this.title = Title;
+            if(title != "")
+            {
+                char.ToUpper(Title[0]);
+                this.title = Title;
+            }
         }
 
         public String getDeveloper()
@@ -62,8 +96,13 @@ namespace ShippingApplication
         }
         public void setDeveloper(String Developer)
         {
-            char.ToUpper(Developer[0]);
-            this.developer = Developer;
+            if (developer != "")
+            {
+                char.ToUpper(Developer[0]);
+                this.developer = Developer;
+            }
+            else
+                developer = "No developer available!";
         }
 
         public String getPublisher()
@@ -72,8 +111,55 @@ namespace ShippingApplication
         }
         public void setPublisher(String Publisher)
         {
-            char.ToUpper(Publisher[0]);
-            this.publisher = Publisher;
+            if (publisher != "")
+            {
+                char.ToUpper(publisher[0]);
+                this.publisher = Publisher;
+            }
+            else
+                publisher = "No publisher available!";
+        }
+
+        public String getGenre()
+        {
+            return this.genre;
+        }
+        public void setGenre(String Genre)
+        {
+            if (genre.Length > 0)
+            {
+                char.ToUpper(genre[0]);
+                this.genre = Genre;
+            }
+            else
+                genre = "No genre available.";
+        }
+
+        public String getDescription()
+        {
+            return this.description;
+        }
+        public void setDescription(String Description)
+        {
+            if (description.Length > 0)
+            {
+                char.ToUpper(description[0]);
+                this.description = Description;
+            }
+            else
+                description = "Description not available.";
+        }
+
+        public Int32 getQuantity()
+        {
+            return this.quantity;
+        }
+        public void setQuantity(Int32 Quantity)
+        {
+            if(quantity >= 0 && quantity < Int32.MaxValue)
+            {
+                this.quantity = Quantity;
+            }
         }
 
         public decimal getBuyingPrice()
@@ -82,12 +168,22 @@ namespace ShippingApplication
         }
         public void setBuyingPrice(decimal BuyPrice)
         {
-            this.buyPrice = BuyPrice;
+            if (buyPrice < 0 && buyPrice > decimal.MaxValue)
+                this.buyPrice = BuyPrice;
+            else
+                buyPrice = 0;
         }
 
         public decimal getSalePrice()
         {
             return this.salePrice;
+        }
+        public void setSalePrice(decimal SalePrice)
+        {
+            if (salePrice < 0 && salePrice > decimal.MaxValue)
+                this.salePrice = SalePrice;
+            else
+                salePrice = 0;
         }
 
         public char getStatus()
@@ -108,7 +204,8 @@ namespace ShippingApplication
 
                 String sqlQuery = "INSERT INTO Games Values (" + getNextGameID() + ",'" +
                     this.title + "','" + this.developer + "','" + this.publisher + "'," +
-                    this.salePrice + ",'" + this.status + "')";
+                    this.description + "','" + this.genre + "'," + this.quantity + "," +
+                    this.buyPrice + ",'" + this.salePrice + ",'" + this.status + "')";
 
                 OracleCommand cmd = new OracleCommand(sqlQuery, connection);
                 connection.Open();
@@ -134,7 +231,10 @@ namespace ShippingApplication
                 "Title = '" + this.title + "'," +
                 "Developer = '" + this.developer + "'," +
                 "Publisher = '" + this.publisher + "'," +
-                "Cost to Buy = " + this.buyPrice + "," +
+                "Description = '" + this.description + "'," +
+                "Genre = '" + this.genre + "'," +
+                "Quantity = '" + this.quantity + "'," +
+                "BuyPrice = " + this.buyPrice + "," +
                 "SalePrice = " + this.salePrice + "," +
                 "Status = '" + this.status + "' " +
                 "WHERE GameId = " + this.gameId + ";";
@@ -169,7 +269,7 @@ namespace ShippingApplication
         public static int getNextGameID()
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
-            String sqlQuery = "SELECT MAX(GameID) FROM Games";
+            String sqlQuery = "SELECT MAX(Game_ID) FROM Games";
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
             conn.Open();
             OracleDataReader dr = cmd.ExecuteReader();
@@ -188,8 +288,16 @@ namespace ShippingApplication
         }
         public String toString()
         {
-            return "Title: " + getTitle() + " Developer: " + getDeveloper() + "\nPublisher: " + getPublisher() + 
-                " Cost to buy: " + getBuyingPrice() + "\nSale Price: " + getSalePrice() + "Status: " + getStatus();
+            return "Game ID: " + getGameId() +
+                "Title: " + getTitle() + 
+                "\nDeveloper: " + getDeveloper() + 
+                " Publisher: " + getPublisher() + 
+                "\nDescription: "+ getDescription() + 
+                " Genre: " + getGenre() +
+                "\nQuantity: " + getQuantity() + 
+                " Cost to buy: " + getBuyingPrice() + 
+                "\nSale Price: " + getSalePrice() + 
+                "Status: " + getStatus();
         }
     }
 }

@@ -86,7 +86,7 @@ namespace ShippingApplication
         }
         public void setSurname(String Surname)
         {
-            if (surname.Length > 20)
+            if (surname.Length > 0)
             {
                 isValidName(Surname);
                 char.ToUpper(Surname[0]);
@@ -216,6 +216,7 @@ namespace ShippingApplication
 
         public static bool isValidPassword(String password)
         {
+            // Password should have a minimum of one of each Uppercase letters, Lowercase letters, numbers, symbols and be a minimum 8 chars in length, maximum of 20.
             char[] symbols = { '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '.', ',', '?', '+', '_', '-', '='};
             int numOfNumbers = 0;
             int numSymbols = 0;
@@ -249,6 +250,7 @@ namespace ShippingApplication
 
         public bool IsValidEmail(string emailaddress)
         {
+            // Email validation should support up to a third level domain, only support one '@' Symbol.
             int numOfAtSymbols = 0;
             int domainSize = 0;
             foreach(char c in emailaddress)
@@ -305,7 +307,7 @@ namespace ShippingApplication
                 "EIRCode = " + this.EIRCode + "," +
                 "Status = '" + this.status + "' " +
                 "CardNumber = '" + this.cardNumber + "' " +
-                "WHERE CustId = " + this.custId;
+                "WHERE CustId = " + this.custId + ");";
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
             conn.Open();

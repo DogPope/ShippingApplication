@@ -37,7 +37,7 @@ namespace ShippingApplication
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.txtPublisher = new System.Windows.Forms.TextBox();
             this.lblPublisher = new System.Windows.Forms.Label();
-            this.txtPrice = new System.Windows.Forms.TextBox();
+            this.txtBuyPrice = new System.Windows.Forms.TextBox();
             this.lblCost = new System.Windows.Forms.Label();
             this.txtDeveloper = new System.Windows.Forms.TextBox();
             this.lblDeveloper = new System.Windows.Forms.Label();
@@ -46,6 +46,14 @@ namespace ShippingApplication
             this.btnRegister = new System.Windows.Forms.Button();
             this.txtStatus = new System.Windows.Forms.TextBox();
             this.lblStatus = new System.Windows.Forms.Label();
+            this.txtSalePrice = new System.Windows.Forms.TextBox();
+            this.lblSalePrice = new System.Windows.Forms.Label();
+            this.txtGenre = new System.Windows.Forms.TextBox();
+            this.lblGenre = new System.Windows.Forms.Label();
+            this.txtQuantity = new System.Windows.Forms.TextBox();
+            this.lblQuantity = new System.Windows.Forms.Label();
+            this.txtDescription = new System.Windows.Forms.TextBox();
+            this.lblDescription = new System.Windows.Forms.Label();
             this.pnlMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -138,14 +146,14 @@ namespace ShippingApplication
             this.lblPublisher.TabIndex = 18;
             this.lblPublisher.Text = "Publisher";
             // 
-            // txtPrice
+            // txtBuyPrice
             // 
-            this.txtPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrice.Location = new System.Drawing.Point(524, 226);
-            this.txtPrice.MaxLength = 8;
-            this.txtPrice.Name = "txtPrice";
-            this.txtPrice.Size = new System.Drawing.Size(141, 26);
-            this.txtPrice.TabIndex = 17;
+            this.txtBuyPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBuyPrice.Location = new System.Drawing.Point(524, 226);
+            this.txtBuyPrice.MaxLength = 8;
+            this.txtBuyPrice.Name = "txtBuyPrice";
+            this.txtBuyPrice.Size = new System.Drawing.Size(141, 26);
+            this.txtBuyPrice.TabIndex = 17;
             // 
             // lblCost
             // 
@@ -153,9 +161,9 @@ namespace ShippingApplication
             this.lblCost.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCost.Location = new System.Drawing.Point(521, 208);
             this.lblCost.Name = "lblCost";
-            this.lblCost.Size = new System.Drawing.Size(44, 20);
+            this.lblCost.Size = new System.Drawing.Size(97, 20);
             this.lblCost.TabIndex = 16;
-            this.lblCost.Text = "Price";
+            this.lblCost.Text = "Price To Buy";
             // 
             // txtDeveloper
             // 
@@ -226,17 +234,100 @@ namespace ShippingApplication
             this.lblStatus.TabIndex = 21;
             this.lblStatus.Text = "Status";
             // 
+            // txtSalePrice
+            // 
+            this.txtSalePrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSalePrice.Location = new System.Drawing.Point(524, 338);
+            this.txtSalePrice.MaxLength = 8;
+            this.txtSalePrice.Name = "txtSalePrice";
+            this.txtSalePrice.Size = new System.Drawing.Size(141, 26);
+            this.txtSalePrice.TabIndex = 24;
+            // 
+            // lblSalePrice
+            // 
+            this.lblSalePrice.AutoSize = true;
+            this.lblSalePrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSalePrice.Location = new System.Drawing.Point(521, 320);
+            this.lblSalePrice.Name = "lblSalePrice";
+            this.lblSalePrice.Size = new System.Drawing.Size(96, 20);
+            this.lblSalePrice.TabIndex = 23;
+            this.lblSalePrice.Text = "Price To Sell";
+            // 
+            // txtGenre
+            // 
+            this.txtGenre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGenre.Location = new System.Drawing.Point(309, 452);
+            this.txtGenre.MaxLength = 20;
+            this.txtGenre.Name = "txtGenre";
+            this.txtGenre.Size = new System.Drawing.Size(141, 26);
+            this.txtGenre.TabIndex = 26;
+            // 
+            // lblGenre
+            // 
+            this.lblGenre.AutoSize = true;
+            this.lblGenre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGenre.Location = new System.Drawing.Point(306, 434);
+            this.lblGenre.Name = "lblGenre";
+            this.lblGenre.Size = new System.Drawing.Size(54, 20);
+            this.lblGenre.TabIndex = 25;
+            this.lblGenre.Text = "Genre";
+            // 
+            // txtQuantity
+            // 
+            this.txtQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtQuantity.Location = new System.Drawing.Point(524, 452);
+            this.txtQuantity.MaxLength = 3;
+            this.txtQuantity.Name = "txtQuantity";
+            this.txtQuantity.Size = new System.Drawing.Size(141, 26);
+            this.txtQuantity.TabIndex = 28;
+            // 
+            // lblQuantity
+            // 
+            this.lblQuantity.AutoSize = true;
+            this.lblQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQuantity.Location = new System.Drawing.Point(521, 434);
+            this.lblQuantity.Name = "lblQuantity";
+            this.lblQuantity.Size = new System.Drawing.Size(68, 20);
+            this.lblQuantity.TabIndex = 27;
+            this.lblQuantity.Text = "Quantity";
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.Location = new System.Drawing.Point(772, 114);
+            this.txtDescription.Multiline = true;
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(339, 138);
+            this.txtDescription.TabIndex = 29;
+            // 
+            // lblDescription
+            // 
+            this.lblDescription.AutoSize = true;
+            this.lblDescription.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescription.Location = new System.Drawing.Point(768, 91);
+            this.lblDescription.Name = "lblDescription";
+            this.lblDescription.Size = new System.Drawing.Size(89, 20);
+            this.lblDescription.TabIndex = 30;
+            this.lblDescription.Text = "Description";
+            // 
             // frmRegisterGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 611);
+            this.Controls.Add(this.lblDescription);
+            this.Controls.Add(this.txtDescription);
+            this.Controls.Add(this.txtQuantity);
+            this.Controls.Add(this.lblQuantity);
+            this.Controls.Add(this.txtGenre);
+            this.Controls.Add(this.lblGenre);
+            this.Controls.Add(this.txtSalePrice);
+            this.Controls.Add(this.lblSalePrice);
             this.Controls.Add(this.txtStatus);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.txtPublisher);
             this.Controls.Add(this.lblPublisher);
-            this.Controls.Add(this.txtPrice);
+            this.Controls.Add(this.txtBuyPrice);
             this.Controls.Add(this.lblCost);
             this.Controls.Add(this.txtDeveloper);
             this.Controls.Add(this.lblDeveloper);
@@ -261,7 +352,7 @@ namespace ShippingApplication
         private System.Windows.Forms.Panel pnlMenu;
         private System.Windows.Forms.TextBox txtPublisher;
         private System.Windows.Forms.Label lblPublisher;
-        private System.Windows.Forms.TextBox txtPrice;
+        private System.Windows.Forms.TextBox txtBuyPrice;
         private System.Windows.Forms.Label lblCost;
         private System.Windows.Forms.TextBox txtDeveloper;
         private System.Windows.Forms.Label lblDeveloper;
@@ -270,5 +361,13 @@ namespace ShippingApplication
         private System.Windows.Forms.Button btnRegister;
         private System.Windows.Forms.TextBox txtStatus;
         private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.TextBox txtSalePrice;
+        private System.Windows.Forms.Label lblSalePrice;
+        private System.Windows.Forms.TextBox txtGenre;
+        private System.Windows.Forms.Label lblGenre;
+        private System.Windows.Forms.TextBox txtQuantity;
+        private System.Windows.Forms.Label lblQuantity;
+        private System.Windows.Forms.TextBox txtDescription;
+        private System.Windows.Forms.Label lblDescription;
     }
 }

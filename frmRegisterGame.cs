@@ -19,7 +19,8 @@ namespace ShippingApplication
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            Game doom = new Game(txtTitle.Text, txtDeveloper.Text, txtPublisher.Text, Convert.ToDecimal(txtPrice.Text), Convert.ToChar(txtStatus.Text));
+            Game doom = new Game(txtTitle.Text, txtDeveloper.Text, txtGenre.Text, txtPublisher.Text, Convert.ToDecimal(txtBuyPrice.Text) +
+                txtDescription.Text,Convert.ToChar(txtStatus.Text), Convert.ToDecimal(txtSalePrice.Text), Convert.ToInt32(txtQuantity.Text) ,Convert.ToChar(txtStatus.Text));
 
             doom.addGame();
 
@@ -29,8 +30,8 @@ namespace ShippingApplication
             txtTitle.Clear();
             txtDeveloper.Clear();
             txtPublisher.Clear();
-            txtPrice.Clear();
-            txtPrice.Text = "0.00";
+            txtBuyPrice.Clear();
+            txtBuyPrice.Text = "0.00";
             txtTitle.Focus();
             Console.WriteLine(doom.toString());
         }
