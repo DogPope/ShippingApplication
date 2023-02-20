@@ -29,12 +29,6 @@ namespace ShippingApplication
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnAnalysis = new System.Windows.Forms.Button();
-            this.btnOrders = new System.Windows.Forms.Button();
-            this.btnGames = new System.Windows.Forms.Button();
-            this.btnReturn = new System.Windows.Forms.Button();
-            this.pnlImage = new System.Windows.Forms.Panel();
-            this.pnlMenu = new System.Windows.Forms.Panel();
             this.cboCounty = new System.Windows.Forms.ComboBox();
             this.btnSubmit = new System.Windows.Forms.Button();
             this.lblForename = new System.Windows.Forms.Label();
@@ -55,111 +49,61 @@ namespace ShippingApplication
             this.lblCard = new System.Windows.Forms.Label();
             this.txtStatus = new System.Windows.Forms.TextBox();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.pnlMenu.SuspendLayout();
+            this.munProgram = new System.Windows.Forms.MenuStrip();
+            this.customersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.registerCustomerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateDeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.gamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.registerGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateDeleteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewDetailsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.ordersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.placeOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.updateCancelOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sendOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.invoiceReceiptsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.adminFeaturesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.yearlyRevenueAnalysisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.yearlyStockAnalysisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.button1 = new System.Windows.Forms.Button();
+            this.txtCustId = new System.Windows.Forms.TextBox();
+            this.labelCustId = new System.Windows.Forms.Label();
+            this.munProgram.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // btnAnalysis
-            // 
-            this.btnAnalysis.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.btnAnalysis.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnAnalysis.Location = new System.Drawing.Point(0, 290);
-            this.btnAnalysis.Name = "btnAnalysis";
-            this.btnAnalysis.Size = new System.Drawing.Size(200, 50);
-            this.btnAnalysis.TabIndex = 4;
-            this.btnAnalysis.Text = "System Analysis";
-            this.btnAnalysis.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAnalysis.UseVisualStyleBackColor = false;
-            // 
-            // btnOrders
-            // 
-            this.btnOrders.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.btnOrders.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnOrders.Location = new System.Drawing.Point(0, 240);
-            this.btnOrders.Name = "btnOrders";
-            this.btnOrders.Size = new System.Drawing.Size(200, 50);
-            this.btnOrders.TabIndex = 3;
-            this.btnOrders.Text = "Manage Orders";
-            this.btnOrders.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOrders.UseVisualStyleBackColor = false;
-            // 
-            // btnGames
-            // 
-            this.btnGames.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.btnGames.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnGames.Location = new System.Drawing.Point(0, 190);
-            this.btnGames.Name = "btnGames";
-            this.btnGames.Size = new System.Drawing.Size(200, 50);
-            this.btnGames.TabIndex = 2;
-            this.btnGames.Text = "Manage Games";
-            this.btnGames.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGames.UseVisualStyleBackColor = false;
-            // 
-            // btnReturn
-            // 
-            this.btnReturn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.btnReturn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnReturn.Location = new System.Drawing.Point(0, 140);
-            this.btnReturn.Name = "btnReturn";
-            this.btnReturn.Size = new System.Drawing.Size(200, 50);
-            this.btnReturn.TabIndex = 1;
-            this.btnReturn.Text = "Return";
-            this.btnReturn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReturn.UseVisualStyleBackColor = false;
-            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
-            // 
-            // pnlImage
-            // 
-            this.pnlImage.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlImage.Location = new System.Drawing.Point(0, 0);
-            this.pnlImage.Name = "pnlImage";
-            this.pnlImage.Size = new System.Drawing.Size(200, 140);
-            this.pnlImage.TabIndex = 0;
-            // 
-            // pnlMenu
-            // 
-            this.pnlMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(233)))), ((int)(((byte)(255)))), ((int)(((byte)(213)))));
-            this.pnlMenu.Controls.Add(this.btnAnalysis);
-            this.pnlMenu.Controls.Add(this.btnOrders);
-            this.pnlMenu.Controls.Add(this.btnGames);
-            this.pnlMenu.Controls.Add(this.btnReturn);
-            this.pnlMenu.Controls.Add(this.pnlImage);
-            this.pnlMenu.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlMenu.Location = new System.Drawing.Point(0, 0);
-            this.pnlMenu.Name = "pnlMenu";
-            this.pnlMenu.Size = new System.Drawing.Size(200, 611);
-            this.pnlMenu.TabIndex = 1;
             // 
             // cboCounty
             // 
             this.cboCounty.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCounty.FormattingEnabled = true;
             this.cboCounty.Items.AddRange(new object[] {
-            "CW",
-            "CN",
-            "CE",
-            "CK",
-            "DL",
-            "DN",
-            "GY",
-            "KY",
-            "KE",
-            "KK",
-            "LS",
-            "LM",
-            "LK",
-            "LD",
-            "LH",
-            "MO",
-            "MH",
-            "MN",
-            "OF",
-            "RN",
-            "SO",
-            "TY",
-            "WA",
-            "WH",
-            "WE",
-            "WW"});
+            "Carlow",
+            "Cavan",
+            "Clare",
+            "Cork",
+            "Donegal",
+            "Dublin",
+            "Galway",
+            "Kerry",
+            "Kildare",
+            "Kilkenny",
+            "Laois",
+            "Leitrim",
+            "Limerick",
+            "Longford",
+            "Louth",
+            "Mayo",
+            "Meath",
+            "Monaghan",
+            "Offaly",
+            "Roscommon",
+            "Sligo",
+            "Tipperary",
+            "Waterford",
+            "Westmeath",
+            "Wexford",
+            "Wicklow"});
             this.cboCounty.Location = new System.Drawing.Point(904, 89);
             this.cboCounty.MaxDropDownItems = 32;
             this.cboCounty.MaxLength = 30;
@@ -352,11 +296,178 @@ namespace ShippingApplication
             this.lblStatus.TabIndex = 22;
             this.lblStatus.Text = "Status";
             // 
+            // munProgram
+            // 
+            this.munProgram.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.customersToolStripMenuItem,
+            this.gamesToolStripMenuItem,
+            this.ordersToolStripMenuItem,
+            this.adminFeaturesToolStripMenuItem});
+            this.munProgram.Location = new System.Drawing.Point(0, 0);
+            this.munProgram.Name = "munProgram";
+            this.munProgram.Size = new System.Drawing.Size(1184, 24);
+            this.munProgram.TabIndex = 23;
+            this.munProgram.Text = "mnuProgram";
+            // 
+            // customersToolStripMenuItem
+            // 
+            this.customersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.registerCustomerToolStripMenuItem,
+            this.updateDeleteToolStripMenuItem,
+            this.viewDetailsToolStripMenuItem});
+            this.customersToolStripMenuItem.Name = "customersToolStripMenuItem";
+            this.customersToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
+            this.customersToolStripMenuItem.Text = "Customers";
+            // 
+            // registerCustomerToolStripMenuItem
+            // 
+            this.registerCustomerToolStripMenuItem.Name = "registerCustomerToolStripMenuItem";
+            this.registerCustomerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.registerCustomerToolStripMenuItem.Text = "Register Customer";
+            // 
+            // updateDeleteToolStripMenuItem
+            // 
+            this.updateDeleteToolStripMenuItem.Name = "updateDeleteToolStripMenuItem";
+            this.updateDeleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.updateDeleteToolStripMenuItem.Text = "Update / Delete";
+            // 
+            // viewDetailsToolStripMenuItem
+            // 
+            this.viewDetailsToolStripMenuItem.Name = "viewDetailsToolStripMenuItem";
+            this.viewDetailsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewDetailsToolStripMenuItem.Text = "View Details";
+            // 
+            // gamesToolStripMenuItem
+            // 
+            this.gamesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.registerGameToolStripMenuItem,
+            this.updateDeleteToolStripMenuItem1,
+            this.viewDetailsToolStripMenuItem1});
+            this.gamesToolStripMenuItem.Name = "gamesToolStripMenuItem";
+            this.gamesToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
+            this.gamesToolStripMenuItem.Text = "Games";
+            // 
+            // registerGameToolStripMenuItem
+            // 
+            this.registerGameToolStripMenuItem.Name = "registerGameToolStripMenuItem";
+            this.registerGameToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.registerGameToolStripMenuItem.Text = "Register Game";
+            // 
+            // updateDeleteToolStripMenuItem1
+            // 
+            this.updateDeleteToolStripMenuItem1.Name = "updateDeleteToolStripMenuItem1";
+            this.updateDeleteToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.updateDeleteToolStripMenuItem1.Text = "Update / Delete";
+            // 
+            // viewDetailsToolStripMenuItem1
+            // 
+            this.viewDetailsToolStripMenuItem1.Name = "viewDetailsToolStripMenuItem1";
+            this.viewDetailsToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.viewDetailsToolStripMenuItem1.Text = "View Details";
+            // 
+            // ordersToolStripMenuItem
+            // 
+            this.ordersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.placeOrderToolStripMenuItem,
+            this.updateCancelOrderToolStripMenuItem,
+            this.viewOrderToolStripMenuItem,
+            this.sendOrderToolStripMenuItem,
+            this.invoiceReceiptsToolStripMenuItem});
+            this.ordersToolStripMenuItem.Name = "ordersToolStripMenuItem";
+            this.ordersToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
+            this.ordersToolStripMenuItem.Text = "Orders";
+            // 
+            // placeOrderToolStripMenuItem
+            // 
+            this.placeOrderToolStripMenuItem.Name = "placeOrderToolStripMenuItem";
+            this.placeOrderToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.placeOrderToolStripMenuItem.Text = "Place Order";
+            // 
+            // updateCancelOrderToolStripMenuItem
+            // 
+            this.updateCancelOrderToolStripMenuItem.Name = "updateCancelOrderToolStripMenuItem";
+            this.updateCancelOrderToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.updateCancelOrderToolStripMenuItem.Text = "Update / Cancel Order";
+            // 
+            // viewOrderToolStripMenuItem
+            // 
+            this.viewOrderToolStripMenuItem.Name = "viewOrderToolStripMenuItem";
+            this.viewOrderToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.viewOrderToolStripMenuItem.Text = "View Order";
+            // 
+            // sendOrderToolStripMenuItem
+            // 
+            this.sendOrderToolStripMenuItem.Name = "sendOrderToolStripMenuItem";
+            this.sendOrderToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.sendOrderToolStripMenuItem.Text = "Send Order";
+            // 
+            // invoiceReceiptsToolStripMenuItem
+            // 
+            this.invoiceReceiptsToolStripMenuItem.Name = "invoiceReceiptsToolStripMenuItem";
+            this.invoiceReceiptsToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
+            this.invoiceReceiptsToolStripMenuItem.Text = "Invoice / Receipts";
+            // 
+            // adminFeaturesToolStripMenuItem
+            // 
+            this.adminFeaturesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.yearlyRevenueAnalysisToolStripMenuItem,
+            this.yearlyStockAnalysisToolStripMenuItem});
+            this.adminFeaturesToolStripMenuItem.Name = "adminFeaturesToolStripMenuItem";
+            this.adminFeaturesToolStripMenuItem.Size = new System.Drawing.Size(102, 20);
+            this.adminFeaturesToolStripMenuItem.Text = "Admin Features";
+            // 
+            // yearlyRevenueAnalysisToolStripMenuItem
+            // 
+            this.yearlyRevenueAnalysisToolStripMenuItem.Name = "yearlyRevenueAnalysisToolStripMenuItem";
+            this.yearlyRevenueAnalysisToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.yearlyRevenueAnalysisToolStripMenuItem.Text = "Yearly Revenue Analysis";
+            // 
+            // yearlyStockAnalysisToolStripMenuItem
+            // 
+            this.yearlyStockAnalysisToolStripMenuItem.Name = "yearlyStockAnalysisToolStripMenuItem";
+            this.yearlyStockAnalysisToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
+            this.yearlyStockAnalysisToolStripMenuItem.Text = "Yearly Stock Analysis";
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FloralWhite;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(1082, 0);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(101, 24);
+            this.button1.TabIndex = 25;
+            this.button1.Text = "Exit";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.UseVisualStyleBackColor = false;
+            // 
+            // txtCustId
+            // 
+            this.txtCustId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCustId.Location = new System.Drawing.Point(40, 91);
+            this.txtCustId.MaxLength = 5;
+            this.txtCustId.Name = "txtCustId";
+            this.txtCustId.Size = new System.Drawing.Size(141, 26);
+            this.txtCustId.TabIndex = 26;
+            // 
+            // labelCustId
+            // 
+            this.labelCustId.AutoSize = true;
+            this.labelCustId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelCustId.Location = new System.Drawing.Point(37, 73);
+            this.labelCustId.Name = "labelCustId";
+            this.labelCustId.Size = new System.Drawing.Size(99, 20);
+            this.labelCustId.TabIndex = 27;
+            this.labelCustId.Text = "Customer ID";
+            // 
             // frmRegisterCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 611);
+            this.Controls.Add(this.txtCustId);
+            this.Controls.Add(this.labelCustId);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.munProgram);
             this.Controls.Add(this.txtStatus);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.txtCardnumber);
@@ -377,23 +488,16 @@ namespace ShippingApplication
             this.Controls.Add(this.lblForename);
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.cboCounty);
-            this.Controls.Add(this.pnlMenu);
             this.Name = "frmRegisterCustomer";
             this.Text = "Manage Customers";
-            this.pnlMenu.ResumeLayout(false);
+            this.munProgram.ResumeLayout(false);
+            this.munProgram.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnAnalysis;
-        private System.Windows.Forms.Button btnOrders;
-        private System.Windows.Forms.Button btnGames;
-        private System.Windows.Forms.Button btnReturn;
-        private System.Windows.Forms.Panel pnlImage;
-        private System.Windows.Forms.Panel pnlMenu;
         private System.Windows.Forms.ComboBox cboCounty;
         private System.Windows.Forms.Button btnSubmit;
         private System.Windows.Forms.Label lblForename;
@@ -414,5 +518,26 @@ namespace ShippingApplication
         private System.Windows.Forms.Label lblCard;
         private System.Windows.Forms.TextBox txtStatus;
         private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.MenuStrip munProgram;
+        private System.Windows.Forms.ToolStripMenuItem customersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem registerCustomerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem updateDeleteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewDetailsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem gamesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem registerGameToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem updateDeleteToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem viewDetailsToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem ordersToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem placeOrderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem updateCancelOrderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem viewOrderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sendOrderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem invoiceReceiptsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem adminFeaturesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem yearlyRevenueAnalysisToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem yearlyStockAnalysisToolStripMenuItem;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txtCustId;
+        private System.Windows.Forms.Label labelCustId;
     }
 }

@@ -35,27 +35,27 @@ namespace ShippingApplication
             this.password = "password";
             this.phone = "0860000000";
             this.email = "null@gmail.com";
-            this.cardNumber = "Null";
             this.status = "Registered";
+            this.cardNumber = "Null";
         }
-
-        public Customer(Int32 custId, String surname, String forename, String town, String county, String EIRCode, String password, String phone, String email, String cardNumber, String status)
+        //Int32 custId, String forename, String surname, String town, String EIRCode, String password, String phone, String email, String cardNumber, String county, String status
+        public Customer(Int32 custId, String forename, String surname, String town, String EIRCode, String password, String phone, String email, String cardNumber, String status, String county)
         {
             // Not sure what I'd use the full constructor for, but it's there anyway.
             this.custId = custId;
-            this.surname = surname;
             this.forename = forename;
+            this.surname = surname;
             this.town = town;
-            this.county = county;
             this.EIRCode = EIRCode;
             this.password = password;
             this.phone = phone;
             this.email = email;
             this.cardNumber = cardNumber;
+            this.county = county;
             this.status = status;
         }
 
-        public Customer(String surname, String forename, String town, String county, String EIRCode, String password, String phone, String email, String cardNumber)
+        /*public Customer(String surname, String forename, String town, String county, String EIRCode, String password, String phone, String email, String cardNumber)
         {
             // Main instance of constructor from frmRegisterCustomer. Status and ID number assigned Automatically.
             this.surname = surname;
@@ -67,7 +67,7 @@ namespace ShippingApplication
             this.phone = phone;
             this.email = email;
             this.cardNumber = cardNumber;
-        }
+        }*/
 
         public int getCustomerId()
         {
@@ -273,13 +273,12 @@ namespace ShippingApplication
             {
                 OracleConnection connection = new OracleConnection(DBConnect.oradb);
 
-                //Int32 custId, String surname, String forename, String town, String county, String EIRCode, String password, String phone, String email, String cardNumber, String status
+                //Int32 custId, String forename, String surname, String town, String EIRCode, String password, String phone, String email, String cardNumber, String county, String status
                 String sqlQuery = "INSERT INTO Customers Values (" + getNextCustomerID() + ",'" +
                     this.forename + "','" + this.surname + "','" +
-                    this.town + "','" + this.county + "','" + this.EIRCode + "','" +
+                    this.town + "','" + this.EIRCode + "','" +
                     this.password + "','" + this.phone + "','" + this.email + "','" +
-                    this.cardNumber + "','" + this.status + "')";
-
+                    this.cardNumber + "','" + this.status + "','" + this.county + "')";
                 OracleCommand cmd = new OracleCommand(sqlQuery, connection);
                 Console.WriteLine("Success?");
                 connection.Open();

@@ -26,8 +26,8 @@ namespace ShippingApplication
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            Customer next = new Customer(Customer.getNextCustomerID() , txtSurname.Text, txtForename.Text, txtTown.Text,
-                cboCounty.Text, txtEircode.Text, txtPassword.Text, txtPhone.Text, txtEmail.Text, txtCardnumber.Text, txtStatus.Text);
+            Customer next = new Customer(Convert.ToInt32(txtCustId.Text), txtForename.Text, txtSurname.Text, txtTown.Text,
+                txtEircode.Text, txtPassword.Text, txtPhone.Text, txtEmail.Text, txtCardnumber.Text, txtStatus.Text, cboCounty.Text);
 
             next.addCustomer();
 

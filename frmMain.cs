@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ShippingApplication
@@ -36,6 +29,25 @@ namespace ShippingApplication
             frmRegisterGame form = new frmRegisterGame();
             form.ShowDialog();
             this.Show();
+        }
+
+        private void registerCustomerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmRegisterCustomer form = new frmRegisterCustomer();
+            form.ShowDialog();
+            this.Show();
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Are you sure you would like to exit?","Quitting!", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                Application.Exit();
+            }
+            else
+                return;
         }
     }
 }
