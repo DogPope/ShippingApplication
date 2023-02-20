@@ -53,8 +53,8 @@ namespace ShippingApplication
             this.lblPhone = new System.Windows.Forms.Label();
             this.txtCardnumber = new System.Windows.Forms.TextBox();
             this.lblCard = new System.Windows.Forms.Label();
-            this.txtCustId = new System.Windows.Forms.TextBox();
-            this.lblCustId = new System.Windows.Forms.Label();
+            this.txtStatus = new System.Windows.Forms.TextBox();
+            this.lblStatus = new System.Windows.Forms.Label();
             this.pnlMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -134,44 +134,38 @@ namespace ShippingApplication
             this.cboCounty.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCounty.FormattingEnabled = true;
             this.cboCounty.Items.AddRange(new object[] {
-            "Antrim",
-            "Armagh",
-            "Carlow",
-            "Cavan",
-            "Clare",
-            "Cork",
-            "Derry",
-            "Donegal",
-            "Down",
-            "Dublin",
-            "Fermanagh",
-            "Galway",
-            "Kerry",
-            "Kildare",
-            "Kilkenny",
-            "Laois",
-            "Leitrim",
-            "Limerick",
-            "Longford",
-            "Louth",
-            "Mayo",
-            "Meath",
-            "Monaghan",
-            "Offaly",
-            "Roscommon",
-            "Sligo",
-            "Tipperary",
-            "Tyrone",
-            "Waterford",
-            "Westmeath",
-            "Wexford",
-            "Wicklow"});
+            "CW",
+            "CN",
+            "CE",
+            "CK",
+            "DL",
+            "DN",
+            "GY",
+            "KY",
+            "KE",
+            "KK",
+            "LS",
+            "LM",
+            "LK",
+            "LD",
+            "LH",
+            "MO",
+            "MH",
+            "MN",
+            "OF",
+            "RN",
+            "SO",
+            "TY",
+            "WA",
+            "WH",
+            "WE",
+            "WW"});
             this.cboCounty.Location = new System.Drawing.Point(904, 89);
             this.cboCounty.MaxDropDownItems = 32;
             this.cboCounty.MaxLength = 30;
             this.cboCounty.Name = "cboCounty";
             this.cboCounty.Size = new System.Drawing.Size(210, 28);
-            this.cboCounty.TabIndex = 2;
+            this.cboCounty.TabIndex = 9;
             this.cboCounty.Text = "County";
             // 
             // btnSubmit
@@ -190,7 +184,7 @@ namespace ShippingApplication
             // 
             this.lblForename.AutoSize = true;
             this.lblForename.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblForename.Location = new System.Drawing.Point(299, 71);
+            this.lblForename.Location = new System.Drawing.Point(515, 73);
             this.lblForename.Name = "lblForename";
             this.lblForename.Size = new System.Drawing.Size(82, 20);
             this.lblForename.TabIndex = 4;
@@ -199,26 +193,26 @@ namespace ShippingApplication
             // txtForename
             // 
             this.txtForename.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtForename.Location = new System.Drawing.Point(302, 89);
+            this.txtForename.Location = new System.Drawing.Point(518, 91);
             this.txtForename.MaxLength = 20;
             this.txtForename.Name = "txtForename";
             this.txtForename.Size = new System.Drawing.Size(141, 26);
-            this.txtForename.TabIndex = 5;
+            this.txtForename.TabIndex = 2;
             // 
             // txtSurname
             // 
             this.txtSurname.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSurname.Location = new System.Drawing.Point(518, 89);
+            this.txtSurname.Location = new System.Drawing.Point(303, 91);
             this.txtSurname.MaxLength = 20;
             this.txtSurname.Name = "txtSurname";
             this.txtSurname.Size = new System.Drawing.Size(141, 26);
-            this.txtSurname.TabIndex = 7;
+            this.txtSurname.TabIndex = 1;
             // 
             // lblSurname
             // 
             this.lblSurname.AutoSize = true;
             this.lblSurname.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSurname.Location = new System.Drawing.Point(515, 71);
+            this.lblSurname.Location = new System.Drawing.Point(300, 73);
             this.lblSurname.Name = "lblSurname";
             this.lblSurname.Size = new System.Drawing.Size(74, 20);
             this.lblSurname.TabIndex = 6;
@@ -231,7 +225,7 @@ namespace ShippingApplication
             this.txtEircode.MaxLength = 8;
             this.txtEircode.Name = "txtEircode";
             this.txtEircode.Size = new System.Drawing.Size(141, 26);
-            this.txtEircode.TabIndex = 9;
+            this.txtEircode.TabIndex = 4;
             // 
             // lblEircode
             // 
@@ -250,7 +244,7 @@ namespace ShippingApplication
             this.txtTown.MaxLength = 20;
             this.txtTown.Name = "txtTown";
             this.txtTown.Size = new System.Drawing.Size(141, 26);
-            this.txtTown.TabIndex = 11;
+            this.txtTown.TabIndex = 3;
             // 
             // lblTown
             // 
@@ -270,7 +264,7 @@ namespace ShippingApplication
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(141, 26);
-            this.txtPassword.TabIndex = 13;
+            this.txtPassword.TabIndex = 5;
             // 
             // lblPassword
             // 
@@ -286,10 +280,10 @@ namespace ShippingApplication
             // 
             this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtEmail.Location = new System.Drawing.Point(518, 301);
-            this.txtEmail.MaxLength = 30;
+            this.txtEmail.MaxLength = 50;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(141, 26);
-            this.txtEmail.TabIndex = 15;
+            this.txtEmail.TabIndex = 6;
             // 
             // lblEmail
             // 
@@ -305,10 +299,10 @@ namespace ShippingApplication
             // 
             this.txtPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPhone.Location = new System.Drawing.Point(303, 390);
-            this.txtPhone.MaxLength = 10;
+            this.txtPhone.MaxLength = 15;
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(141, 26);
-            this.txtPhone.TabIndex = 17;
+            this.txtPhone.TabIndex = 7;
             // 
             // lblPhone
             // 
@@ -324,9 +318,10 @@ namespace ShippingApplication
             // 
             this.txtCardnumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCardnumber.Location = new System.Drawing.Point(518, 390);
+            this.txtCardnumber.MaxLength = 20;
             this.txtCardnumber.Name = "txtCardnumber";
             this.txtCardnumber.Size = new System.Drawing.Size(141, 26);
-            this.txtCardnumber.TabIndex = 19;
+            this.txtCardnumber.TabIndex = 8;
             // 
             // lblCard
             // 
@@ -338,32 +333,32 @@ namespace ShippingApplication
             this.lblCard.TabIndex = 18;
             this.lblCard.Text = "Credit Card Number";
             // 
-            // txtCustId
+            // txtStatus
             // 
-            this.txtCustId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCustId.Location = new System.Drawing.Point(918, 390);
-            this.txtCustId.MaxLength = 5;
-            this.txtCustId.Name = "txtCustId";
-            this.txtCustId.Size = new System.Drawing.Size(141, 26);
-            this.txtCustId.TabIndex = 21;
+            this.txtStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStatus.Location = new System.Drawing.Point(918, 201);
+            this.txtStatus.MaxLength = 20;
+            this.txtStatus.Name = "txtStatus";
+            this.txtStatus.Size = new System.Drawing.Size(141, 26);
+            this.txtStatus.TabIndex = 10;
             // 
-            // lblCustId
+            // lblStatus
             // 
-            this.lblCustId.AutoSize = true;
-            this.lblCustId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCustId.Location = new System.Drawing.Point(915, 372);
-            this.lblCustId.Name = "lblCustId";
-            this.lblCustId.Size = new System.Drawing.Size(86, 20);
-            this.lblCustId.TabIndex = 20;
-            this.lblCustId.Text = "ID Number";
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.Location = new System.Drawing.Point(915, 183);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(56, 20);
+            this.lblStatus.TabIndex = 22;
+            this.lblStatus.Text = "Status";
             // 
             // frmRegisterCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1184, 611);
-            this.Controls.Add(this.txtCustId);
-            this.Controls.Add(this.lblCustId);
+            this.Controls.Add(this.txtStatus);
+            this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.txtCardnumber);
             this.Controls.Add(this.lblCard);
             this.Controls.Add(this.txtPhone);
@@ -417,7 +412,7 @@ namespace ShippingApplication
         private System.Windows.Forms.Label lblPhone;
         private System.Windows.Forms.TextBox txtCardnumber;
         private System.Windows.Forms.Label lblCard;
-        private System.Windows.Forms.TextBox txtCustId;
-        private System.Windows.Forms.Label lblCustId;
+        private System.Windows.Forms.TextBox txtStatus;
+        private System.Windows.Forms.Label lblStatus;
     }
 }

@@ -26,15 +26,14 @@ namespace ShippingApplication
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            Customer next = new Customer(txtForename.Text, txtSurname.Text, cboCounty.Text,
-                txtTown.Text, txtPassword.Text, txtPhone.Text, txtEircode.Text, txtCardnumber.Text, txtEmail.Text);
+            Customer next = new Customer(Customer.getNextCustomerID() , txtSurname.Text, txtForename.Text, txtTown.Text,
+                cboCounty.Text, txtEircode.Text, txtPassword.Text, txtPhone.Text, txtEmail.Text, txtCardnumber.Text, txtStatus.Text);
 
             next.addCustomer();
 
             MessageBox.Show(next.toString() + " added successfully", "Success",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-            txtCustId.Text = Customer.getNextCustomerID().ToString("00000");
             txtForename.Clear();
             txtSurname.Clear();
             txtTown.Clear();

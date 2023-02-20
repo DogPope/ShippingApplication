@@ -19,21 +19,23 @@ namespace ShippingApplication
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            Game doom = new Game(txtTitle.Text, txtDeveloper.Text, txtGenre.Text, txtPublisher.Text, Convert.ToDecimal(txtBuyPrice.Text) +
-                txtDescription.Text,Convert.ToChar(txtStatus.Text), Convert.ToDecimal(txtSalePrice.Text), Convert.ToInt32(txtQuantity.Text) ,Convert.ToChar(txtStatus.Text));
-
-            doom.addGame();
+            Game doom = new Game(Game.getNextGameID(), txtTitle.Text, txtDeveloper.Text, txtPublisher.Text, txtDescription.Text, txtGenre.Text, Convert.ToInt32(txtQuantity.Text),
+                Convert.ToDecimal(txtBuyPrice.Text) + Convert.ToDecimal(txtSalePrice.Text), txtStatus.Text);
 
             MessageBox.Show(doom.toString() + " added successfully", "Success",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            doom.addGame();
 
             txtTitle.Clear();
             txtDeveloper.Clear();
             txtPublisher.Clear();
             txtBuyPrice.Clear();
             txtBuyPrice.Text = "0.00";
+            txtSalePrice.Clear();
+            txtSalePrice.Text = "0.00";
             txtTitle.Focus();
-            Console.WriteLine(doom.toString());
+            //Console.WriteLine(doom.toString());
         }
     }
 }

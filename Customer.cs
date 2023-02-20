@@ -22,12 +22,12 @@ namespace ShippingApplication
         private String phone;
         private String email;
         private String cardNumber;
-        private char status;
+        private String status;
 
         public Customer()
         {
             this.custId = 0;
-            this.surname = "No surname available!";
+            this.surname = "Not available!";
             this.forename = "No forename available!";
             this.town = "No town supplied!";
             this.county = "No county data!";
@@ -36,9 +36,10 @@ namespace ShippingApplication
             this.phone = "0860000000";
             this.email = "null@gmail.com";
             this.cardNumber = "Null";
+            this.status = "Registered";
         }
 
-        public Customer(Int32 custId, String surname, String forename, String town, String county, String EIRCode, String password, String phone, String email, String cardNumber, char status)
+        public Customer(Int32 custId, String surname, String forename, String town, String county, String EIRCode, String password, String phone, String email, String cardNumber, String status)
         {
             // Not sure what I'd use the full constructor for, but it's there anyway.
             this.custId = custId;
@@ -74,10 +75,11 @@ namespace ShippingApplication
         }
         public void setCustomerId(int CustID)
         {
-            if (CustID > 0 && CustID < Int32.MaxValue)
-                this.custId = CustID;
-            else
-                custId = 0;
+            //if (CustID > 0 && CustID < Int32.MaxValue)
+            //    this.custId = CustID;
+            //else
+            //    custId = 0;
+            this.custId = CustID;
         }
 
         public String getSurname()
@@ -186,18 +188,18 @@ namespace ShippingApplication
         {
             if (CardNumber.Length <= 20 || CardNumber.Length >= 16)
                 CardNumber.Trim(' ');
-                foreach(char c in CardNumber)
-                {
+            foreach (char c in CardNumber)
+            {
                 if (c >= '0' || c <= '9')
                     this.cardNumber = CardNumber;
-                }
+            }
         }
         
-        public char getStatus()
+        public String getStatus()
         {
             return status;
         }
-        public void setStatus(char Status)
+        public void setStatus(String Status)
         {
             this.status = Status;
         }
@@ -271,6 +273,7 @@ namespace ShippingApplication
             {
                 OracleConnection connection = new OracleConnection(DBConnect.oradb);
 
+                //Int32 custId, String surname, String forename, String town, String county, String EIRCode, String password, String phone, String email, String cardNumber, String status
                 String sqlQuery = "INSERT INTO Customers Values (" + getNextCustomerID() + ",'" +
                     this.forename + "','" + this.surname + "','" +
                     this.town + "','" + this.county + "','" + this.EIRCode + "','" +
@@ -298,8 +301,8 @@ namespace ShippingApplication
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            String sqlQuery = "UPDATE Customer SET " +
-                "CustId = " + this.custId + "," +
+            String sqlQuery = "UPDATE Customers SET " +
+                "Cust_Id = " + this.custId + "," +
                 "Forename = '" + this.forename + "'," +
                 "Surname = '" + this.surname + "'," +
                 "Town = '" + this.town + "'," +
@@ -307,7 +310,7 @@ namespace ShippingApplication
                 "EIRCode = " + this.EIRCode + "," +
                 "Status = '" + this.status + "' " +
                 "CardNumber = '" + this.cardNumber + "' " +
-                "WHERE CustId = " + this.custId + ");";
+                "WHERE Cust_Id = " + this.custId + ");";
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
             conn.Open();
@@ -318,7 +321,7 @@ namespace ShippingApplication
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            String sqlQuery = "SELECT CustId, forename, surname FROM Customers " +
+            String sqlQuery = "SELECT Cust_Id, forename, surname FROM Customers " +
                 "WHERE forename LIKE '%" + forename + "%' ORDER BY forename";
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
@@ -331,7 +334,7 @@ namespace ShippingApplication
         public static int getNextCustomerID()
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
-            String sqlQuery = "SELECT MAX(CustID) FROM Customers";
+            String sqlQuery = "SELECT MAX(Cust_ID) FROM Customers";
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
             conn.Open();
             OracleDataReader dr = cmd.ExecuteReader();
