@@ -13,7 +13,7 @@ namespace ShippingApplication
         private void btnCustomers_Click(object sender, EventArgs e)
         {
             this.Hide();
-            frmRegisterCustomer form = new frmRegisterCustomer();
+            frmRegisterCustomer form = new frmRegisterCustomer(this);
             form.ShowDialog();
             this.Show();
         }
@@ -26,7 +26,7 @@ namespace ShippingApplication
         private void btnGames_Click(object sender, EventArgs e)
         {
             this.Hide();
-            frmRegisterGame form = new frmRegisterGame();
+            frmRegisterGame form = new frmRegisterGame(this);
             form.ShowDialog();
             this.Show();
         }
@@ -34,7 +34,7 @@ namespace ShippingApplication
         private void registerCustomerToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Hide();
-            frmRegisterCustomer form = new frmRegisterCustomer();
+            frmRegisterCustomer form = new frmRegisterCustomer(this);
             form.ShowDialog();
             this.Show();
         }
@@ -48,6 +48,22 @@ namespace ShippingApplication
             }
             else
                 return;
+        }
+
+        private void registerGameToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmRegisterGame makeGame = new frmRegisterGame(this);
+            makeGame.ShowDialog();
+            this.Show();
+        }
+
+        private void updateDeleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmUpdateCustomer editCust = new frmUpdateCustomer(this);
+            editCust.ShowDialog();
+            this.Show();
         }
     }
 }

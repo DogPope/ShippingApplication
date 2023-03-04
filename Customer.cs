@@ -41,7 +41,6 @@ namespace ShippingApplication
         //Int32 custId, String forename, String surname, String town, String EIRCode, String password, String phone, String email, String cardNumber, String county, String status
         public Customer(Int32 custId, String forename, String surname, String town, String EIRCode, String password, String phone, String email, String cardNumber, String status, String county)
         {
-            // Not sure what I'd use the full constructor for, but it's there anyway.
             this.custId = custId;
             this.forename = forename;
             this.surname = surname;
@@ -55,30 +54,12 @@ namespace ShippingApplication
             this.status = status;
         }
 
-        /*public Customer(String surname, String forename, String town, String county, String EIRCode, String password, String phone, String email, String cardNumber)
-        {
-            // Main instance of constructor from frmRegisterCustomer. Status and ID number assigned Automatically.
-            this.surname = surname;
-            this.forename = forename;
-            this.town = town;
-            this.county = county;
-            this.EIRCode = EIRCode;
-            this.password = password;
-            this.phone = phone;
-            this.email = email;
-            this.cardNumber = cardNumber;
-        }*/
-
         public int getCustomerId()
         {
             return this.custId;
         }
         public void setCustomerId(int CustID)
         {
-            //if (CustID > 0 && CustID < Int32.MaxValue)
-            //    this.custId = CustID;
-            //else
-            //    custId = 0;
             this.custId = CustID;
         }
 
@@ -88,14 +69,7 @@ namespace ShippingApplication
         }
         public void setSurname(String Surname)
         {
-            if (surname.Length > 0)
-            {
-                isValidName(Surname);
-                char.ToUpper(Surname[0]);
-                this.surname = Surname;
-            }
-            else
-                surname = "Null";
+            this.surname = Surname;
         }
 
         public String getForename()
@@ -104,14 +78,7 @@ namespace ShippingApplication
         }
         public void setForename(String Forename)
         {
-            if (surname.Length > 20)
-            {
-                isValidName(Forename);
-                char.ToUpper(Forename[0]);
-                this.forename = Forename;
-            }
-            else
-                surname = "Null";
+            this.forename = Forename;
         }
 
         public String getTown()
@@ -120,13 +87,7 @@ namespace ShippingApplication
         }
         public void setTown(String Town)
         {
-            if (town.Length < 30)
-            {
-                char.ToUpper(Town[0]);
-                this.town = Town;
-            }
-            else
-                town = "Null";
+            this.town = Town;
         }
 
         public String getCounty()
@@ -145,12 +106,7 @@ namespace ShippingApplication
         }
         public void setEircode(String EIRcode)
         {
-            if (isValidEircode(EIRcode))
-            {
-                this.EIRCode = EIRcode;
-            }
-            else
-                EIRcode = "Null";
+            this.EIRCode = EIRcode;
         }
         
         public String getPassword()
@@ -186,13 +142,7 @@ namespace ShippingApplication
         }
         public void setCardNumber(String CardNumber)
         {
-            if (CardNumber.Length <= 20 || CardNumber.Length >= 16)
-                CardNumber.Trim(' ');
-            foreach (char c in CardNumber)
-            {
-                if (c >= '0' || c <= '9')
-                    this.cardNumber = CardNumber;
-            }
+            this.cardNumber = CardNumber;
         }
         
         public String getStatus()
@@ -210,10 +160,10 @@ namespace ShippingApplication
             return Regex.IsMatch(name, @"^[a-zA-Z]+$");
         }
 
-        private static bool isValidEircode(String EIRCode)
+        public static bool isValidEircode(String EIRCode)
         {
             // This regex string should allow the user to type a recognisable EIR Code.
-            return Regex.IsMatch(EIRCode, @"(?:^[AC-FHKNPRTV-Y][0-9]{2}|D6W)[ -]?[0-9AC-FHKNPRTV-Y]{4}$");
+            return Regex.IsMatch(EIRCode, "(?:^[AC-FHKNPRTV-Y][0-9]{2}|D6W)[ -]?[0-9AC-FHKNPRTV-Y]{4}$");
         }
 
         public static bool isValidPassword(String password)
@@ -250,7 +200,7 @@ namespace ShippingApplication
             return false;
         }
 
-        public bool IsValidEmail(string emailaddress)
+        public static bool isValidEmail(string emailaddress)
         {
             // Email validation should support up to a third level domain, only support one '@' Symbol.
             int numOfAtSymbols = 0;
@@ -316,12 +266,12 @@ namespace ShippingApplication
             cmd.ExecuteNonQuery();
             conn.Close();
         }
-        public static DataSet findCustomer(String forename)
+        public static DataSet findCustomerById(Int32 CustId)
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            String sqlQuery = "SELECT Cust_Id, forename, surname FROM Customers " +
-                "WHERE forename LIKE '%" + forename + "%' ORDER BY forename";
+            String sqlQuery = "SELECT Cust_Id, forename, surname, town, county, EIRcode, status, cardnumber FROM Customers " +
+                "WHERE cust_id = " + CustId + ";";
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
             OracleDataAdapter da = new OracleDataAdapter(cmd);

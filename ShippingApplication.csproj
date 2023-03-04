@@ -99,6 +99,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CustDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Customer.cs" />
     <Compile Include="DBConnect.cs" />
     <Compile Include="frmRegisterCustomer.cs">
@@ -152,6 +157,17 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <None Include="CustDataSet.xsc">
+      <DependentUpon>CustDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CustDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CustDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="CustDataSet.xss">
+      <DependentUpon>CustDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Oracle.DataAccess.Common.Configuration.Section.xsd">
       <SubType>Designer</SubType>
     </None>

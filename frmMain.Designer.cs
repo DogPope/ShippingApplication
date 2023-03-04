@@ -77,7 +77,7 @@ namespace ShippingApplication
             // registerCustomerToolStripMenuItem
             // 
             this.registerCustomerToolStripMenuItem.Name = "registerCustomerToolStripMenuItem";
-            this.registerCustomerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.registerCustomerToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.registerCustomerToolStripMenuItem.Text = "Register Customer";
             this.registerCustomerToolStripMenuItem.Click += new System.EventHandler(this.registerCustomerToolStripMenuItem_Click);
             // 
@@ -86,11 +86,12 @@ namespace ShippingApplication
             this.updateDeleteToolStripMenuItem.Name = "updateDeleteToolStripMenuItem";
             this.updateDeleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.updateDeleteToolStripMenuItem.Text = "Update / Delete";
+            this.updateDeleteToolStripMenuItem.Click += new System.EventHandler(this.updateDeleteToolStripMenuItem_Click);
             // 
             // viewDetailsToolStripMenuItem
             // 
             this.viewDetailsToolStripMenuItem.Name = "viewDetailsToolStripMenuItem";
-            this.viewDetailsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewDetailsToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.viewDetailsToolStripMenuItem.Text = "View Details";
             // 
             // gamesToolStripMenuItem
@@ -108,6 +109,7 @@ namespace ShippingApplication
             this.registerGameToolStripMenuItem.Name = "registerGameToolStripMenuItem";
             this.registerGameToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.registerGameToolStripMenuItem.Text = "Register Game";
+            this.registerGameToolStripMenuItem.Click += new System.EventHandler(this.registerGameToolStripMenuItem_Click);
             // 
             // updateDeleteToolStripMenuItem1
             // 

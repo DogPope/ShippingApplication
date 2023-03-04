@@ -12,20 +12,28 @@ namespace ShippingApplication
 {
     public partial class frmRegisterGame : Form
     {
+        frmMain parent;
         public frmRegisterGame()
         {
             InitializeComponent();
         }
 
+        public frmRegisterGame(frmMain Parent)
+        {
+            InitializeComponent();
+            parent = Parent;
+        }
+
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            Game doom = new Game(Game.getNextGameID(), txtTitle.Text, txtDeveloper.Text, txtPublisher.Text, txtDescription.Text, txtGenre.Text, Convert.ToInt32(txtQuantity.Text),
-                Convert.ToDecimal(txtBuyPrice.Text) + Convert.ToDecimal(txtSalePrice.Text), txtStatus.Text);
+            Game doom = new Game(Game.getNextGameID(), txtTitle.Text, txtDeveloper.Text, txtPublisher.Text, txtGenre.Text, txtDescription.Text,
+                                 Convert.ToDecimal(txtBuyPrice.Text), Convert.ToDecimal(txtSalePrice.Text), Convert.ToInt32(txtQuantity.Text), txtStatus.Text);
+            //Int32 gameId, String title, String developer, String publisher, String genre, String description, decimal buyPrice, decimal salePrice, Int32 quantity, String status
+
+            doom.addGame();
 
             MessageBox.Show(doom.toString() + " added successfully", "Success",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            doom.addGame();
 
             txtTitle.Clear();
             txtDeveloper.Clear();
@@ -35,7 +43,12 @@ namespace ShippingApplication
             txtSalePrice.Clear();
             txtSalePrice.Text = "0.00";
             txtTitle.Focus();
-            //Console.WriteLine(doom.toString());
+        }
+
+        private void btnReturn_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            parent.Visible = true;
         }
     }
 }

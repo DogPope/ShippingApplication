@@ -14,21 +14,12 @@ namespace ShippingApplication
         private String title;
         private String developer;
         private String publisher;
-        private String description;
         private String genre;
-        private Int32 quantity;
+        private String description;
         private decimal buyPrice;
         private decimal salePrice;
+        private Int32 quantity;
         private String status;
-        private int v1;
-        private string text1;
-        private string text2;
-        private string text3;
-        private string text4;
-        private string text5;
-        private int v2;
-        private decimal v3;
-        private string text6;
 
         public Game()
         {
@@ -43,49 +34,20 @@ namespace ShippingApplication
             this.salePrice = 0;
             this.status = "Unregistered.";
         }
-        /*public Game(Int32 gameId, String title, String developer, String publisher, String description, String genre, Int32 quantity, decimal buyPrice, decimal salePrice, String status)
-        {
-            // This constructor to be used for the creation of a new game object.
-            /* In this case, putting in a status is neccesary, because the item may or may not be available on creation, where a customer will always be registered on
-            *  creation of a customer object.*/
-            /*this.gameId = gameId;
-            this.title = title;
-            this.developer = developer;
-            this.publisher = publisher;
-            this.description = description;
-            this.genre = genre;
-            this.quantity = quantity;
-            this.buyPrice = buyPrice;
-            this.salePrice = salePrice;
-            this.status = status;
-        }*/
-
-        public Game(Int32 gameId, String title, String developer, String publisher, String description, String genre, Int32 quantity, decimal buyPrice, decimal salePrice, String status)
+        
+        public Game(Int32 gameId, String title, String developer, String publisher, String genre, String description, decimal buyPrice, decimal salePrice, Int32 quantity, String status)
         {
             // This constructor should be used for update queries.
             this.gameId = gameId;
             this.title = title;
             this.developer = developer;
             this.publisher = publisher;
-            this.description = description;
             this.genre = genre;
-            this.quantity = quantity;
+            this.description = description;
             this.buyPrice = buyPrice;
             this.salePrice = salePrice;
+            this.quantity = quantity;
             this.status = status;
-        }
-
-        public Game(int v1, string text1, string text2, string text3, string text4, string text5, int v2, decimal v3, string text6)
-        {
-            this.v1 = v1;
-            this.text1 = text1;
-            this.text2 = text2;
-            this.text3 = text3;
-            this.text4 = text4;
-            this.text5 = text5;
-            this.v2 = v2;
-            this.v3 = v3;
-            this.text6 = text6;
         }
 
         public Int32 getGameId()
@@ -177,7 +139,7 @@ namespace ShippingApplication
         {
             return this.quantity;
         }
-        public void setQuantity(Int32 Quantity)
+        public void setQuantity(int Quantity)
         {
             if(quantity >= 0 && quantity < Int32.MaxValue)
             {
@@ -232,8 +194,8 @@ namespace ShippingApplication
 
                 String sqlQuery = "INSERT INTO Games VALUES (" + getNextGameID() + ",'" +
                     this.title + "','" + this.developer + "','" + this.publisher + "','" +
-                    this.description + "','" + this.genre + "'," + this.quantity + "," +
-                    this.buyPrice + "," + this.salePrice + ",'" + this.status + "')";
+                    this.genre + "','" + this.description + "'," + this.buyPrice + "," +
+                    this.salePrice + "," + this.quantity + ",'" + this.status + "')";
 
                 /*    INSERT INTO Games VALUES (id,'title','DEV','PUB','DESC','GENRE',12,12,12,'R')         */
 
@@ -261,19 +223,13 @@ namespace ShippingApplication
                 "Title = '" + this.title + "'," +
                 "Developer = '" + this.developer + "'," +
                 "Publisher = '" + this.publisher + "'," +
-                "Description = '" + this.description + "'," +
                 "Genre = '" + this.genre + "'," +
-                "Quantity = '" + this.quantity + "'," +
+                "Description = '" + this.description + "'," +
                 "BuyPrice = " + this.buyPrice + "," +
                 "SalePrice = " + this.salePrice + "," +
+                "Quantity = " + this.quantity + "," +
                 "Status = '" + this.status + "' " +
-                "WHERE GameId = " + this.gameId + ";";
-
-            /*
-             *  Commenting the above string to get a clearer look at its output.
-             UPDATE Game SET GameId = 1,Title = 'titleString',Developer = 'developerString',Publisher = 'publisherString',CosttoBuy = priceDouble,
-            salePrice = salePriceDouble,Status = ''WHERE GameId = gameIdInt;
-             */
+                "WHERE Game_Id = " + this.gameId + ";";
 
             Console.WriteLine(sqlQuery);
 
@@ -286,7 +242,7 @@ namespace ShippingApplication
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            String sqlQuery = "SELECT Game_Id, Status, Title, Publisher FROM Games " +
+            String sqlQuery = "SELECT Game_Id, Status, Title, Developer FROM Games " +
                 "WHERE Title LIKE '%" + title + "%' ORDER BY Title";
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);

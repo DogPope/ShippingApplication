@@ -67,14 +67,17 @@ namespace ShippingApplication
             this.adminFeaturesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.yearlyRevenueAnalysisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.yearlyStockAnalysisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.button1 = new System.Windows.Forms.Button();
-            this.txtCustId = new System.Windows.Forms.TextBox();
-            this.labelCustId = new System.Windows.Forms.Label();
+            this.btnReturn = new System.Windows.Forms.Button();
+            this.grpCustDetails = new System.Windows.Forms.GroupBox();
+            this.grpAccountDetails = new System.Windows.Forms.GroupBox();
             this.munProgram.SuspendLayout();
+            this.grpCustDetails.SuspendLayout();
+            this.grpAccountDetails.SuspendLayout();
             this.SuspendLayout();
             // 
             // cboCounty
             // 
+            this.cboCounty.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboCounty.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCounty.FormattingEnabled = true;
             this.cboCounty.Items.AddRange(new object[] {
@@ -105,12 +108,11 @@ namespace ShippingApplication
             "Wexford",
             "Wicklow"});
             this.cboCounty.Location = new System.Drawing.Point(904, 89);
-            this.cboCounty.MaxDropDownItems = 32;
-            this.cboCounty.MaxLength = 30;
+            this.cboCounty.MaxDropDownItems = 26;
+            this.cboCounty.MaxLength = 9;
             this.cboCounty.Name = "cboCounty";
             this.cboCounty.Size = new System.Drawing.Size(210, 28);
             this.cboCounty.TabIndex = 9;
-            this.cboCounty.Text = "County";
             // 
             // btnSubmit
             // 
@@ -128,7 +130,7 @@ namespace ShippingApplication
             // 
             this.lblForename.AutoSize = true;
             this.lblForename.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblForename.Location = new System.Drawing.Point(515, 73);
+            this.lblForename.Location = new System.Drawing.Point(230, 15);
             this.lblForename.Name = "lblForename";
             this.lblForename.Size = new System.Drawing.Size(82, 20);
             this.lblForename.TabIndex = 4;
@@ -137,7 +139,7 @@ namespace ShippingApplication
             // txtForename
             // 
             this.txtForename.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtForename.Location = new System.Drawing.Point(518, 91);
+            this.txtForename.Location = new System.Drawing.Point(236, 38);
             this.txtForename.MaxLength = 20;
             this.txtForename.Name = "txtForename";
             this.txtForename.Size = new System.Drawing.Size(141, 26);
@@ -146,7 +148,7 @@ namespace ShippingApplication
             // txtSurname
             // 
             this.txtSurname.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSurname.Location = new System.Drawing.Point(303, 91);
+            this.txtSurname.Location = new System.Drawing.Point(21, 38);
             this.txtSurname.MaxLength = 20;
             this.txtSurname.Name = "txtSurname";
             this.txtSurname.Size = new System.Drawing.Size(141, 26);
@@ -156,7 +158,7 @@ namespace ShippingApplication
             // 
             this.lblSurname.AutoSize = true;
             this.lblSurname.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSurname.Location = new System.Drawing.Point(300, 73);
+            this.lblSurname.Location = new System.Drawing.Point(16, 16);
             this.lblSurname.Name = "lblSurname";
             this.lblSurname.Size = new System.Drawing.Size(74, 20);
             this.lblSurname.TabIndex = 6;
@@ -165,7 +167,7 @@ namespace ShippingApplication
             // txtEircode
             // 
             this.txtEircode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEircode.Location = new System.Drawing.Point(518, 201);
+            this.txtEircode.Location = new System.Drawing.Point(236, 148);
             this.txtEircode.MaxLength = 8;
             this.txtEircode.Name = "txtEircode";
             this.txtEircode.Size = new System.Drawing.Size(141, 26);
@@ -175,7 +177,7 @@ namespace ShippingApplication
             // 
             this.lblEircode.AutoSize = true;
             this.lblEircode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEircode.Location = new System.Drawing.Point(515, 183);
+            this.lblEircode.Location = new System.Drawing.Point(230, 125);
             this.lblEircode.Name = "lblEircode";
             this.lblEircode.Size = new System.Drawing.Size(79, 20);
             this.lblEircode.TabIndex = 8;
@@ -184,7 +186,7 @@ namespace ShippingApplication
             // txtTown
             // 
             this.txtTown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTown.Location = new System.Drawing.Point(302, 201);
+            this.txtTown.Location = new System.Drawing.Point(20, 148);
             this.txtTown.MaxLength = 20;
             this.txtTown.Name = "txtTown";
             this.txtTown.Size = new System.Drawing.Size(141, 26);
@@ -194,7 +196,7 @@ namespace ShippingApplication
             // 
             this.lblTown.AutoSize = true;
             this.lblTown.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTown.Location = new System.Drawing.Point(299, 183);
+            this.lblTown.Location = new System.Drawing.Point(17, 125);
             this.lblTown.Name = "lblTown";
             this.lblTown.Size = new System.Drawing.Size(47, 20);
             this.lblTown.TabIndex = 10;
@@ -203,7 +205,7 @@ namespace ShippingApplication
             // txtPassword
             // 
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(303, 301);
+            this.txtPassword.Location = new System.Drawing.Point(20, 64);
             this.txtPassword.MaxLength = 20;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
@@ -214,7 +216,7 @@ namespace ShippingApplication
             // 
             this.lblPassword.AutoSize = true;
             this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPassword.Location = new System.Drawing.Point(300, 283);
+            this.lblPassword.Location = new System.Drawing.Point(16, 41);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(78, 20);
             this.lblPassword.TabIndex = 12;
@@ -223,7 +225,7 @@ namespace ShippingApplication
             // txtEmail
             // 
             this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmail.Location = new System.Drawing.Point(518, 301);
+            this.txtEmail.Location = new System.Drawing.Point(235, 64);
             this.txtEmail.MaxLength = 50;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(141, 26);
@@ -233,7 +235,7 @@ namespace ShippingApplication
             // 
             this.lblEmail.AutoSize = true;
             this.lblEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmail.Location = new System.Drawing.Point(515, 283);
+            this.lblEmail.Location = new System.Drawing.Point(231, 41);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(116, 20);
             this.lblEmail.TabIndex = 14;
@@ -242,7 +244,7 @@ namespace ShippingApplication
             // txtPhone
             // 
             this.txtPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPhone.Location = new System.Drawing.Point(303, 390);
+            this.txtPhone.Location = new System.Drawing.Point(20, 166);
             this.txtPhone.MaxLength = 15;
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(141, 26);
@@ -252,7 +254,7 @@ namespace ShippingApplication
             // 
             this.lblPhone.AutoSize = true;
             this.lblPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPhone.Location = new System.Drawing.Point(300, 372);
+            this.lblPhone.Location = new System.Drawing.Point(16, 143);
             this.lblPhone.Name = "lblPhone";
             this.lblPhone.Size = new System.Drawing.Size(115, 20);
             this.lblPhone.TabIndex = 16;
@@ -261,7 +263,7 @@ namespace ShippingApplication
             // txtCardnumber
             // 
             this.txtCardnumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCardnumber.Location = new System.Drawing.Point(518, 390);
+            this.txtCardnumber.Location = new System.Drawing.Point(235, 166);
             this.txtCardnumber.MaxLength = 20;
             this.txtCardnumber.Name = "txtCardnumber";
             this.txtCardnumber.Size = new System.Drawing.Size(141, 26);
@@ -271,7 +273,7 @@ namespace ShippingApplication
             // 
             this.lblCard.AutoSize = true;
             this.lblCard.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCard.Location = new System.Drawing.Point(515, 372);
+            this.lblCard.Location = new System.Drawing.Point(231, 143);
             this.lblCard.Name = "lblCard";
             this.lblCard.Size = new System.Drawing.Size(149, 20);
             this.lblCard.TabIndex = 18;
@@ -322,19 +324,19 @@ namespace ShippingApplication
             // registerCustomerToolStripMenuItem
             // 
             this.registerCustomerToolStripMenuItem.Name = "registerCustomerToolStripMenuItem";
-            this.registerCustomerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.registerCustomerToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.registerCustomerToolStripMenuItem.Text = "Register Customer";
             // 
             // updateDeleteToolStripMenuItem
             // 
             this.updateDeleteToolStripMenuItem.Name = "updateDeleteToolStripMenuItem";
-            this.updateDeleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.updateDeleteToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.updateDeleteToolStripMenuItem.Text = "Update / Delete";
             // 
             // viewDetailsToolStripMenuItem
             // 
             this.viewDetailsToolStripMenuItem.Name = "viewDetailsToolStripMenuItem";
-            this.viewDetailsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewDetailsToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.viewDetailsToolStripMenuItem.Text = "View Details";
             // 
             // gamesToolStripMenuItem
@@ -350,19 +352,19 @@ namespace ShippingApplication
             // registerGameToolStripMenuItem
             // 
             this.registerGameToolStripMenuItem.Name = "registerGameToolStripMenuItem";
-            this.registerGameToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.registerGameToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.registerGameToolStripMenuItem.Text = "Register Game";
             // 
             // updateDeleteToolStripMenuItem1
             // 
             this.updateDeleteToolStripMenuItem1.Name = "updateDeleteToolStripMenuItem1";
-            this.updateDeleteToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.updateDeleteToolStripMenuItem1.Size = new System.Drawing.Size(156, 22);
             this.updateDeleteToolStripMenuItem1.Text = "Update / Delete";
             // 
             // viewDetailsToolStripMenuItem1
             // 
             this.viewDetailsToolStripMenuItem1.Name = "viewDetailsToolStripMenuItem1";
-            this.viewDetailsToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
+            this.viewDetailsToolStripMenuItem1.Size = new System.Drawing.Size(156, 22);
             this.viewDetailsToolStripMenuItem1.Text = "View Details";
             // 
             // ordersToolStripMenuItem
@@ -428,70 +430,76 @@ namespace ShippingApplication
             this.yearlyStockAnalysisToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
             this.yearlyStockAnalysisToolStripMenuItem.Text = "Yearly Stock Analysis";
             // 
-            // button1
+            // btnReturn
             // 
-            this.button1.BackColor = System.Drawing.Color.FloralWhite;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(1082, 0);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(101, 24);
-            this.button1.TabIndex = 25;
-            this.button1.Text = "Exit";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.UseVisualStyleBackColor = false;
+            this.btnReturn.BackColor = System.Drawing.Color.FloralWhite;
+            this.btnReturn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReturn.Location = new System.Drawing.Point(1082, 0);
+            this.btnReturn.Name = "btnReturn";
+            this.btnReturn.Size = new System.Drawing.Size(101, 24);
+            this.btnReturn.TabIndex = 25;
+            this.btnReturn.Text = "Return";
+            this.btnReturn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReturn.UseVisualStyleBackColor = false;
+            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
             // 
-            // txtCustId
+            // grpCustDetails
             // 
-            this.txtCustId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCustId.Location = new System.Drawing.Point(40, 91);
-            this.txtCustId.MaxLength = 5;
-            this.txtCustId.Name = "txtCustId";
-            this.txtCustId.Size = new System.Drawing.Size(141, 26);
-            this.txtCustId.TabIndex = 26;
+            this.grpCustDetails.Controls.Add(this.lblSurname);
+            this.grpCustDetails.Controls.Add(this.lblForename);
+            this.grpCustDetails.Controls.Add(this.txtForename);
+            this.grpCustDetails.Controls.Add(this.txtSurname);
+            this.grpCustDetails.Controls.Add(this.lblEircode);
+            this.grpCustDetails.Controls.Add(this.txtEircode);
+            this.grpCustDetails.Controls.Add(this.lblTown);
+            this.grpCustDetails.Controls.Add(this.txtTown);
+            this.grpCustDetails.Location = new System.Drawing.Point(282, 53);
+            this.grpCustDetails.Name = "grpCustDetails";
+            this.grpCustDetails.Size = new System.Drawing.Size(418, 205);
+            this.grpCustDetails.TabIndex = 28;
+            this.grpCustDetails.TabStop = false;
+            this.grpCustDetails.Text = "Personal Details";
             // 
-            // labelCustId
+            // grpAccountDetails
             // 
-            this.labelCustId.AutoSize = true;
-            this.labelCustId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelCustId.Location = new System.Drawing.Point(37, 73);
-            this.labelCustId.Name = "labelCustId";
-            this.labelCustId.Size = new System.Drawing.Size(99, 20);
-            this.labelCustId.TabIndex = 27;
-            this.labelCustId.Text = "Customer ID";
+            this.grpAccountDetails.Controls.Add(this.lblPassword);
+            this.grpAccountDetails.Controls.Add(this.txtPassword);
+            this.grpAccountDetails.Controls.Add(this.lblEmail);
+            this.grpAccountDetails.Controls.Add(this.txtEmail);
+            this.grpAccountDetails.Controls.Add(this.lblPhone);
+            this.grpAccountDetails.Controls.Add(this.txtPhone);
+            this.grpAccountDetails.Controls.Add(this.lblCard);
+            this.grpAccountDetails.Controls.Add(this.txtCardnumber);
+            this.grpAccountDetails.Location = new System.Drawing.Point(282, 315);
+            this.grpAccountDetails.Name = "grpAccountDetails";
+            this.grpAccountDetails.Size = new System.Drawing.Size(418, 231);
+            this.grpAccountDetails.TabIndex = 29;
+            this.grpAccountDetails.TabStop = false;
+            this.grpAccountDetails.Text = "Account Details";
             // 
             // frmRegisterCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FloralWhite;
             this.ClientSize = new System.Drawing.Size(1184, 611);
-            this.Controls.Add(this.txtCustId);
-            this.Controls.Add(this.labelCustId);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.grpAccountDetails);
+            this.Controls.Add(this.grpCustDetails);
+            this.Controls.Add(this.btnReturn);
             this.Controls.Add(this.munProgram);
             this.Controls.Add(this.txtStatus);
             this.Controls.Add(this.lblStatus);
-            this.Controls.Add(this.txtCardnumber);
-            this.Controls.Add(this.lblCard);
-            this.Controls.Add(this.txtPhone);
-            this.Controls.Add(this.lblPhone);
-            this.Controls.Add(this.txtEmail);
-            this.Controls.Add(this.lblEmail);
-            this.Controls.Add(this.txtPassword);
-            this.Controls.Add(this.lblPassword);
-            this.Controls.Add(this.txtTown);
-            this.Controls.Add(this.lblTown);
-            this.Controls.Add(this.txtEircode);
-            this.Controls.Add(this.lblEircode);
-            this.Controls.Add(this.txtSurname);
-            this.Controls.Add(this.lblSurname);
-            this.Controls.Add(this.txtForename);
-            this.Controls.Add(this.lblForename);
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.cboCounty);
             this.Name = "frmRegisterCustomer";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Manage Customers";
             this.munProgram.ResumeLayout(false);
             this.munProgram.PerformLayout();
+            this.grpCustDetails.ResumeLayout(false);
+            this.grpCustDetails.PerformLayout();
+            this.grpAccountDetails.ResumeLayout(false);
+            this.grpAccountDetails.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -536,8 +544,8 @@ namespace ShippingApplication
         private System.Windows.Forms.ToolStripMenuItem adminFeaturesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem yearlyRevenueAnalysisToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem yearlyStockAnalysisToolStripMenuItem;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox txtCustId;
-        private System.Windows.Forms.Label labelCustId;
+        private System.Windows.Forms.Button btnReturn;
+        private System.Windows.Forms.GroupBox grpCustDetails;
+        private System.Windows.Forms.GroupBox grpAccountDetails;
     }
 }
