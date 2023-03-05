@@ -84,15 +84,15 @@ namespace ShippingApplication
             // updateDeleteToolStripMenuItem
             // 
             this.updateDeleteToolStripMenuItem.Name = "updateDeleteToolStripMenuItem";
-            this.updateDeleteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.updateDeleteToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.updateDeleteToolStripMenuItem.Text = "Update / Delete";
             this.updateDeleteToolStripMenuItem.Click += new System.EventHandler(this.updateDeleteToolStripMenuItem_Click);
             // 
             // viewDetailsToolStripMenuItem
             // 
             this.viewDetailsToolStripMenuItem.Name = "viewDetailsToolStripMenuItem";
-            this.viewDetailsToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.viewDetailsToolStripMenuItem.Text = "View Details";
+            this.viewDetailsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewDetailsToolStripMenuItem.Text = "View Customers";
             // 
             // gamesToolStripMenuItem
             // 
@@ -116,12 +116,13 @@ namespace ShippingApplication
             this.updateDeleteToolStripMenuItem1.Name = "updateDeleteToolStripMenuItem1";
             this.updateDeleteToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
             this.updateDeleteToolStripMenuItem1.Text = "Update / Delete";
+            this.updateDeleteToolStripMenuItem1.Click += new System.EventHandler(this.updateDeleteToolStripMenuItem1_Click);
             // 
             // viewDetailsToolStripMenuItem1
             // 
             this.viewDetailsToolStripMenuItem1.Name = "viewDetailsToolStripMenuItem1";
             this.viewDetailsToolStripMenuItem1.Size = new System.Drawing.Size(180, 22);
-            this.viewDetailsToolStripMenuItem1.Text = "View Details";
+            this.viewDetailsToolStripMenuItem1.Text = "View Games";
             // 
             // ordersToolStripMenuItem
             // 

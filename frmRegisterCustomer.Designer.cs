@@ -70,6 +70,7 @@ namespace ShippingApplication
             this.btnReturn = new System.Windows.Forms.Button();
             this.grpCustDetails = new System.Windows.Forms.GroupBox();
             this.grpAccountDetails = new System.Windows.Forms.GroupBox();
+            this.lblCounty = new System.Windows.Forms.Label();
             this.munProgram.SuspendLayout();
             this.grpCustDetails.SuspendLayout();
             this.grpAccountDetails.SuspendLayout();
@@ -130,7 +131,7 @@ namespace ShippingApplication
             // 
             this.lblForename.AutoSize = true;
             this.lblForename.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblForename.Location = new System.Drawing.Point(230, 15);
+            this.lblForename.Location = new System.Drawing.Point(16, 16);
             this.lblForename.Name = "lblForename";
             this.lblForename.Size = new System.Drawing.Size(82, 20);
             this.lblForename.TabIndex = 4;
@@ -139,7 +140,7 @@ namespace ShippingApplication
             // txtForename
             // 
             this.txtForename.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtForename.Location = new System.Drawing.Point(236, 38);
+            this.txtForename.Location = new System.Drawing.Point(22, 39);
             this.txtForename.MaxLength = 20;
             this.txtForename.Name = "txtForename";
             this.txtForename.Size = new System.Drawing.Size(141, 26);
@@ -148,7 +149,7 @@ namespace ShippingApplication
             // txtSurname
             // 
             this.txtSurname.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSurname.Location = new System.Drawing.Point(21, 38);
+            this.txtSurname.Location = new System.Drawing.Point(236, 38);
             this.txtSurname.MaxLength = 20;
             this.txtSurname.Name = "txtSurname";
             this.txtSurname.Size = new System.Drawing.Size(141, 26);
@@ -158,7 +159,7 @@ namespace ShippingApplication
             // 
             this.lblSurname.AutoSize = true;
             this.lblSurname.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSurname.Location = new System.Drawing.Point(16, 16);
+            this.lblSurname.Location = new System.Drawing.Point(231, 16);
             this.lblSurname.Name = "lblSurname";
             this.lblSurname.Size = new System.Drawing.Size(74, 20);
             this.lblSurname.TabIndex = 6;
@@ -282,7 +283,7 @@ namespace ShippingApplication
             // txtStatus
             // 
             this.txtStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStatus.Location = new System.Drawing.Point(918, 201);
+            this.txtStatus.Location = new System.Drawing.Point(904, 201);
             this.txtStatus.MaxLength = 20;
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.Size = new System.Drawing.Size(141, 26);
@@ -292,7 +293,7 @@ namespace ShippingApplication
             // 
             this.lblStatus.AutoSize = true;
             this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(915, 183);
+            this.lblStatus.Location = new System.Drawing.Point(901, 183);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(56, 20);
             this.lblStatus.TabIndex = 22;
@@ -477,12 +478,23 @@ namespace ShippingApplication
             this.grpAccountDetails.TabStop = false;
             this.grpAccountDetails.Text = "Account Details";
             // 
+            // lblCounty
+            // 
+            this.lblCounty.AutoSize = true;
+            this.lblCounty.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.lblCounty.Location = new System.Drawing.Point(900, 66);
+            this.lblCounty.Name = "lblCounty";
+            this.lblCounty.Size = new System.Drawing.Size(59, 20);
+            this.lblCounty.TabIndex = 30;
+            this.lblCounty.Text = "County";
+            // 
             // frmRegisterCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FloralWhite;
             this.ClientSize = new System.Drawing.Size(1184, 611);
+            this.Controls.Add(this.lblCounty);
             this.Controls.Add(this.grpAccountDetails);
             this.Controls.Add(this.grpCustDetails);
             this.Controls.Add(this.btnReturn);
@@ -547,5 +559,6 @@ namespace ShippingApplication
         private System.Windows.Forms.Button btnReturn;
         private System.Windows.Forms.GroupBox grpCustDetails;
         private System.Windows.Forms.GroupBox grpAccountDetails;
+        private System.Windows.Forms.Label lblCounty;
     }
 }

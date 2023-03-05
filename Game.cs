@@ -20,7 +20,7 @@ namespace ShippingApplication
         private decimal salePrice;
         private Int32 quantity;
         private String status;
-
+        //GameId,Title,Developer,Publisher,Genre,Description,BuyPrice,SalePrice,Quantity,Status
         public Game()
         {
             this.gameId = 0;
@@ -147,16 +147,13 @@ namespace ShippingApplication
             }
         }
 
-        public decimal getBuyingPrice()
+        public decimal getBuyPrice()
         {
             return this.buyPrice;
         }
-        public void setBuyingPrice(decimal BuyPrice)
+        public void setBuyPrice(decimal BuyPrice)
         {
-            if (buyPrice < 0 && buyPrice > decimal.MaxValue)
-                this.buyPrice = BuyPrice;
-            else
-                buyPrice = 0;
+            this.buyPrice = BuyPrice;
         }
 
         public decimal getSalePrice()
@@ -165,10 +162,7 @@ namespace ShippingApplication
         }
         public void setSalePrice(decimal SalePrice)
         {
-            if (salePrice < 0 && salePrice > decimal.MaxValue)
-                this.salePrice = SalePrice;
-            else
-                salePrice = 0;
+            this.salePrice = SalePrice;
         }
 
         public String getStatus()
@@ -184,6 +178,31 @@ namespace ShippingApplication
             }
             else
                 status = "Unregistered game!";
+        }
+
+        public void getGame(Int32 Id)
+        {
+            //GameId,Title,Developer,Publisher,Genre,Description,BuyPrice,SalePrice,Quantity,Status
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            String sqlQuery = "SELECT * FROM Games WHERE Game_ID = " + Id;
+            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+            conn.Open();
+
+            OracleDataReader dr = cmd.ExecuteReader();
+            dr.Read();
+
+            setGameId(dr.GetInt32(0));
+            setTitle(dr.GetString(1));
+            setDeveloper(dr.GetString(2));
+            setPublisher(dr.GetString(3));
+            setGenre(dr.GetString(4));
+            setDescription(dr.GetString(5));
+            setBuyPrice(dr.GetDecimal(6));
+            setSalePrice(dr.GetDecimal(7));
+            setQuantity(dr.GetInt32(8));
+            setStatus(dr.GetString(9));
+
+            conn.Close();
         }
 
         public void addGame()
@@ -218,7 +237,7 @@ namespace ShippingApplication
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            String sqlQuery = "UPDATE Game SET " +
+            String sqlQuery = "UPDATE Games SET " +
                 "Game_Id = " + this.gameId + "," +
                 "Title = '" + this.title + "'," +
                 "Developer = '" + this.developer + "'," +
@@ -229,7 +248,7 @@ namespace ShippingApplication
                 "SalePrice = " + this.salePrice + "," +
                 "Quantity = " + this.quantity + "," +
                 "Status = '" + this.status + "' " +
-                "WHERE Game_Id = " + this.gameId + ";";
+                "WHERE Game_Id = " + this.gameId;
 
             Console.WriteLine(sqlQuery);
 
@@ -238,12 +257,12 @@ namespace ShippingApplication
             cmd.ExecuteNonQuery();
             conn.Close();
         }
-        public static DataSet findGame(String title)
+        public static DataSet findGameById(Int32 gameId)
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            String sqlQuery = "SELECT Game_Id, Status, Title, Developer FROM Games " +
-                "WHERE Title LIKE '%" + title + "%' ORDER BY Title";
+            String sqlQuery = "SELECT * FROM Games " +
+                "WHERE Game_Id = '" + gameId + "' ORDER BY Game_Id";
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
             OracleDataAdapter da = new OracleDataAdapter(cmd);
@@ -281,7 +300,7 @@ namespace ShippingApplication
                 "\nDescription: "+ getDescription() + 
                 " Genre: " + getGenre() +
                 "\nQuantity: " + getQuantity() + 
-                " Cost to buy: " + getBuyingPrice() + 
+                " Cost to buy: " + getBuyPrice() + 
                 "\nSale Price: " + getSalePrice() + 
                 "Status: " + getStatus();
         }

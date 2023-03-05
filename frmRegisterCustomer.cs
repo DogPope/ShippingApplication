@@ -56,7 +56,7 @@ namespace ShippingApplication
             {
                 MessageBox.Show("A password must have at least 1 upper case letter, a lower case letter, a symbol and a number." +
                     "\nIt must be between 8 and 20 characters long!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtTown.Focus();
+                txtPassword.Focus();
                 return;
             }
 
@@ -125,8 +125,9 @@ namespace ShippingApplication
             txtPhone.Clear();
             txtEircode.Clear();
             txtCardnumber.Clear();
-            txtPhone.Text = "0.00";
+            txtPhone.Clear();
             cboCounty.SelectedIndex = -1;
+            txtStatus.Clear();
             txtForename.Focus();
             Console.WriteLine(next.toString());
         }

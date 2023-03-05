@@ -27,16 +27,16 @@ namespace ShippingApplication
         public Customer()
         {
             this.custId = 0;
-            this.surname = "Not available!";
             this.forename = "No forename available!";
+            this.surname = "Not available!";
             this.town = "No town supplied!";
-            this.county = "No county data!";
             this.EIRCode = "None";
             this.password = "password";
             this.phone = "0860000000";
             this.email = "null@gmail.com";
-            this.status = "Registered";
             this.cardNumber = "Null";
+            this.county = "No county data!";
+            this.status = "Registered";
         }
         //Int32 custId, String forename, String surname, String town, String EIRCode, String password, String phone, String email, String cardNumber, String county, String status
         public Customer(Int32 custId, String forename, String surname, String town, String EIRCode, String password, String phone, String email, String cardNumber, String status, String county)
@@ -169,34 +169,31 @@ namespace ShippingApplication
         public static bool isValidPassword(String password)
         {
             // Password should have a minimum of one of each Uppercase letters, Lowercase letters, numbers, symbols and be a minimum 8 chars in length, maximum of 20.
-            char[] symbols = { '!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '.', ',', '?', '+', '_', '-', '='};
-            int numOfNumbers = 0;
-            int numSymbols = 0;
-            int upperCaseChars = 0;
-            int lowerCaseChars = 0;
 
-            if (password.Length > 20 || password.Length < 8)
+            // Condition checks that password is between 8 and 20 characters in length.
+            if (password.Length < 8 || password.Length > 20)
                 return false;
 
-            foreach(char c in password)
-            {
-                if (c >= 'a' && c <= 'z')
-                    lowerCaseChars++;
-                else if (c >= 'A' && c <= 'Z')
-                    upperCaseChars++;
-                else if (c >= 0 && c <= 9)
-                    numOfNumbers++;
-                foreach (char a in symbols) 
-                {
-                    if(c == symbols[a])
-                            numSymbols++;
-                }
-                if (lowerCaseChars > 0 && upperCaseChars > 0 && numOfNumbers > 0 && numSymbols > 0)
-                {
-                    return true;
-                }
-            }
+            //No white space
+            if (password.Contains(" "))
+                return false;
 
+            //At least 1 upper case letter
+            if (!password.Any(char.IsUpper))
+                return false;
+
+            //At least 1 lower case letter
+            if (!password.Any(char.IsLower))
+                return false;
+
+            //At least 1 special char
+            string specialCharacters = @"%!@#$%^&*()?/>.<,:;'\|}]{[_~`+=-" + "\"";
+            char[] specialCharactersArray = specialCharacters.ToCharArray();
+            foreach (char c in specialCharactersArray)
+            {
+                if (password.Contains(c))
+                    return true;
+            }
             return false;
         }
 
@@ -217,49 +214,82 @@ namespace ShippingApplication
             return false;
         }
 
+        public void getCustomer(Int32 Id)
+        {
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            String sqlQuery = "SELECT * FROM Customers WHERE Cust_ID = " + Id;
+            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+            conn.Open();
+
+            OracleDataReader dr = cmd.ExecuteReader();
+            dr.Read();
+
+            setCustomerId(dr.GetInt32(0));
+            setSurname(dr.GetString(1));
+            setForename(dr.GetString(2));
+            setTown(dr.GetString(3));
+            setEircode(dr.GetString(4));
+            setPassword(dr.GetString(5));
+            setPhoneNumber(dr.GetString(6));
+            setEmail(dr.GetString(7));
+            setCardNumber(dr.GetString(8));
+            setCounty(dr.GetString(9));
+            setStatus(dr.GetString(10));
+
+            conn.Close();
+        }
+
         public void addCustomer()
         {
-            try
-            {
                 OracleConnection connection = new OracleConnection(DBConnect.oradb);
 
                 //Int32 custId, String forename, String surname, String town, String EIRCode, String password, String phone, String email, String cardNumber, String county, String status
                 String sqlQuery = "INSERT INTO Customers Values (" + getNextCustomerID() + ",'" +
-                    this.forename + "','" + this.surname + "','" +
+                    this.surname + "','" + this.forename + "','" +
                     this.town + "','" + this.EIRCode + "','" +
                     this.password + "','" + this.phone + "','" + this.email + "','" +
-                    this.cardNumber + "','" + this.status + "','" + this.county + "')";
+                    this.cardNumber + "','" + this.status +  "','" + this.county + "')";
+
+                /*
+                 INSERT INTO Customers Values(id,'sname','fname','town','EIRcode','
+                 */
                 OracleCommand cmd = new OracleCommand(sqlQuery, connection);
-                Console.WriteLine("Success?");
                 connection.Open();
 
                 cmd.ExecuteNonQuery();
 
                 connection.Close();
-            }
-            catch(Exception ex)
-            {
-                if (ex.Source != null)
-                {
-                    Console.WriteLine("IOException source: {0}", ex.Source);
-                }
-                throw;
-            }
         }
         public void updateCustomer()
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
-
+            //Int32 custId, String forename, String surname, String town, String EIRCode, String password, String phone, String email, String cardNumber, String county, String status
             String sqlQuery = "UPDATE Customers SET " +
                 "Cust_Id = " + this.custId + "," +
                 "Forename = '" + this.forename + "'," +
                 "Surname = '" + this.surname + "'," +
                 "Town = '" + this.town + "'," +
-                "County = " + this.county + "," +
-                "EIRCode = " + this.EIRCode + "," +
-                "Status = '" + this.status + "' " +
-                "CardNumber = '" + this.cardNumber + "' " +
-                "WHERE Cust_Id = " + this.custId + ");";
+                "EIRCode = '" + this.EIRCode + "'," +
+                "Password = '" + this.password + "'," +
+                "Phone = '" + this.phone + "'," +
+                "Email = '" + this.email + "'," +
+                "CardNumber = '" + this.cardNumber + "', " +
+                "County = '" + this.county + "'," +
+                "Status = '" + this.status + "'" +
+                "WHERE Cust_Id = " + this.custId;
+
+            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+        public void deregisterCustomer()
+        {
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+
+            String sqlQuery = "UPDATE Customers SET " +
+                "Status = 'Deregistered' " +
+                "WHERE Cust_Id = " + this.custId;
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
             conn.Open();
@@ -270,8 +300,8 @@ namespace ShippingApplication
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            String sqlQuery = "SELECT Cust_Id, forename, surname, town, county, EIRcode, status, cardnumber FROM Customers " +
-                "WHERE cust_id = " + CustId + ";";
+            String sqlQuery = "SELECT Cust_Id, forename, surname, town, county, EIRcode, phone, email, status, cardnumber FROM Customers " +
+                "WHERE cust_id = " + CustId;
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
             OracleDataAdapter da = new OracleDataAdapter(cmd);
@@ -279,6 +309,20 @@ namespace ShippingApplication
             da.Fill(ds, "Customers");
             conn.Close();
             return ds;
+        }
+        public static DataSet findCustomerByName(String forename)
+        {
+                OracleConnection conn = new OracleConnection(DBConnect.oradb);
+
+            String sqlQuery = "SELECT Cust_Id, forename, surname, town, county, EIRcode, phone, email, status, cardnumber FROM Customers " +
+                "WHERE forename LIKE '%" + forename + "%' ORDER BY Forename";
+
+                OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+                OracleDataAdapter da = new OracleDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                da.Fill(ds, "Customers");
+                conn.Close();
+                return ds;
         }
         public static int getNextCustomerID()
         {

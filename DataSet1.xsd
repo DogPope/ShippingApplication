@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<xs:schema id="CustDataSet" targetNamespace="http://tempuri.org/CustDataSet.xsd" xmlns:mstns="http://tempuri.org/CustDataSet.xsd" xmlns="http://tempuri.org/CustDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+<xs:schema id="DataSet1" targetNamespace="http://tempuri.org/DataSet1.xsd" xmlns:mstns="http://tempuri.org/DataSet1.xsd" xmlns="http://tempuri.org/DataSet1.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
       <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
@@ -107,7 +107,7 @@
       </DataSource>
     </xs:appinfo>
   </xs:annotation>
-  <xs:element name="CustDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="CustDataSet" msprop:Generator_UserDSName="CustDataSet">
+  <xs:element name="DataSet1" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="DataSet1" msprop:Generator_UserDSName="DataSet1">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
         <xs:element name="CUSTOMERS" msprop:Generator_TableClassName="CUSTOMERSDataTable" msprop:Generator_TableVarName="tableCUSTOMERS" msprop:Generator_TablePropName="CUSTOMERS" msprop:Generator_RowDeletingName="CUSTOMERSRowDeleting" msprop:Generator_RowChangingName="CUSTOMERSRowChanging" msprop:Generator_RowEvHandlerName="CUSTOMERSRowChangeEventHandler" msprop:Generator_RowDeletedName="CUSTOMERSRowDeleted" msprop:Generator_UserTableName="CUSTOMERS" msprop:Generator_RowChangedName="CUSTOMERSRowChanged" msprop:Generator_RowEvArgName="CUSTOMERSRowChangeEvent" msprop:Generator_RowClassName="CUSTOMERSRow">
