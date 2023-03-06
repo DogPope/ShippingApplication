@@ -1,7 +1,7 @@
 ﻿
 namespace ShippingApplication
 {
-    partial class frmMain
+    partial class frmManageOrders
     {
         /// <summary>
         /// Required designer variable.
@@ -29,6 +29,7 @@ namespace ShippingApplication
         /// </summary>
         private void InitializeComponent()
         {
+            this.btnReturn = new System.Windows.Forms.Button();
             this.munProgram = new System.Windows.Forms.MenuStrip();
             this.customersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registerCustomerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,9 +46,21 @@ namespace ShippingApplication
             this.sendOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.invoiceReceiptsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.adminFeaturesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnExit = new System.Windows.Forms.Button();
             this.munProgram.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // btnReturn
+            // 
+            this.btnReturn.BackColor = System.Drawing.Color.FloralWhite;
+            this.btnReturn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReturn.Location = new System.Drawing.Point(1083, 0);
+            this.btnReturn.Name = "btnReturn";
+            this.btnReturn.Size = new System.Drawing.Size(101, 24);
+            this.btnReturn.TabIndex = 27;
+            this.btnReturn.Text = "Return";
+            this.btnReturn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReturn.UseVisualStyleBackColor = false;
+            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
             // 
             // munProgram
             // 
@@ -59,7 +72,7 @@ namespace ShippingApplication
             this.munProgram.Location = new System.Drawing.Point(0, 0);
             this.munProgram.Name = "munProgram";
             this.munProgram.Size = new System.Drawing.Size(1184, 24);
-            this.munProgram.TabIndex = 0;
+            this.munProgram.TabIndex = 26;
             this.munProgram.Text = "mnuProgram";
             // 
             // customersToolStripMenuItem
@@ -77,20 +90,18 @@ namespace ShippingApplication
             this.registerCustomerToolStripMenuItem.Name = "registerCustomerToolStripMenuItem";
             this.registerCustomerToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.registerCustomerToolStripMenuItem.Text = "Register Customer";
-            this.registerCustomerToolStripMenuItem.Click += new System.EventHandler(this.registerCustomerToolStripMenuItem_Click);
             // 
             // updateDeleteToolStripMenuItem
             // 
             this.updateDeleteToolStripMenuItem.Name = "updateDeleteToolStripMenuItem";
             this.updateDeleteToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.updateDeleteToolStripMenuItem.Text = "Update / Delete";
-            this.updateDeleteToolStripMenuItem.Click += new System.EventHandler(this.updateDeleteToolStripMenuItem_Click);
             // 
             // viewDetailsToolStripMenuItem
             // 
             this.viewDetailsToolStripMenuItem.Name = "viewDetailsToolStripMenuItem";
             this.viewDetailsToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.viewDetailsToolStripMenuItem.Text = "View Customers";
+            this.viewDetailsToolStripMenuItem.Text = "View Details";
             // 
             // gamesToolStripMenuItem
             // 
@@ -107,20 +118,18 @@ namespace ShippingApplication
             this.registerGameToolStripMenuItem.Name = "registerGameToolStripMenuItem";
             this.registerGameToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.registerGameToolStripMenuItem.Text = "Register Game";
-            this.registerGameToolStripMenuItem.Click += new System.EventHandler(this.registerGameToolStripMenuItem_Click);
             // 
             // updateDeleteToolStripMenuItem1
             // 
             this.updateDeleteToolStripMenuItem1.Name = "updateDeleteToolStripMenuItem1";
             this.updateDeleteToolStripMenuItem1.Size = new System.Drawing.Size(156, 22);
             this.updateDeleteToolStripMenuItem1.Text = "Update / Delete";
-            this.updateDeleteToolStripMenuItem1.Click += new System.EventHandler(this.updateDeleteToolStripMenuItem1_Click);
             // 
             // viewDetailsToolStripMenuItem1
             // 
             this.viewDetailsToolStripMenuItem1.Name = "viewDetailsToolStripMenuItem1";
             this.viewDetailsToolStripMenuItem1.Size = new System.Drawing.Size(156, 22);
-            this.viewDetailsToolStripMenuItem1.Text = "View Games";
+            this.viewDetailsToolStripMenuItem1.Text = "View Details";
             // 
             // ordersToolStripMenuItem
             // 
@@ -139,7 +148,6 @@ namespace ShippingApplication
             this.placeOrderToolStripMenuItem.Name = "placeOrderToolStripMenuItem";
             this.placeOrderToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
             this.placeOrderToolStripMenuItem.Text = "Place Order";
-            this.placeOrderToolStripMenuItem.Click += new System.EventHandler(this.placeOrderToolStripMenuItem_Click);
             // 
             // updateCancelOrderToolStripMenuItem
             // 
@@ -170,33 +178,18 @@ namespace ShippingApplication
             this.adminFeaturesToolStripMenuItem.Name = "adminFeaturesToolStripMenuItem";
             this.adminFeaturesToolStripMenuItem.Size = new System.Drawing.Size(102, 20);
             this.adminFeaturesToolStripMenuItem.Text = "Admin Features";
-            this.adminFeaturesToolStripMenuItem.Click += new System.EventHandler(this.adminFeaturesToolStripMenuItem_Click);
             // 
-            // btnExit
-            // 
-            this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExit.Location = new System.Drawing.Point(1082, 0);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(101, 24);
-            this.btnExit.TabIndex = 1;
-            this.btnExit.Text = "Exit";
-            this.btnExit.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExit.UseVisualStyleBackColor = true;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
-            // 
-            // frmMain
+            // frmManageOrders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FloralWhite;
             this.ClientSize = new System.Drawing.Size(1184, 611);
-            this.Controls.Add(this.btnExit);
+            this.Controls.Add(this.btnReturn);
             this.Controls.Add(this.munProgram);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.MainMenuStrip = this.munProgram;
-            this.Name = "frmMain";
+            this.Name = "frmManageOrders";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Home";
+            this.Text = "Manage Orders";
             this.munProgram.ResumeLayout(false);
             this.munProgram.PerformLayout();
             this.ResumeLayout(false);
@@ -206,6 +199,7 @@ namespace ShippingApplication
 
         #endregion
 
+        private System.Windows.Forms.Button btnReturn;
         private System.Windows.Forms.MenuStrip munProgram;
         private System.Windows.Forms.ToolStripMenuItem customersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem registerCustomerToolStripMenuItem;
@@ -222,7 +216,5 @@ namespace ShippingApplication
         private System.Windows.Forms.ToolStripMenuItem sendOrderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem invoiceReceiptsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem adminFeaturesToolStripMenuItem;
-        private System.Windows.Forms.Button btnExit;
     }
 }
-

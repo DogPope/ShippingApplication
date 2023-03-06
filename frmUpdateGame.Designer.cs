@@ -37,20 +37,15 @@ namespace ShippingApplication
             this.customersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registerCustomerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateDeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.gamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.registerGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateDeleteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewDetailsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.ordersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.placeOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.updateCancelOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sendOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.invoiceReceiptsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.adminFeaturesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.yearlyRevenueAnalysisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.yearlyStockAnalysisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnReturn = new System.Windows.Forms.Button();
             this.grdGames = new System.Windows.Forms.DataGridView();
             this.gAMEIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -140,8 +135,7 @@ namespace ShippingApplication
             // 
             this.customersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.registerCustomerToolStripMenuItem,
-            this.updateDeleteToolStripMenuItem,
-            this.viewDetailsToolStripMenuItem});
+            this.updateDeleteToolStripMenuItem});
             this.customersToolStripMenuItem.Name = "customersToolStripMenuItem";
             this.customersToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
             this.customersToolStripMenuItem.Text = "Customers";
@@ -158,18 +152,11 @@ namespace ShippingApplication
             this.updateDeleteToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
             this.updateDeleteToolStripMenuItem.Text = "Update / Delete";
             // 
-            // viewDetailsToolStripMenuItem
-            // 
-            this.viewDetailsToolStripMenuItem.Name = "viewDetailsToolStripMenuItem";
-            this.viewDetailsToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.viewDetailsToolStripMenuItem.Text = "View Details";
-            // 
             // gamesToolStripMenuItem
             // 
             this.gamesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.registerGameToolStripMenuItem,
-            this.updateDeleteToolStripMenuItem1,
-            this.viewDetailsToolStripMenuItem1});
+            this.updateDeleteToolStripMenuItem1});
             this.gamesToolStripMenuItem.Name = "gamesToolStripMenuItem";
             this.gamesToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
             this.gamesToolStripMenuItem.Text = "Games";
@@ -186,18 +173,11 @@ namespace ShippingApplication
             this.updateDeleteToolStripMenuItem1.Size = new System.Drawing.Size(156, 22);
             this.updateDeleteToolStripMenuItem1.Text = "Update / Delete";
             // 
-            // viewDetailsToolStripMenuItem1
-            // 
-            this.viewDetailsToolStripMenuItem1.Name = "viewDetailsToolStripMenuItem1";
-            this.viewDetailsToolStripMenuItem1.Size = new System.Drawing.Size(156, 22);
-            this.viewDetailsToolStripMenuItem1.Text = "View Details";
-            // 
             // ordersToolStripMenuItem
             // 
             this.ordersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.placeOrderToolStripMenuItem,
             this.updateCancelOrderToolStripMenuItem,
-            this.viewOrderToolStripMenuItem,
             this.sendOrderToolStripMenuItem,
             this.invoiceReceiptsToolStripMenuItem});
             this.ordersToolStripMenuItem.Name = "ordersToolStripMenuItem";
@@ -216,12 +196,6 @@ namespace ShippingApplication
             this.updateCancelOrderToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
             this.updateCancelOrderToolStripMenuItem.Text = "Update / Cancel Order";
             // 
-            // viewOrderToolStripMenuItem
-            // 
-            this.viewOrderToolStripMenuItem.Name = "viewOrderToolStripMenuItem";
-            this.viewOrderToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.viewOrderToolStripMenuItem.Text = "View Order";
-            // 
             // sendOrderToolStripMenuItem
             // 
             this.sendOrderToolStripMenuItem.Name = "sendOrderToolStripMenuItem";
@@ -236,24 +210,9 @@ namespace ShippingApplication
             // 
             // adminFeaturesToolStripMenuItem
             // 
-            this.adminFeaturesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.yearlyRevenueAnalysisToolStripMenuItem,
-            this.yearlyStockAnalysisToolStripMenuItem});
             this.adminFeaturesToolStripMenuItem.Name = "adminFeaturesToolStripMenuItem";
             this.adminFeaturesToolStripMenuItem.Size = new System.Drawing.Size(102, 20);
             this.adminFeaturesToolStripMenuItem.Text = "Admin Features";
-            // 
-            // yearlyRevenueAnalysisToolStripMenuItem
-            // 
-            this.yearlyRevenueAnalysisToolStripMenuItem.Name = "yearlyRevenueAnalysisToolStripMenuItem";
-            this.yearlyRevenueAnalysisToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
-            this.yearlyRevenueAnalysisToolStripMenuItem.Text = "Yearly Revenue Analysis";
-            // 
-            // yearlyStockAnalysisToolStripMenuItem
-            // 
-            this.yearlyStockAnalysisToolStripMenuItem.Name = "yearlyStockAnalysisToolStripMenuItem";
-            this.yearlyStockAnalysisToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
-            this.yearlyStockAnalysisToolStripMenuItem.Text = "Yearly Stock Analysis";
             // 
             // btnReturn
             // 
@@ -621,20 +580,15 @@ namespace ShippingApplication
         private System.Windows.Forms.ToolStripMenuItem customersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem registerCustomerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem updateDeleteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem viewDetailsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem gamesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem registerGameToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem updateDeleteToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem viewDetailsToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem ordersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem placeOrderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem updateCancelOrderToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem viewOrderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sendOrderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem invoiceReceiptsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem adminFeaturesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem yearlyRevenueAnalysisToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem yearlyStockAnalysisToolStripMenuItem;
         private System.Windows.Forms.Button btnReturn;
         private System.Windows.Forms.DataGridView grdGames;
         private DataSet1 dataSet1;

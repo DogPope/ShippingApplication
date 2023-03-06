@@ -67,8 +67,6 @@ namespace ShippingApplication
             this.sendOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.invoiceReceiptsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.adminFeaturesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.yearlyRevenueAnalysisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.yearlyStockAnalysisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bxGameDetails.SuspendLayout();
             this.bxFinancial.SuspendLayout();
             this.munProgram.SuspendLayout();
@@ -415,24 +413,9 @@ namespace ShippingApplication
             // 
             // adminFeaturesToolStripMenuItem
             // 
-            this.adminFeaturesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.yearlyRevenueAnalysisToolStripMenuItem,
-            this.yearlyStockAnalysisToolStripMenuItem});
             this.adminFeaturesToolStripMenuItem.Name = "adminFeaturesToolStripMenuItem";
             this.adminFeaturesToolStripMenuItem.Size = new System.Drawing.Size(102, 20);
             this.adminFeaturesToolStripMenuItem.Text = "Admin Features";
-            // 
-            // yearlyRevenueAnalysisToolStripMenuItem
-            // 
-            this.yearlyRevenueAnalysisToolStripMenuItem.Name = "yearlyRevenueAnalysisToolStripMenuItem";
-            this.yearlyRevenueAnalysisToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
-            this.yearlyRevenueAnalysisToolStripMenuItem.Text = "Yearly Revenue Analysis";
-            // 
-            // yearlyStockAnalysisToolStripMenuItem
-            // 
-            this.yearlyStockAnalysisToolStripMenuItem.Name = "yearlyStockAnalysisToolStripMenuItem";
-            this.yearlyStockAnalysisToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
-            this.yearlyStockAnalysisToolStripMenuItem.Text = "Yearly Stock Analysis";
             // 
             // frmRegisterGame
             // 
@@ -499,7 +482,5 @@ namespace ShippingApplication
         private System.Windows.Forms.ToolStripMenuItem sendOrderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem invoiceReceiptsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem adminFeaturesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem yearlyRevenueAnalysisToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem yearlyStockAnalysisToolStripMenuItem;
     }
 }

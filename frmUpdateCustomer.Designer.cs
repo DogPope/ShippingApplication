@@ -47,8 +47,6 @@ namespace ShippingApplication
             this.sendOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.invoiceReceiptsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.adminFeaturesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.yearlyRevenueAnalysisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.yearlyStockAnalysisToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtCustId = new System.Windows.Forms.TextBox();
             this.lblCustId = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
@@ -224,24 +222,9 @@ namespace ShippingApplication
             // 
             // adminFeaturesToolStripMenuItem
             // 
-            this.adminFeaturesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.yearlyRevenueAnalysisToolStripMenuItem,
-            this.yearlyStockAnalysisToolStripMenuItem});
             this.adminFeaturesToolStripMenuItem.Name = "adminFeaturesToolStripMenuItem";
             this.adminFeaturesToolStripMenuItem.Size = new System.Drawing.Size(102, 20);
             this.adminFeaturesToolStripMenuItem.Text = "Admin Features";
-            // 
-            // yearlyRevenueAnalysisToolStripMenuItem
-            // 
-            this.yearlyRevenueAnalysisToolStripMenuItem.Name = "yearlyRevenueAnalysisToolStripMenuItem";
-            this.yearlyRevenueAnalysisToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
-            this.yearlyRevenueAnalysisToolStripMenuItem.Text = "Yearly Revenue Analysis";
-            // 
-            // yearlyStockAnalysisToolStripMenuItem
-            // 
-            this.yearlyStockAnalysisToolStripMenuItem.Name = "yearlyStockAnalysisToolStripMenuItem";
-            this.yearlyStockAnalysisToolStripMenuItem.Size = new System.Drawing.Size(199, 22);
-            this.yearlyStockAnalysisToolStripMenuItem.Text = "Yearly Stock Analysis";
             // 
             // txtCustId
             // 
@@ -694,8 +677,6 @@ namespace ShippingApplication
         private System.Windows.Forms.ToolStripMenuItem sendOrderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem invoiceReceiptsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem adminFeaturesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem yearlyRevenueAnalysisToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem yearlyStockAnalysisToolStripMenuItem;
         private System.Windows.Forms.TextBox txtCustId;
         private System.Windows.Forms.Label lblCustId;
         private System.Windows.Forms.Button btnSearch;

@@ -51,5 +51,21 @@ namespace ShippingApplication
             else
                 return;
         }
+
+        private void placeOrderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmManageOrders addOrder = new frmManageOrders(this);
+            addOrder.ShowDialog();
+            this.Show();
+        }
+
+        private void adminFeaturesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmAnalysis analyse = new frmAnalysis(this);
+            analyse.ShowDialog();
+            this.Show();
+        }
     }
 }
