@@ -207,30 +207,20 @@ namespace ShippingApplication
 
         public void addGame()
         {
-            try
-            {
-                OracleConnection connection = new OracleConnection(DBConnect.oradb);
+            OracleConnection connection = new OracleConnection(DBConnect.oradb);
 
-                String sqlQuery = "INSERT INTO Games VALUES (" + getNextGameID() + ",'" +
-                    this.title + "','" + this.developer + "','" + this.publisher + "','" +
-                    this.genre + "','" + this.description + "'," + this.buyPrice + "," +
-                    this.salePrice + "," + this.quantity + ",'" + this.status + "')";
+            String sqlQuery = "INSERT INTO Games VALUES (" + getNextGameID() + ",'" +
+                this.title + "','" + this.developer + "','" + this.publisher + "','" +
+                this.genre + "','" + this.description + "'," + this.buyPrice + "," +
+                this.salePrice + "," + this.quantity + ",'" + this.status + "')";
 
-                /*    INSERT INTO Games VALUES (id,'title','DEV','PUB','DESC','GENRE',12,12,12,'R')         */
+            /*    INSERT INTO Games VALUES (id,'title','DEV','PUB','DESC','GENRE',12,12,12,'R')         */
 
-                OracleCommand cmd = new OracleCommand(sqlQuery, connection);
-                connection.Open();
-                cmd.ExecuteNonQuery();
+            OracleCommand cmd = new OracleCommand(sqlQuery, connection);
+            connection.Open();
+            cmd.ExecuteNonQuery();
 
-                connection.Close();
-            }catch (Exception ex)
-            {
-                if (ex.Source != null)
-                {
-                    Console.WriteLine("IOException source: {0}", ex.Source);
-                }
-                throw;
-            }
+            connection.Close();
         }
 
         public void updateGame()
@@ -294,15 +284,15 @@ namespace ShippingApplication
         public String toString()
         {
             return "Game ID: " + getGameId() +
-                "Title: " + getTitle() + 
+                "\nTitle: " + getTitle() + 
                 "\nDeveloper: " + getDeveloper() + 
-                " Publisher: " + getPublisher() + 
+                "\nPublisher: " + getPublisher() + 
                 "\nDescription: "+ getDescription() + 
-                " Genre: " + getGenre() +
+                "\nGenre: " + getGenre() +
                 "\nQuantity: " + getQuantity() + 
-                " Cost to buy: " + getBuyPrice() + 
+                "\nCost to buy: " + getBuyPrice() + 
                 "\nSale Price: " + getSalePrice() + 
-                "Status: " + getStatus();
+                "\nStatus: " + getStatus();
         }
     }
 }

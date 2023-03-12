@@ -233,8 +233,8 @@ namespace ShippingApplication
             setPhoneNumber(dr.GetString(6));
             setEmail(dr.GetString(7));
             setCardNumber(dr.GetString(8));
-            setCounty(dr.GetString(9));
-            setStatus(dr.GetString(10));
+            setStatus(dr.GetString(9));
+            setCounty(dr.GetString(10));
 
             conn.Close();
         }
@@ -300,7 +300,7 @@ namespace ShippingApplication
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            String sqlQuery = "SELECT Cust_Id, forename, surname, town, county, EIRcode, phone, email, status, cardnumber FROM Customers " +
+            String sqlQuery = "SELECT * FROM Customers " +
                 "WHERE cust_id = " + CustId;
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
@@ -344,10 +344,27 @@ namespace ShippingApplication
             conn.Close();
             return nextId;
         }
+        public String getAddress()
+        {
+            return "Customer Id: " + getCustomerId() + 
+                "\nForename: " + getForename() + 
+                "\nSurname: " + getSurname() + 
+                "\nAnd sent to this address:" +
+                "\nTown: " + getTown() + 
+                "\nCounty: " + getCounty() +
+                "\nEIR Code: " + getEircode();
+        }
         public String toString()
         {
-            return "Customer Id: " + getCustomerId() + " Forename: " + getForename() + "\nSurname: " + getSurname() + " Town: " + getTown() + "\nCounty: " + getCounty() + 
-                " EIR Code: " + getEircode() + "\nPhone: " + getPhoneNumber() + " Email: " + getEmail() + "\nStatus: " + getStatus();
+            return "Customer Id: " + getCustomerId() + 
+                "\nForename: " + getForename() + 
+                "\nSurname: " + getSurname() + 
+                "\nTown: " + getTown() + 
+                "\nCounty: " + getCounty() + 
+                "\nEIR Code: " + getEircode() + 
+                "\nPhone: " + getPhoneNumber() + 
+                "\nEmail: " + getEmail() + 
+                "\nStatus: " + getStatus();
         }
     }
 }

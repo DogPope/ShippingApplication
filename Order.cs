@@ -11,19 +11,24 @@ namespace ShippingApplication
     class Order
     {
         public Int32 orderId;
-        private OrderItem[] orderItem;
         private decimal cost;
         private String date;
         private Int32 custId;
-        private char status;
+        private String status;
 
         public Order()
         {
             this.orderId = 0;
             this.cost = 0;
-            this.orderItem = null;
             this.date = "SYSDATE";
             this.custId = 0;
+        }
+        public Order(Int32 OrderId, decimal Cost, String Date, Int32 CustId)
+        {
+            this.orderId = OrderId;
+            this.cost = Cost;
+            this.date = Date;
+            this.custId = CustId;
         }
         public Int32 getOrderId()
         {
@@ -32,15 +37,6 @@ namespace ShippingApplication
         public void setOrderId(Int32 OrderId)
         {
             this.orderId = OrderId;
-        }
-
-        public OrderItem[] getOrderItem()
-        {
-            return this.orderItem;
-        }
-        public void setOrderItem(OrderItem[] OrderItem)
-        {
-            this.orderItem = OrderItem;
         }
 
         public String getDate()
@@ -70,45 +66,52 @@ namespace ShippingApplication
             this.custId = CustId;
         }
 
-        public char getStatus()
+        public String getStatus()
         {
             return this.status;
         }
-        public void setStatus(char status)
+        public void setStatus(String status)
         {
             this.status = status;
         }
         // OrderId, OrderItem, Cost, Date, CustId, status
         public void addOrder()
         {
-            try
-            {
-                OracleConnection connection = new OracleConnection(DBConnect.oradb);
+            OracleConnection connection = new OracleConnection(DBConnect.oradb);
 
-                String sqlQuery = "INSERT INTO Orders Values (" + getNextOrderID() + ",'" +
-                    this.orderItem + "'," + this.cost + "," + this.custId + ");";
+            // SYSDATE DOES NOT HAVE PUNCTUATION.//
+            String sqlQuery = "INSERT INTO Orders Values (" + 
+                getNextOrderID() + "," +
+                "SYSDATE," +
+                this.cost + 
+                ",'Assemble '," + 
+                this.custId + ")";
 
-                OracleCommand cmd = new OracleCommand(sqlQuery, connection);
-                Console.WriteLine("Success?");
-                connection.Open();
+            OracleCommand cmd = new OracleCommand(sqlQuery, connection);
+            connection.Open();
 
-                cmd.ExecuteNonQuery();
+            cmd.ExecuteNonQuery();
 
-                connection.Close();
-            }
-            catch (Exception ex)
-            {
-                if (ex.Source != null)
-                {
-                    Console.WriteLine("IOException source: {0}", ex.Source);
-                }
-                throw;
-            }
+            connection.Close();
+        }
+        
+        public void deleteOrder()
+        {
+            OracleConnection connection = new OracleConnection(DBConnect.oradb);
+
+            String sqlQuery = "DELETE FROM Orders WHERE Cust_Id = " + this.custId;
+
+            OracleCommand cmd = new OracleCommand(sqlQuery, connection);
+            connection.Open();
+
+            cmd.ExecuteNonQuery();
+
+            connection.Close();
         }
         public static int getNextOrderID()
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
-            String sqlQuery = "SELECT MAX(OrderID) FROM Orders";
+            String sqlQuery = "SELECT MAX(Order_ID) FROM Orders";
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
             conn.Open();
             OracleDataReader dr = cmd.ExecuteReader();
@@ -125,25 +128,37 @@ namespace ShippingApplication
             conn.Close();
             return nextId;
         }
-        public void cancelOrReturnOrder()
+        public void cancelOrder()
         {
-            // Status 'C' for Cancelled, status 'B' for sent Back.
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
             String sqlQuery = "UPDATE Order SET " +
-                "Status = " + this.status + 
-                "WHERE CustId = " + this.custId + ");";
+                "Status = 'Cancelled' " + 
+                "WHERE Cust_Id = " + this.custId + ");";
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
             conn.Open();
             cmd.ExecuteNonQuery();
             conn.Close();
         }
-        public static DataSet findOrder(Int32 orderId)
+        public void returnOrder()
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            String sqlQuery = "SELECT Order_Id, Order_Date, Cost, Status FROM Orders " +
+            String sqlQuery = "UPDATE Order SET " +
+                "Status = 'Returned' " +
+                "WHERE Cust_Id = " + this.custId + ");";
+
+            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+        public static DataSet findOrderById(Int32 orderId)
+        {
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+
+            String sqlQuery = "SELECT * FROM Orders " +
                 "WHERE Order_Id LIKE '%" + orderId + "%;";
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
@@ -155,8 +170,14 @@ namespace ShippingApplication
         }
         public String toString()
         {
-            return "Order Id: " + getOrderId() + ", Order Date: " + getDate() + "\nCost :" +
-                getCost() + ", Status: " + getStatus();
+            return "Order Id: " + getOrderId() + 
+                "\nOrder Date: " + getDate() + 
+                "\nCost :" + getCost() + 
+                "\nStatus: " + getStatus();
+        }
+        public String addOrderString()
+        {
+            return "Order ID: " + getOrderId() + "\nCost: " + getCost() + "\nStatus : Ready to assemble!";
         }
     }
 }

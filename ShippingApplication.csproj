@@ -111,6 +111,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet11.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DBConnect.cs" />
     <Compile Include="frmAnalysis.cs">
       <SubType>Form</SubType>
@@ -118,11 +123,11 @@
     <Compile Include="frmAnalysis.Designer.cs">
       <DependentUpon>frmAnalysis.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmManageOrders.cs">
+    <Compile Include="frmPlaceOrder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmManageOrders.Designer.cs">
-      <DependentUpon>frmManageOrders.cs</DependentUpon>
+    <Compile Include="frmPlaceOrder.Designer.cs">
+      <DependentUpon>frmPlaceOrder.cs</DependentUpon>
     </Compile>
     <Compile Include="frmRegisterCustomer.cs">
       <SubType>Form</SubType>
@@ -157,7 +162,6 @@
     </Compile>
     <Compile Include="Order.cs" />
     <Compile Include="OrderItem.cs" />
-    <Compile Include="Orders.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmAnalysis.resx">
@@ -166,8 +170,8 @@
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmManageOrders.resx">
-      <DependentUpon>frmManageOrders.cs</DependentUpon>
+    <EmbeddedResource Include="frmPlaceOrder.resx">
+      <DependentUpon>frmPlaceOrder.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmRegisterCustomer.resx">
       <DependentUpon>frmRegisterCustomer.cs</DependentUpon>
@@ -211,6 +215,17 @@
     </None>
     <None Include="DataSet11.xss">
       <DependentUpon>DataSet11.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet2.xsc">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="DataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DataSet2.xss">
+      <DependentUpon>DataSet2.xsd</DependentUpon>
     </None>
     <None Include="Oracle.DataAccess.Common.Configuration.Section.xsd">
       <SubType>Designer</SubType>

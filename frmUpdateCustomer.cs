@@ -26,11 +26,6 @@ namespace ShippingApplication
             parent.Visible = true;
         }
 
-        private void frmUpdateCustomer_Load(object sender, EventArgs e)
-        {
-            //this.cUSTOMERSTableAdapter.Fill(this.custDataSet.CUSTOMERS);
-        }
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
             if (txtCustId.Text == "")
@@ -119,6 +114,10 @@ namespace ShippingApplication
             txtCardnumber.Clear();
             cboCounty.SelectedIndex = -1;
             txtStatus.Clear();
+        }
+        private void frmUpdateCustomer_Load(object sender, EventArgs e)
+        {
+            //this.cUSTOMERSTableAdapter.Fill(this.custDataSet.CUSTOMERS);
         }
     }
 }
