@@ -170,8 +170,7 @@ namespace ShippingApplication
         }
         public String toString()
         {
-            return "Order Id: " + getOrderId() + 
-                "\nOrder Date: " + getDate() + 
+            return "Order Id: " + getOrderId() +
                 "\nCost :" + getCost() + 
                 "\nStatus: " + getStatus();
         }

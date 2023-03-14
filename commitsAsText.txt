@@ -1,0 +1,77 @@
+commit 0919c8856dcd52f8d354242ce03f5e061094c7b5 (HEAD -> master, origin/master)
+Author: DogPope <danieljffs@gmail.com>
+Date:   Sun Mar 12 15:00:11 2023 +0000
+
+    Still working on ordering system. Going okayish!
+
+commit f8ed4406571516fb4b0020b2b1763ecf41e978c0
+Author: DogPope <danieljffs@gmail.com>
+Date:   Mon Mar 6 19:44:50 2023 +0000
+
+    Changes before duplicating table.
+
+commit 4c32dae350d0210faa261b3427294f2e7cf95998
+Author: DogPope <danieljffs@gmail.com>
+Date:   Sun Mar 5 21:41:37 2023 +0000
+
+    Major Progress on Update Delete Queries
+
+commit 9644eb096ee77cb13e6dfafeece9930e9bcc8a12
+Author: DogPope <danieljffs@gmail.com>
+Date:   Sat Mar 4 00:20:02 2023 +0000
+
+    Commit Message
+
+commit d85431671474459c23d912452d92bfe4a6e878d4
+Author: DogPope <danieljffs@gmail.com>
+Date:   Mon Feb 20 23:14:09 2023 +0000
+
+    Riskiest commit i'll ever make!
+
+commit 9edecb0c8c1954952da096be114ce6c7372b7ce9
+Author: DogPope <danieljffs@gmail.com>
+Date:   Mon Feb 20 21:25:26 2023 +0000
+
+    Oh dear God above make it stop!
+
+commit 8c34df4b3bbb6868d4b65a9a40fda2e611394a3f
+Author: DogPope <danieljffs@gmail.com>
+Date:   Sun Feb 19 21:42:54 2023 +0000
+
+    Must check local files to make sure the commit created properly this time.
+
+commit 3475a5a633992632730fcdaea5afa2078722d593
+Author: DogPope <danieljffs@gmail.com>
+Date:   Sat Feb 18 00:17:37 2023 +0000
+
+    I would hope this actually changes at Github though?
+
+commit b0ad02cd99af9254389c346cdd2ed19a8fc9d672
+Author: DogPope <danieljffs@gmail.com>
+Date:   Sun Feb 12 19:42:33 2023 +0000
+
+    Only commiting no extra work because college network was down all weekend.
+
+commit 5c19e2e183d8eea16323b2cea441f4ef88299e58
+Author: DogPope <danieljffs@gmail.com>
+Date:   Sun Feb 5 22:09:46 2023 +0000
+
+    Completing Validation and designing more forms!
+
+commit ae1335a1895c6c03636e80d995b5f5a3df31781d
+Author: DogPope <danieljffs@gmail.com>
+Date:   Thu Feb 2 20:46:19 2023 +0000
+
+    More Work. All files still need work.
+
+commit 8594dd7c698cbf80d1af6709b342e74e875bfe64
+Author: DogPope <danieljffs@gmail.com>
+Date:   Mon Jan 30 20:51:28 2023 +0000
+
+    Add project files.
+
+commit 96db88cb2ab4bc3755d1c462b8d151ec0b3b42e9
+Author: DogPope <danieljffs@gmail.com>
+Date:   Mon Jan 30 20:51:26 2023 +0000
+
+    Add .gitignore and .gitattributes.

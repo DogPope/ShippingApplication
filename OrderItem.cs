@@ -51,12 +51,13 @@ namespace ShippingApplication
         {
             this.cost = cost;
         }
-        public void addOrderItem(Int32 orderId, Int32 gameId)
+        public void addOrderItem()
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
             String sqlQuery = "INSERT INTO Order_Items Values (" +
                 this.orderId + "," +
+                this.cost + "," +
                 this.gameId + ")";
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
@@ -79,6 +80,13 @@ namespace ShippingApplication
             cmd.ExecuteNonQuery();
 
             conn.Close();
+        }
+        public bool isEmpty(List<OrderItem> games)
+        {
+            if (games[0] == null)
+                return true;
+            else
+                return false;
         }
         public String toString()
         {
