@@ -33,19 +33,6 @@ namespace ShippingApplication
             this.lblGameId = new System.Windows.Forms.Label();
             this.txtGameId = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.munProgram = new System.Windows.Forms.MenuStrip();
-            this.customersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.registerCustomerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.updateDeleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.gamesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.registerGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.updateDeleteToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.ordersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.placeOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.updateCancelOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sendOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.invoiceReceiptsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.adminFeaturesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnReturn = new System.Windows.Forms.Button();
             this.grdGames = new System.Windows.Forms.DataGridView();
             this.gAMEIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -82,7 +69,6 @@ namespace ShippingApplication
             this.lblDescription = new System.Windows.Forms.Label();
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.btnUpdateGame = new System.Windows.Forms.Button();
-            this.munProgram.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdGames)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gAMESBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
@@ -117,102 +103,6 @@ namespace ShippingApplication
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
-            // 
-            // munProgram
-            // 
-            this.munProgram.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.customersToolStripMenuItem,
-            this.gamesToolStripMenuItem,
-            this.ordersToolStripMenuItem,
-            this.adminFeaturesToolStripMenuItem});
-            this.munProgram.Location = new System.Drawing.Point(0, 0);
-            this.munProgram.Name = "munProgram";
-            this.munProgram.Size = new System.Drawing.Size(1184, 24);
-            this.munProgram.TabIndex = 24;
-            this.munProgram.Text = "mnuProgram";
-            // 
-            // customersToolStripMenuItem
-            // 
-            this.customersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.registerCustomerToolStripMenuItem,
-            this.updateDeleteToolStripMenuItem});
-            this.customersToolStripMenuItem.Name = "customersToolStripMenuItem";
-            this.customersToolStripMenuItem.Size = new System.Drawing.Size(76, 20);
-            this.customersToolStripMenuItem.Text = "Customers";
-            // 
-            // registerCustomerToolStripMenuItem
-            // 
-            this.registerCustomerToolStripMenuItem.Name = "registerCustomerToolStripMenuItem";
-            this.registerCustomerToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.registerCustomerToolStripMenuItem.Text = "Register Customer";
-            // 
-            // updateDeleteToolStripMenuItem
-            // 
-            this.updateDeleteToolStripMenuItem.Name = "updateDeleteToolStripMenuItem";
-            this.updateDeleteToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.updateDeleteToolStripMenuItem.Text = "Update / Delete";
-            // 
-            // gamesToolStripMenuItem
-            // 
-            this.gamesToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.registerGameToolStripMenuItem,
-            this.updateDeleteToolStripMenuItem1});
-            this.gamesToolStripMenuItem.Name = "gamesToolStripMenuItem";
-            this.gamesToolStripMenuItem.Size = new System.Drawing.Size(55, 20);
-            this.gamesToolStripMenuItem.Text = "Games";
-            // 
-            // registerGameToolStripMenuItem
-            // 
-            this.registerGameToolStripMenuItem.Name = "registerGameToolStripMenuItem";
-            this.registerGameToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.registerGameToolStripMenuItem.Text = "Register Game";
-            // 
-            // updateDeleteToolStripMenuItem1
-            // 
-            this.updateDeleteToolStripMenuItem1.Name = "updateDeleteToolStripMenuItem1";
-            this.updateDeleteToolStripMenuItem1.Size = new System.Drawing.Size(156, 22);
-            this.updateDeleteToolStripMenuItem1.Text = "Update / Delete";
-            // 
-            // ordersToolStripMenuItem
-            // 
-            this.ordersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.placeOrderToolStripMenuItem,
-            this.updateCancelOrderToolStripMenuItem,
-            this.sendOrderToolStripMenuItem,
-            this.invoiceReceiptsToolStripMenuItem});
-            this.ordersToolStripMenuItem.Name = "ordersToolStripMenuItem";
-            this.ordersToolStripMenuItem.Size = new System.Drawing.Size(54, 20);
-            this.ordersToolStripMenuItem.Text = "Orders";
-            // 
-            // placeOrderToolStripMenuItem
-            // 
-            this.placeOrderToolStripMenuItem.Name = "placeOrderToolStripMenuItem";
-            this.placeOrderToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.placeOrderToolStripMenuItem.Text = "Place Order";
-            // 
-            // updateCancelOrderToolStripMenuItem
-            // 
-            this.updateCancelOrderToolStripMenuItem.Name = "updateCancelOrderToolStripMenuItem";
-            this.updateCancelOrderToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.updateCancelOrderToolStripMenuItem.Text = "Update / Cancel Order";
-            // 
-            // sendOrderToolStripMenuItem
-            // 
-            this.sendOrderToolStripMenuItem.Name = "sendOrderToolStripMenuItem";
-            this.sendOrderToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.sendOrderToolStripMenuItem.Text = "Send Order";
-            // 
-            // invoiceReceiptsToolStripMenuItem
-            // 
-            this.invoiceReceiptsToolStripMenuItem.Name = "invoiceReceiptsToolStripMenuItem";
-            this.invoiceReceiptsToolStripMenuItem.Size = new System.Drawing.Size(192, 22);
-            this.invoiceReceiptsToolStripMenuItem.Text = "Invoice / Receipts";
-            // 
-            // adminFeaturesToolStripMenuItem
-            // 
-            this.adminFeaturesToolStripMenuItem.Name = "adminFeaturesToolStripMenuItem";
-            this.adminFeaturesToolStripMenuItem.Size = new System.Drawing.Size(102, 20);
-            this.adminFeaturesToolStripMenuItem.Text = "Admin Features";
             // 
             // btnReturn
             // 
@@ -550,15 +440,12 @@ namespace ShippingApplication
             this.Controls.Add(this.bxGameDetails);
             this.Controls.Add(this.grdGames);
             this.Controls.Add(this.btnReturn);
-            this.Controls.Add(this.munProgram);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.txtGameId);
             this.Controls.Add(this.lblGameId);
             this.Name = "frmUpdateGame";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Update Game";
-            this.munProgram.ResumeLayout(false);
-            this.munProgram.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.grdGames)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.gAMESBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
@@ -576,19 +463,6 @@ namespace ShippingApplication
         private System.Windows.Forms.Label lblGameId;
         private System.Windows.Forms.TextBox txtGameId;
         private System.Windows.Forms.Button btnSearch;
-        private System.Windows.Forms.MenuStrip munProgram;
-        private System.Windows.Forms.ToolStripMenuItem customersToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem registerCustomerToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem updateDeleteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem gamesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem registerGameToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem updateDeleteToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem ordersToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem placeOrderToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem updateCancelOrderToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sendOrderToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem invoiceReceiptsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem adminFeaturesToolStripMenuItem;
         private System.Windows.Forms.Button btnReturn;
         private System.Windows.Forms.DataGridView grdGames;
         private DataSet1 dataSet1;

@@ -75,6 +75,7 @@ namespace ShippingApplication
             this.status = status;
         }
         // OrderId, OrderItem, Cost, Date, CustId, status
+        // Placed, Returned, Cancelled, On Hold
         public void addOrder()
         {
             OracleConnection connection = new OracleConnection(DBConnect.oradb);
@@ -84,7 +85,7 @@ namespace ShippingApplication
                 getNextOrderID() + "," +
                 "SYSDATE," +
                 this.cost + 
-                ",'Assemble '," + 
+                ",'Placed '," + 
                 this.custId + ")";
 
             OracleCommand cmd = new OracleCommand(sqlQuery, connection);
@@ -134,6 +135,19 @@ namespace ShippingApplication
 
             String sqlQuery = "UPDATE Order SET " +
                 "Status = 'Cancelled' " + 
+                "WHERE Cust_Id = " + this.custId + ");";
+
+            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+        public void holdOrder()
+        {
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+
+            String sqlQuery = "UPDATE Order SET " +
+                "Status = 'On hold' " +
                 "WHERE Cust_Id = " + this.custId + ");";
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);

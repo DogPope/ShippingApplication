@@ -1,3 +1,16 @@
+To get to commit history from USB Key folder, type the following commands;
+    cd/
+    cd Users/Daniel
+    cd /d Z:\ParentFolder
+    cd Year 2 Semester 2/Software Development Project/ShippingApplication
+From there, the git command is "git log"
+
+commit bace249928efd5f382ad6898bbeaa19460f8332b (HEAD -> master)
+Author: DogPope <danieljffs@gmail.com>
+Date:   Tue Mar 14 20:10:34 2023 +0000
+
+    Orders nearly complete. Working as intended, just need some validation.
+
 commit 0919c8856dcd52f8d354242ce03f5e061094c7b5 (HEAD -> master, origin/master)
 Author: DogPope <danieljffs@gmail.com>
 Date:   Sun Mar 12 15:00:11 2023 +0000
