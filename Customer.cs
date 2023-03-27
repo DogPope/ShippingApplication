@@ -36,7 +36,7 @@ namespace ShippingApplication
             this.email = "null@gmail.com";
             this.cardNumber = "Null";
             this.county = "No county data!";
-            this.status = "Registered";
+            this.status = "R";
         }
         //Int32 custId, String forename, String surname, String town, String EIRCode, String password, String phone, String email, String cardNumber, String county, String status
         public Customer(Int32 custId, String forename, String surname, String town, String EIRCode, String password, String phone, String email, String cardNumber, String status, String county)
@@ -52,6 +52,19 @@ namespace ShippingApplication
             this.cardNumber = cardNumber;
             this.county = county;
             this.status = status;
+        }
+        public Customer(Int32 custId, String forename, String surname, String town, String EIRCode, String password, String phone, String email, String cardNumber, String county)
+        {
+            this.custId = custId;
+            this.forename = forename;
+            this.surname = surname;
+            this.town = town;
+            this.EIRCode = EIRCode;
+            this.password = password;
+            this.phone = phone;
+            this.email = email;
+            this.cardNumber = cardNumber;
+            this.county = county;
         }
 
         public int getCustomerId()
@@ -213,7 +226,10 @@ namespace ShippingApplication
             }
             return false;
         }
-
+        public bool isLoggedIn()
+        {
+            return true;
+        }
         public void getCustomer(Int32 Id)
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
@@ -248,7 +264,7 @@ namespace ShippingApplication
                     this.surname + "','" + this.forename + "','" +
                     this.town + "','" + this.EIRCode + "','" +
                     this.password + "','" + this.phone + "','" + this.email + "','" +
-                    this.cardNumber + "','" + this.status +  "','" + this.county + "')";
+                    this.cardNumber + "','R','" + this.county + "')";
 
                 /*
                  INSERT INTO Customers Values(id,'sname','fname','town','EIRcode','
@@ -288,7 +304,7 @@ namespace ShippingApplication
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
             String sqlQuery = "UPDATE Customers SET " +
-                "Status = 'Deregistered' " +
+                "Status = 'D' " +
                 "WHERE Cust_Id = " + this.custId;
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
@@ -296,12 +312,31 @@ namespace ShippingApplication
             cmd.ExecuteNonQuery();
             conn.Close();
         }
-        public static DataSet findCustomerById(Int32 CustId)
+        public void findCustomerByEmail(String email)
+        {
+            // Login form uses this to tie an email to a password for a given account.
+            // Had a problem with unescaped strings leading to ORA 04054 error. Fixed.
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            String sqlQuery = "SELECT Cust_ID, forename, password, email FROM Customers WHERE email = '" + email + "'";
+            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+            conn.Open();
+
+            OracleDataReader dr = cmd.ExecuteReader();
+            dr.Read();
+
+            setCustomerId(dr.GetInt32(0));
+            setForename(dr.GetString(1));
+            setPassword(dr.GetString(2));
+            setEmail(dr.GetString(3));
+
+            conn.Close();
+        }
+        public static DataSet findCustomerByName(String forename)
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            String sqlQuery = "SELECT * FROM Customers " +
-                "WHERE cust_id = " + CustId;
+            String sqlQuery = "SELECT Cust_Id, forename, surname, town, county, EIRcode, phone, email, status, cardnumber FROM Customers " +
+                "WHERE forename LIKE '%" + forename + "%' ORDER BY Forename";
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
             OracleDataAdapter da = new OracleDataAdapter(cmd);
@@ -309,20 +344,6 @@ namespace ShippingApplication
             da.Fill(ds, "Customers");
             conn.Close();
             return ds;
-        }
-        public static DataSet findCustomerByName(String forename)
-        {
-                OracleConnection conn = new OracleConnection(DBConnect.oradb);
-
-            String sqlQuery = "SELECT Cust_Id, forename, surname, town, county, EIRcode, phone, email, status, cardnumber FROM Customers " +
-                "WHERE forename LIKE '%" + forename + "%' ORDER BY Forename";
-
-                OracleCommand cmd = new OracleCommand(sqlQuery, conn);
-                OracleDataAdapter da = new OracleDataAdapter(cmd);
-                DataSet ds = new DataSet();
-                da.Fill(ds, "Customers");
-                conn.Close();
-                return ds;
         }
         public static int getNextCustomerID()
         {

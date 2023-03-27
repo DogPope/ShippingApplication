@@ -47,8 +47,6 @@ namespace ShippingApplication
             this.lblPhone = new System.Windows.Forms.Label();
             this.txtCardnumber = new System.Windows.Forms.TextBox();
             this.lblCard = new System.Windows.Forms.Label();
-            this.txtStatus = new System.Windows.Forms.TextBox();
-            this.lblStatus = new System.Windows.Forms.Label();
             this.btnReturn = new System.Windows.Forms.Button();
             this.grpCustDetails = new System.Windows.Forms.GroupBox();
             this.grpAccountDetails = new System.Windows.Forms.GroupBox();
@@ -103,7 +101,7 @@ namespace ShippingApplication
             this.btnSubmit.Location = new System.Drawing.Point(904, 485);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(210, 42);
-            this.btnSubmit.TabIndex = 3;
+            this.btnSubmit.TabIndex = 11;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.UseVisualStyleBackColor = false;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
@@ -125,7 +123,7 @@ namespace ShippingApplication
             this.txtForename.MaxLength = 20;
             this.txtForename.Name = "txtForename";
             this.txtForename.Size = new System.Drawing.Size(141, 26);
-            this.txtForename.TabIndex = 2;
+            this.txtForename.TabIndex = 1;
             // 
             // txtSurname
             // 
@@ -134,7 +132,7 @@ namespace ShippingApplication
             this.txtSurname.MaxLength = 20;
             this.txtSurname.Name = "txtSurname";
             this.txtSurname.Size = new System.Drawing.Size(141, 26);
-            this.txtSurname.TabIndex = 1;
+            this.txtSurname.TabIndex = 2;
             // 
             // lblSurname
             // 
@@ -261,25 +259,6 @@ namespace ShippingApplication
             this.lblCard.TabIndex = 18;
             this.lblCard.Text = "Credit Card Number";
             // 
-            // txtStatus
-            // 
-            this.txtStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStatus.Location = new System.Drawing.Point(904, 201);
-            this.txtStatus.MaxLength = 20;
-            this.txtStatus.Name = "txtStatus";
-            this.txtStatus.Size = new System.Drawing.Size(141, 26);
-            this.txtStatus.TabIndex = 10;
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(901, 183);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(56, 20);
-            this.lblStatus.TabIndex = 22;
-            this.lblStatus.Text = "Status";
-            // 
             // btnReturn
             // 
             this.btnReturn.BackColor = System.Drawing.Color.FloralWhite;
@@ -287,7 +266,7 @@ namespace ShippingApplication
             this.btnReturn.Location = new System.Drawing.Point(1082, 0);
             this.btnReturn.Name = "btnReturn";
             this.btnReturn.Size = new System.Drawing.Size(101, 24);
-            this.btnReturn.TabIndex = 25;
+            this.btnReturn.TabIndex = 12;
             this.btnReturn.Text = "Return";
             this.btnReturn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnReturn.UseVisualStyleBackColor = false;
@@ -347,8 +326,6 @@ namespace ShippingApplication
             this.Controls.Add(this.grpAccountDetails);
             this.Controls.Add(this.grpCustDetails);
             this.Controls.Add(this.btnReturn);
-            this.Controls.Add(this.txtStatus);
-            this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.btnSubmit);
             this.Controls.Add(this.cboCounty);
             this.Name = "frmRegisterCustomer";
@@ -382,8 +359,6 @@ namespace ShippingApplication
         private System.Windows.Forms.Label lblPhone;
         private System.Windows.Forms.TextBox txtCardnumber;
         private System.Windows.Forms.Label lblCard;
-        private System.Windows.Forms.TextBox txtStatus;
-        private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Button btnReturn;
         private System.Windows.Forms.GroupBox grpCustDetails;
         private System.Windows.Forms.GroupBox grpAccountDetails;

@@ -38,8 +38,6 @@ namespace ShippingApplication
             this.txtTitle = new System.Windows.Forms.TextBox();
             this.lblTitle = new System.Windows.Forms.Label();
             this.btnRegister = new System.Windows.Forms.Button();
-            this.txtStatus = new System.Windows.Forms.TextBox();
-            this.lblStatus = new System.Windows.Forms.Label();
             this.txtSalePrice = new System.Windows.Forms.TextBox();
             this.lblSalePrice = new System.Windows.Forms.Label();
             this.txtGenre = new System.Windows.Forms.TextBox();
@@ -62,7 +60,7 @@ namespace ShippingApplication
             this.txtPublisher.MaxLength = 20;
             this.txtPublisher.Name = "txtPublisher";
             this.txtPublisher.Size = new System.Drawing.Size(141, 26);
-            this.txtPublisher.TabIndex = 19;
+            this.txtPublisher.TabIndex = 3;
             // 
             // lblPublisher
             // 
@@ -78,10 +76,10 @@ namespace ShippingApplication
             // 
             this.txtBuyPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBuyPrice.Location = new System.Drawing.Point(74, 180);
-            this.txtBuyPrice.MaxLength = 8;
+            this.txtBuyPrice.MaxLength = 6;
             this.txtBuyPrice.Name = "txtBuyPrice";
             this.txtBuyPrice.Size = new System.Drawing.Size(141, 26);
-            this.txtBuyPrice.TabIndex = 17;
+            this.txtBuyPrice.TabIndex = 7;
             // 
             // lblCost
             // 
@@ -100,7 +98,7 @@ namespace ShippingApplication
             this.txtDeveloper.MaxLength = 20;
             this.txtDeveloper.Name = "txtDeveloper";
             this.txtDeveloper.Size = new System.Drawing.Size(141, 26);
-            this.txtDeveloper.TabIndex = 15;
+            this.txtDeveloper.TabIndex = 2;
             // 
             // lblDeveloper
             // 
@@ -119,7 +117,7 @@ namespace ShippingApplication
             this.txtTitle.MaxLength = 20;
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(141, 26);
-            this.txtTitle.TabIndex = 13;
+            this.txtTitle.TabIndex = 1;
             // 
             // lblTitle
             // 
@@ -138,38 +136,19 @@ namespace ShippingApplication
             this.btnRegister.Location = new System.Drawing.Point(838, 415);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(210, 42);
-            this.btnRegister.TabIndex = 20;
+            this.btnRegister.TabIndex = 10;
             this.btnRegister.Text = "Register";
             this.btnRegister.UseVisualStyleBackColor = false;
             this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
-            // 
-            // txtStatus
-            // 
-            this.txtStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStatus.Location = new System.Drawing.Point(74, 66);
-            this.txtStatus.MaxLength = 1;
-            this.txtStatus.Name = "txtStatus";
-            this.txtStatus.Size = new System.Drawing.Size(141, 26);
-            this.txtStatus.TabIndex = 22;
-            // 
-            // lblStatus
-            // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatus.Location = new System.Drawing.Point(71, 43);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(56, 20);
-            this.lblStatus.TabIndex = 21;
-            this.lblStatus.Text = "Status";
             // 
             // txtSalePrice
             // 
             this.txtSalePrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSalePrice.Location = new System.Drawing.Point(289, 66);
-            this.txtSalePrice.MaxLength = 8;
+            this.txtSalePrice.MaxLength = 6;
             this.txtSalePrice.Name = "txtSalePrice";
             this.txtSalePrice.Size = new System.Drawing.Size(141, 26);
-            this.txtSalePrice.TabIndex = 24;
+            this.txtSalePrice.TabIndex = 6;
             // 
             // lblSalePrice
             // 
@@ -188,7 +167,7 @@ namespace ShippingApplication
             this.txtGenre.MaxLength = 20;
             this.txtGenre.Name = "txtGenre";
             this.txtGenre.Size = new System.Drawing.Size(141, 26);
-            this.txtGenre.TabIndex = 26;
+            this.txtGenre.TabIndex = 4;
             // 
             // lblGenre
             // 
@@ -207,7 +186,7 @@ namespace ShippingApplication
             this.txtQuantity.MaxLength = 3;
             this.txtQuantity.Name = "txtQuantity";
             this.txtQuantity.Size = new System.Drawing.Size(141, 26);
-            this.txtQuantity.TabIndex = 28;
+            this.txtQuantity.TabIndex = 8;
             // 
             // lblQuantity
             // 
@@ -222,10 +201,11 @@ namespace ShippingApplication
             // txtDescription
             // 
             this.txtDescription.Location = new System.Drawing.Point(772, 114);
+            this.txtDescription.MaxLength = 50;
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(339, 138);
-            this.txtDescription.TabIndex = 29;
+            this.txtDescription.TabIndex = 9;
             // 
             // lblDescription
             // 
@@ -258,8 +238,6 @@ namespace ShippingApplication
             // 
             this.bxFinancial.Controls.Add(this.lblCost);
             this.bxFinancial.Controls.Add(this.txtBuyPrice);
-            this.bxFinancial.Controls.Add(this.lblStatus);
-            this.bxFinancial.Controls.Add(this.txtStatus);
             this.bxFinancial.Controls.Add(this.txtQuantity);
             this.bxFinancial.Controls.Add(this.lblSalePrice);
             this.bxFinancial.Controls.Add(this.lblQuantity);
@@ -277,7 +255,7 @@ namespace ShippingApplication
             this.btnReturn.Location = new System.Drawing.Point(1083, 0);
             this.btnReturn.Name = "btnReturn";
             this.btnReturn.Size = new System.Drawing.Size(101, 24);
-            this.btnReturn.TabIndex = 34;
+            this.btnReturn.TabIndex = 11;
             this.btnReturn.Text = "Return";
             this.btnReturn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnReturn.UseVisualStyleBackColor = true;
@@ -296,6 +274,7 @@ namespace ShippingApplication
             this.Controls.Add(this.txtDescription);
             this.Controls.Add(this.btnRegister);
             this.Name = "frmRegisterGame";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmRegisterGame";
             this.bxGameDetails.ResumeLayout(false);
             this.bxGameDetails.PerformLayout();
@@ -316,8 +295,6 @@ namespace ShippingApplication
         private System.Windows.Forms.TextBox txtTitle;
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Button btnRegister;
-        private System.Windows.Forms.TextBox txtStatus;
-        private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.TextBox txtSalePrice;
         private System.Windows.Forms.Label lblSalePrice;
         private System.Windows.Forms.TextBox txtGenre;

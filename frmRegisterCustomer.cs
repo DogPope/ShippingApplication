@@ -13,10 +13,6 @@ namespace ShippingApplication
     public partial class frmRegisterCustomer : Form
     {
         frmMain parent;
-        public frmRegisterCustomer()
-        {
-            InitializeComponent();
-        }
 
         public frmRegisterCustomer(frmMain Parent)
         {
@@ -26,25 +22,28 @@ namespace ShippingApplication
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            // Validation Section
+            // Validate Customer Fields.
             if (txtForename.Text == "")
             {
                 MessageBox.Show("A name is required to set up an account!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtForename.Focus();
                 return;
             }
+
             if (txtSurname.Text == "")
             {
                 MessageBox.Show("A name is required to set up an account!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtSurname.Focus();
                 return;
             }
+
             if (txtTown.Text == "")
             {
                 MessageBox.Show("A town is required to set up an account!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtTown.Focus();
                 return;
             }
+
             if (!Customer.isValidEircode(txtEircode.Text))
             {
                 MessageBox.Show("An EIR Code is required to send parcels to your address!\nIt must be a three character Routing code +" +
@@ -94,12 +93,6 @@ namespace ShippingApplication
                     return;
                 }
             }
-            if(txtStatus.Text != "Registered" && txtStatus.Text != "Deregistered")
-            {
-                MessageBox.Show("An account can only be \"Registered\" or \"Deregistered\"", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtStatus.Focus();
-                return;
-            }
             if(cboCounty.SelectedIndex == 0)
             {
                 MessageBox.Show("You must select a county for deliveries!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -108,15 +101,18 @@ namespace ShippingApplication
             }
 
 
-            // On successful validation, 
+            // Creates customer object on successful validation.
             Customer next = new Customer(Customer.getNextCustomerID(), txtForename.Text, txtSurname.Text, txtTown.Text,
-                txtEircode.Text, txtPassword.Text, txtPhone.Text, txtEmail.Text, txtCardnumber.Text, txtStatus.Text, cboCounty.Text);
+                txtEircode.Text, txtPassword.Text, txtPhone.Text, txtEmail.Text, txtCardnumber.Text, cboCounty.Text);
 
+            // Add customer object to the database.
             next.addCustomer();
 
+            // Displays confirmation to the user.
             MessageBox.Show(next.toString() + " added successfully", "Success",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+            // Reset User Interface.
             txtForename.Clear();
             txtSurname.Clear();
             txtTown.Clear();
@@ -127,9 +123,7 @@ namespace ShippingApplication
             txtCardnumber.Clear();
             txtPhone.Clear();
             cboCounty.SelectedIndex = -1;
-            txtStatus.Clear();
             txtForename.Focus();
-            Console.WriteLine(next.toString());
         }
 
         private void btnReturn_Click(object sender, EventArgs e)

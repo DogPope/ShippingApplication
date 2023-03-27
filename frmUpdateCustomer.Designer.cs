@@ -31,8 +31,8 @@ namespace ShippingApplication
         {
             this.components = new System.ComponentModel.Container();
             this.btnReturn = new System.Windows.Forms.Button();
-            this.txtCustId = new System.Windows.Forms.TextBox();
-            this.lblCustId = new System.Windows.Forms.Label();
+            this.txtEnterForename = new System.Windows.Forms.TextBox();
+            this.lblEnterForename = new System.Windows.Forms.Label();
             this.btnSearch = new System.Windows.Forms.Button();
             this.grdCustomers = new System.Windows.Forms.DataGridView();
             this.cUSTIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -72,6 +72,7 @@ namespace ShippingApplication
             this.cboCounty = new System.Windows.Forms.ComboBox();
             this.btnUpdateCustomer = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnDeregisterAccount = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdCustomers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cUSTOMERSBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.custDataSet)).BeginInit();
@@ -92,21 +93,21 @@ namespace ShippingApplication
             this.btnReturn.UseVisualStyleBackColor = false;
             this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
             // 
-            // txtCustId
+            // txtEnterForename
             // 
-            this.txtCustId.Location = new System.Drawing.Point(43, 52);
-            this.txtCustId.Name = "txtCustId";
-            this.txtCustId.Size = new System.Drawing.Size(100, 20);
-            this.txtCustId.TabIndex = 29;
+            this.txtEnterForename.Location = new System.Drawing.Point(43, 52);
+            this.txtEnterForename.Name = "txtEnterForename";
+            this.txtEnterForename.Size = new System.Drawing.Size(100, 20);
+            this.txtEnterForename.TabIndex = 29;
             // 
-            // lblCustId
+            // lblEnterForename
             // 
-            this.lblCustId.AutoSize = true;
-            this.lblCustId.Location = new System.Drawing.Point(40, 36);
-            this.lblCustId.Name = "lblCustId";
-            this.lblCustId.Size = new System.Drawing.Size(58, 13);
-            this.lblCustId.TabIndex = 30;
-            this.lblCustId.Text = "ID Number";
+            this.lblEnterForename.AutoSize = true;
+            this.lblEnterForename.Location = new System.Drawing.Point(40, 36);
+            this.lblEnterForename.Name = "lblEnterForename";
+            this.lblEnterForename.Size = new System.Drawing.Size(82, 13);
+            this.lblEnterForename.TabIndex = 30;
+            this.lblEnterForename.Text = "Enter Forename";
             // 
             // btnSearch
             // 
@@ -488,12 +489,24 @@ namespace ShippingApplication
             this.label1.TabIndex = 39;
             this.label1.Text = "County";
             // 
+            // btnDeregisterAccount
+            // 
+            this.btnDeregisterAccount.BackColor = System.Drawing.Color.SandyBrown;
+            this.btnDeregisterAccount.Location = new System.Drawing.Point(744, 52);
+            this.btnDeregisterAccount.Name = "btnDeregisterAccount";
+            this.btnDeregisterAccount.Size = new System.Drawing.Size(160, 23);
+            this.btnDeregisterAccount.TabIndex = 40;
+            this.btnDeregisterAccount.Text = "Deregister Account";
+            this.btnDeregisterAccount.UseVisualStyleBackColor = false;
+            this.btnDeregisterAccount.Click += new System.EventHandler(this.btnDeregisterAccount_Click);
+            // 
             // frmUpdateCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FloralWhite;
             this.ClientSize = new System.Drawing.Size(1184, 611);
+            this.Controls.Add(this.btnDeregisterAccount);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnUpdateCustomer);
             this.Controls.Add(this.txtStatus);
@@ -503,8 +516,8 @@ namespace ShippingApplication
             this.Controls.Add(this.grpCustDetails);
             this.Controls.Add(this.grdCustomers);
             this.Controls.Add(this.btnSearch);
-            this.Controls.Add(this.lblCustId);
-            this.Controls.Add(this.txtCustId);
+            this.Controls.Add(this.lblEnterForename);
+            this.Controls.Add(this.txtEnterForename);
             this.Controls.Add(this.btnReturn);
             this.Name = "frmUpdateCustomer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -524,8 +537,8 @@ namespace ShippingApplication
         #endregion
 
         private System.Windows.Forms.Button btnReturn;
-        private System.Windows.Forms.TextBox txtCustId;
-        private System.Windows.Forms.Label lblCustId;
+        private System.Windows.Forms.TextBox txtEnterForename;
+        private System.Windows.Forms.Label lblEnterForename;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.DataGridView grdCustomers;
         private CustDataSet custDataSet;
@@ -565,5 +578,6 @@ namespace ShippingApplication
         private System.Windows.Forms.ComboBox cboCounty;
         private System.Windows.Forms.Button btnUpdateCustomer;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnDeregisterAccount;
     }
 }

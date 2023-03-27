@@ -30,8 +30,8 @@ namespace ShippingApplication
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.lblGameId = new System.Windows.Forms.Label();
-            this.txtGameId = new System.Windows.Forms.TextBox();
+            this.lblTitleIdentifier = new System.Windows.Forms.Label();
+            this.txtGameTitle = new System.Windows.Forms.TextBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnReturn = new System.Windows.Forms.Button();
             this.grdGames = new System.Windows.Forms.DataGridView();
@@ -69,6 +69,7 @@ namespace ShippingApplication
             this.lblDescription = new System.Windows.Forms.Label();
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.btnUpdateGame = new System.Windows.Forms.Button();
+            this.btnDeregisterGame = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdGames)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gAMESBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
@@ -76,27 +77,27 @@ namespace ShippingApplication
             this.bxFinancial.SuspendLayout();
             this.SuspendLayout();
             // 
-            // lblGameId
+            // lblTitleIdentifier
             // 
-            this.lblGameId.AutoSize = true;
-            this.lblGameId.Location = new System.Drawing.Point(64, 54);
-            this.lblGameId.Name = "lblGameId";
-            this.lblGameId.Size = new System.Drawing.Size(49, 13);
-            this.lblGameId.TabIndex = 0;
-            this.lblGameId.Text = "Game ID";
+            this.lblTitleIdentifier.AutoSize = true;
+            this.lblTitleIdentifier.Location = new System.Drawing.Point(64, 54);
+            this.lblTitleIdentifier.Name = "lblTitleIdentifier";
+            this.lblTitleIdentifier.Size = new System.Drawing.Size(58, 13);
+            this.lblTitleIdentifier.TabIndex = 0;
+            this.lblTitleIdentifier.Text = "Game Title";
             // 
-            // txtGameId
+            // txtGameTitle
             // 
-            this.txtGameId.Location = new System.Drawing.Point(67, 70);
-            this.txtGameId.MaxLength = 10;
-            this.txtGameId.Name = "txtGameId";
-            this.txtGameId.Size = new System.Drawing.Size(100, 20);
-            this.txtGameId.TabIndex = 1;
+            this.txtGameTitle.Location = new System.Drawing.Point(67, 70);
+            this.txtGameTitle.MaxLength = 10;
+            this.txtGameTitle.Name = "txtGameTitle";
+            this.txtGameTitle.Size = new System.Drawing.Size(100, 20);
+            this.txtGameTitle.TabIndex = 1;
             // 
             // btnSearch
             // 
             this.btnSearch.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.btnSearch.Location = new System.Drawing.Point(489, 67);
+            this.btnSearch.Location = new System.Drawing.Point(265, 67);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(140, 23);
             this.btnSearch.TabIndex = 2;
@@ -428,11 +429,24 @@ namespace ShippingApplication
             this.btnUpdateGame.UseVisualStyleBackColor = false;
             this.btnUpdateGame.Click += new System.EventHandler(this.btnUpdateGame_Click);
             // 
+            // btnDeregisterGame
+            // 
+            this.btnDeregisterGame.BackColor = System.Drawing.Color.SandyBrown;
+            this.btnDeregisterGame.Location = new System.Drawing.Point(790, 68);
+            this.btnDeregisterGame.Name = "btnDeregisterGame";
+            this.btnDeregisterGame.Size = new System.Drawing.Size(160, 23);
+            this.btnDeregisterGame.TabIndex = 41;
+            this.btnDeregisterGame.Text = "Deregister Game";
+            this.btnDeregisterGame.UseVisualStyleBackColor = false;
+            this.btnDeregisterGame.Click += new System.EventHandler(this.btnDeregisterGame_Click);
+            // 
             // frmUpdateGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FloralWhite;
             this.ClientSize = new System.Drawing.Size(1184, 611);
+            this.Controls.Add(this.btnDeregisterGame);
             this.Controls.Add(this.btnUpdateGame);
             this.Controls.Add(this.lblDescription);
             this.Controls.Add(this.txtDescription);
@@ -441,8 +455,8 @@ namespace ShippingApplication
             this.Controls.Add(this.grdGames);
             this.Controls.Add(this.btnReturn);
             this.Controls.Add(this.btnSearch);
-            this.Controls.Add(this.txtGameId);
-            this.Controls.Add(this.lblGameId);
+            this.Controls.Add(this.txtGameTitle);
+            this.Controls.Add(this.lblTitleIdentifier);
             this.Name = "frmUpdateGame";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Update Game";
@@ -460,8 +474,8 @@ namespace ShippingApplication
 
         #endregion
 
-        private System.Windows.Forms.Label lblGameId;
-        private System.Windows.Forms.TextBox txtGameId;
+        private System.Windows.Forms.Label lblTitleIdentifier;
+        private System.Windows.Forms.TextBox txtGameTitle;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnReturn;
         private System.Windows.Forms.DataGridView grdGames;
@@ -499,5 +513,6 @@ namespace ShippingApplication
         private System.Windows.Forms.Label lblDescription;
         private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.Button btnUpdateGame;
+        private System.Windows.Forms.Button btnDeregisterGame;
     }
 }

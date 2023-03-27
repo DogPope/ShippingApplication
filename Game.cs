@@ -32,7 +32,7 @@ namespace ShippingApplication
             this.quantity = 0;
             this.buyPrice = 0;
             this.salePrice = 0;
-            this.status = "Unregistered.";
+            this.status = "D";
         }
         
         public Game(Int32 gameId, String title, String developer, String publisher, String genre, String description, decimal buyPrice, decimal salePrice, Int32 quantity, String status)
@@ -49,6 +49,19 @@ namespace ShippingApplication
             this.quantity = quantity;
             this.status = status;
         }
+        public Game(Int32 gameId, String title, String developer, String publisher, String genre, String description, decimal buyPrice, decimal salePrice, Int32 quantity)
+        {
+            // This constructor used for INSERT Queries
+            this.gameId = gameId;
+            this.title = title;
+            this.developer = developer;
+            this.publisher = publisher;
+            this.genre = genre;
+            this.description = description;
+            this.buyPrice = buyPrice;
+            this.salePrice = salePrice;
+            this.quantity = quantity;
+        }
 
         public Int32 getGameId()
         {
@@ -56,10 +69,7 @@ namespace ShippingApplication
         }
         public void setGameId(Int32 GameID)
         {
-            if(gameId > 0 && gameId < Int32.MaxValue)
-                this.gameId = GameID;
-            else
-                this.gameId = 0;
+            this.gameId = GameID;
         }
 
         public String getTitle()
@@ -68,11 +78,7 @@ namespace ShippingApplication
         }
         public void setTitle(String Title)
         {
-            if(title != "")
-            {
-                char.ToUpper(Title[0]);
-                this.title = Title;
-            }
+            this.title = Title;
         }
 
         public String getDeveloper()
@@ -81,13 +87,7 @@ namespace ShippingApplication
         }
         public void setDeveloper(String Developer)
         {
-            if (developer != "")
-            {
-                char.ToUpper(Developer[0]);
-                this.developer = Developer;
-            }
-            else
-                developer = "No developer available!";
+            this.developer = Developer;
         }
 
         public String getPublisher()
@@ -96,13 +96,7 @@ namespace ShippingApplication
         }
         public void setPublisher(String Publisher)
         {
-            if (publisher != "")
-            {
-                char.ToUpper(publisher[0]);
-                this.publisher = Publisher;
-            }
-            else
-                publisher = "No publisher available!";
+            this.publisher = Publisher;
         }
 
         public String getGenre()
@@ -111,13 +105,7 @@ namespace ShippingApplication
         }
         public void setGenre(String Genre)
         {
-            if (genre.Length > 0)
-            {
-                char.ToUpper(genre[0]);
-                this.genre = Genre;
-            }
-            else
-                genre = "No genre available.";
+            this.genre = Genre;
         }
 
         public String getDescription()
@@ -126,13 +114,7 @@ namespace ShippingApplication
         }
         public void setDescription(String Description)
         {
-            if (description.Length > 0)
-            {
-                char.ToUpper(description[0]);
-                this.description = Description;
-            }
-            else
-                description = "Description not available.";
+            this.description = Description;
         }
 
         public Int32 getQuantity()
@@ -141,10 +123,7 @@ namespace ShippingApplication
         }
         public void setQuantity(int Quantity)
         {
-            if(quantity >= 0 && quantity < Int32.MaxValue)
-            {
-                this.quantity = Quantity;
-            }
+            this.quantity = Quantity;
         }
 
         public decimal getBuyPrice()
@@ -171,13 +150,7 @@ namespace ShippingApplication
         }
         public void setStatus(String Status)
         {
-            if (status != "")
-            {
-                char.ToUpper(status[0]);
-                this.status = Status;
-            }
-            else
-                status = "Unregistered game!";
+            this.status = Status;
         }
 
         public void getGame(Int32 Id)
@@ -212,7 +185,7 @@ namespace ShippingApplication
             String sqlQuery = "INSERT INTO Games VALUES (" + getNextGameID() + ",'" +
                 this.title + "','" + this.developer + "','" + this.publisher + "','" +
                 this.genre + "','" + this.description + "'," + this.buyPrice + "," +
-                this.salePrice + "," + this.quantity + ",'" + this.status + "')";
+                this.salePrice + "," + this.quantity + ",'R')";
 
             /*    INSERT INTO Games VALUES (id,'title','DEV','PUB','DESC','GENRE',12,12,12,'R')         */
 
@@ -247,12 +220,25 @@ namespace ShippingApplication
             cmd.ExecuteNonQuery();
             conn.Close();
         }
-        public static DataSet findGameById(Int32 gameId)
+        public void deregisterGame()
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            String sqlQuery = "SELECT * FROM Games " +
-                "WHERE Game_Id = '" + gameId + "' ORDER BY Game_Id";
+            String sqlQuery = "UPDATE Games SET " +
+                "Status = 'D' " +
+                "WHERE Game_Id = " + this.gameId;
+
+            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+        public static DataSet findGameByTitle(String title)
+        {
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+
+            String sqlQuery = "SELECT Game_Id, Title FROM Games " +
+                "WHERE Title LIKE '%" + title + "%' AND Status = 'R' ORDER BY Title";
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
             OracleDataAdapter da = new OracleDataAdapter(cmd);
@@ -280,6 +266,10 @@ namespace ShippingApplication
             }
             conn.Close();
             return nextId;
+        }
+        public String orderString()
+        {
+            return "Title: " + getTitle() + " Price" + getSalePrice().ToString("#000.00");
         }
         public String toString()
         {

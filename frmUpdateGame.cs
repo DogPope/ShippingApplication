@@ -26,37 +26,24 @@ namespace ShippingApplication
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            if(txtGameId.Text == "")
+            if(txtGameTitle.Text == "")
             {
-                MessageBox.Show("You must enter a valid number!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You must enter a title!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtGameTitle.Text = "";
+                txtGameTitle.Focus();
                 return;
             }
-            foreach (char c in txtGameId.Text)
-            {
-                if (!Char.IsDigit(c))
-                {
-                    MessageBox.Show("This field only accepts numbers!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-            }
-            int id = Convert.ToInt32(txtGameId.Text);
+            String title = txtGameTitle.Text;
 
-            if (id < 1 || id > Int32.MaxValue)
-            {
-                MessageBox.Show("Please enter a positive integer below 2.1 billion!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            grdGames.DataSource = Game.findGameById(id).Tables["Games"];
+            grdGames.DataSource = Game.findGameByTitle(title).Tables["Games"];
 
             if (grdGames.Rows.Count == 1)
             {
-                MessageBox.Show("No Data Found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtGameId.Focus();
+                MessageBox.Show("No game Data Found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtGameTitle.Text = "";
+                txtGameTitle.Focus();
                 return;
             }
-
-            grdGames.Visible = true;
         }
 
         private void btnReturn_Click(object sender, EventArgs e)
@@ -85,7 +72,23 @@ namespace ShippingApplication
 
         private void btnUpdateGame_Click(object sender, EventArgs e)
         {
-            //validate the data
+            if (txtGameTitle.Text.Equals(""))
+            {
+                MessageBox.Show("You must enter a game ID in the ID field to edit a games details!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtGameTitle.Text = "";
+                txtGameTitle.Focus();
+                return;
+            }
+            foreach (char c in txtGameTitle.Text)
+            {
+                if (!Char.IsDigit(c))
+                {
+                    MessageBox.Show("This field only accepts numbers!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtGameTitle.Text = "";
+                    txtGameTitle.Focus();
+                    return;
+                }
+            }
             //GameId,Title,Developer,Publisher,Genre,Description,BuyPrice,SalePrice,Quantity,Status
             //instantiate the object variables
             updateGame.setTitle(txtTitle.Text);
@@ -115,6 +118,45 @@ namespace ShippingApplication
             txtSalePrice.Clear();
             txtQuantity.Clear();
             txtStatus.Clear();
+            btnDeregisterGame.Visible = false;
+            btnSearch.Visible = false;
+            btnUpdateGame.Visible = false;
+        }
+
+        private void btnDeregisterGame_Click(object sender, EventArgs e)
+        {
+            if(txtGameTitle.Text == "")
+            {
+                MessageBox.Show("You must select a game to deregister or press return to go back to the main menu!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtGameTitle.Text = "";
+                txtGameTitle.Focus();
+                return;
+            }
+            foreach(char c in txtGameTitle.Text)
+            {
+                if (!char.IsDigit(c))
+                {
+                    MessageBox.Show("This field only accepts numbers!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtGameTitle.Text = "";
+                    txtGameTitle.Focus();
+                    return;
+                }
+            }
+            if(grdGames.RowCount == 1)
+            {
+                MessageBox.Show("You must select a game to Deregister!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtGameTitle.Text = "";
+                txtGameTitle.Focus();
+                return;
+            }
+            int id = Convert.ToInt32(grdGames.Rows[grdGames.CurrentCell.RowIndex].Cells[0].Value.ToString());
+            Game deregister = new Game();
+            deregister.getGame(id);
+            deregister.deregisterGame();
+            MessageBox.Show("The Games status has successfully been changed to Deregistered!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            btnDeregisterGame.Visible = false;
+            btnSearch.Visible = false;
+            btnUpdateGame.Visible = false;
         }
     }
 }

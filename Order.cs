@@ -95,20 +95,6 @@ namespace ShippingApplication
 
             connection.Close();
         }
-        
-        public void deleteOrder()
-        {
-            OracleConnection connection = new OracleConnection(DBConnect.oradb);
-
-            String sqlQuery = "DELETE FROM Orders WHERE Cust_Id = " + this.custId;
-
-            OracleCommand cmd = new OracleCommand(sqlQuery, connection);
-            connection.Open();
-
-            cmd.ExecuteNonQuery();
-
-            connection.Close();
-        }
         public static int getNextOrderID()
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);

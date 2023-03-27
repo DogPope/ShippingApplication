@@ -123,6 +123,18 @@
     <Compile Include="frmAnalysis.Designer.cs">
       <DependentUpon>frmAnalysis.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmManageOrders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmManageOrders.Designer.cs">
+      <DependentUpon>frmManageOrders.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmPlaceOrder.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,8 +179,14 @@
     <EmbeddedResource Include="frmAnalysis.resx">
       <DependentUpon>frmAnalysis.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmManageOrders.resx">
+      <DependentUpon>frmManageOrders.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmPlaceOrder.resx">
       <DependentUpon>frmPlaceOrder.cs</DependentUpon>

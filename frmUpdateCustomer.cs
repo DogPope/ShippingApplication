@@ -28,33 +28,22 @@ namespace ShippingApplication
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            if (txtCustId.Text == "")
+            if (txtEnterForename.Text.Equals(""))
             {
-                MessageBox.Show("You must enter a valid number!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("You must enter part of your forename to continue!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtEnterForename.Text = "";
+                txtEnterForename.Focus();
                 return;
             }
-            foreach(char c in txtCustId.Text)
-            {
-                if (!Char.IsDigit(c))
-                {
-                    MessageBox.Show("This field only accepts numbers!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-            }
-            int id = Convert.ToInt32(txtCustId.Text);
+            String forename = txtEnterForename.Text;
 
-            if (id < 1 || id > Int32.MaxValue)
-            {
-                MessageBox.Show("Please enter a positive integer below 2.1 billion!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            grdCustomers.DataSource = Customer.findCustomerById(id).Tables["Customers"];
+            grdCustomers.DataSource = Customer.findCustomerByName(forename).Tables["Customers"];
 
             if (grdCustomers.Rows.Count == 1)
             {
                 MessageBox.Show("No Data Found!","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
-                txtCustId.Focus();
+                txtEnterForename.Focus();
+                txtEnterForename.Text = "";
                 return;
             }
 
@@ -63,6 +52,14 @@ namespace ShippingApplication
 
         private void grdCustomers_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (txtEnterForename.Text.Equals(""))
+            {
+                MessageBox.Show("You must enter a valid forename to continue!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtEnterForename.Text = "";
+                txtEnterForename.Focus();
+                return;
+            }
+            
             int id = Convert.ToInt32(grdCustomers.Rows[grdCustomers.CurrentCell.RowIndex].Cells[0].Value.ToString());
 
             updateCustomer.getCustomer(id);
@@ -82,7 +79,30 @@ namespace ShippingApplication
 
         private void btnUpdateCustomer_Click(object sender, EventArgs e)
         {
-            //validate the data
+            if (txtForename.Text.Equals(""))
+            {
+                MessageBox.Show("You must enter a valid ID number to continue!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtEnterForename.Text = "";
+                txtEnterForename.Focus();
+                return;
+            }
+            foreach (char c in txtForename.Text)
+            {
+                if (!char.IsDigit(c))
+                {
+                    MessageBox.Show("This field only accepts numbers!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtEnterForename.Text = "";
+                    txtEnterForename.Focus();
+                    return;
+                }
+            }
+            if (grdCustomers.RowCount == 1)
+            {
+                MessageBox.Show("You must select a customer to Deregister!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtEnterForename.Text = "";
+                txtEnterForename.Focus();
+                return;
+            }
             //Int32 custId, String forename, String surname, String town, String EIRCode, String password, String phone, String email, String cardNumber, String county, String status
             //instantiate the object variables
             updateCustomer.setForename(txtForename.Text);
@@ -114,11 +134,45 @@ namespace ShippingApplication
             txtCardnumber.Clear();
             cboCounty.SelectedIndex = -1;
             txtStatus.Clear();
+            btnDeregisterAccount.Visible = false;
+            btnSearch.Visible = false;
+            btnUpdateCustomer.Visible = false;
         }
-        private void frmUpdateCustomer_Load(object sender, EventArgs e)
+
+        private void btnDeregisterAccount_Click(object sender, EventArgs e)
         {
-            //this.cUSTOMERSTableAdapter.Fill(this.custDataSet.CUSTOMERS);
+            if (txtEnterForename.Text.Equals(""))
+            {
+                MessageBox.Show("You must enter a valid ID number to continue!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtEnterForename.Text = "";
+                txtEnterForename.Focus();
+                return;
+            }
+            foreach(char c in txtEnterForename.Text)
+            {
+                if (!char.IsDigit(c))
+                {
+                    MessageBox.Show("This field only accepts numbers!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtEnterForename.Text = "";
+                    txtEnterForename.Focus();
+                    return;
+                }
+            }
+            if (grdCustomers.RowCount == 1)
+            {
+                MessageBox.Show("You must select a customer to Deregister!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtEnterForename.Text = "";
+                txtEnterForename.Focus();
+                return;
+            }
+            int id = Convert.ToInt32(grdCustomers.Rows[grdCustomers.CurrentCell.RowIndex].Cells[0].Value.ToString());
+            Customer deregisterCustomer = new Customer();
+            deregisterCustomer.getCustomer(id);
+            deregisterCustomer.deregisterCustomer();
+            MessageBox.Show("The Customers status has successfully been changed to Deregistered!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            btnDeregisterAccount.Visible = false;
+            btnSearch.Visible = false;
+            btnUpdateCustomer.Visible = false;
         }
     }
 }
-
