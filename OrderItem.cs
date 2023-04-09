@@ -31,7 +31,12 @@ namespace ShippingApplication
         }
         public void setGameId(Int32 gameId)
         {
-            this.gameId = gameId;
+            if(gameId > 0 || gameId < Int32.MaxValue)
+            {
+                this.gameId = gameId;
+            }
+            else
+                throw new ArgumentException();
         }
 
         public Int32 getOrderId()
@@ -40,7 +45,12 @@ namespace ShippingApplication
         }
         public void setOrderId(Int32 orderId)
         {
-            this.orderId = orderId;
+            if (orderId > 0 || orderId < Int32.MaxValue)
+            {
+                this.orderId = orderId;
+            }
+            else
+                throw new ArgumentException();
         }
 
         public decimal getCost()
@@ -49,7 +59,12 @@ namespace ShippingApplication
         }
         public void setCost(decimal cost)
         {
-            this.cost = cost;
+            if (cost > 0 || cost < decimal.MaxValue)
+            {
+                this.cost = cost;
+            }
+            else
+                throw new ArgumentException();
         }
         public void addOrderItem()
         {

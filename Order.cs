@@ -36,7 +36,12 @@ namespace ShippingApplication
         }
         public void setOrderId(Int32 OrderId)
         {
-            this.orderId = OrderId;
+            if(OrderId > 0 || OrderId < Int32.MaxValue)
+            {
+                this.orderId = OrderId;
+            }
+            else
+                throw new ArgumentException();
         }
 
         public String getDate()
@@ -54,7 +59,12 @@ namespace ShippingApplication
         }
         public void setCost(decimal Cost)
         {
-            this.cost = Cost;
+            if (Cost > 0 || Cost < decimal.MaxValue)
+            {
+                this.cost = Cost;
+            }
+            else
+                throw new ArgumentException();
         }
 
         public Int32 getCustId()
@@ -63,7 +73,12 @@ namespace ShippingApplication
         }
         public void setCustId(Int32 CustId)
         {
-            this.custId = CustId;
+            if (CustId > 0 || CustId < Int32.MaxValue)
+            {
+                this.custId = CustId;
+            }
+            else
+                throw new ArgumentException();
         }
 
         public String getStatus()

@@ -8,7 +8,7 @@ using Oracle.ManagedDataAccess.Client;
 
 namespace ShippingApplication
 {
-    class Game
+    public class Game
     {
         private Int32 gameId;
         private String title;
@@ -32,7 +32,7 @@ namespace ShippingApplication
             this.quantity = 0;
             this.buyPrice = 0;
             this.salePrice = 0;
-            this.status = "D";
+            this.status = "Deregistered";
         }
         
         public Game(Int32 gameId, String title, String developer, String publisher, String genre, String description, decimal buyPrice, decimal salePrice, Int32 quantity, String status)
@@ -69,7 +69,12 @@ namespace ShippingApplication
         }
         public void setGameId(Int32 GameID)
         {
-            this.gameId = GameID;
+            if (GameID > 0 && GameID < Int32.MaxValue)
+            {
+                this.gameId = GameID;
+            }
+            else
+                throw new ArgumentException();
         }
 
         public String getTitle()
@@ -78,6 +83,10 @@ namespace ShippingApplication
         }
         public void setTitle(String Title)
         {
+            if(Title.Equals("") || Title.Length > 20)
+            {
+                throw new ArgumentException();
+            }
             this.title = Title;
         }
 
@@ -87,6 +96,10 @@ namespace ShippingApplication
         }
         public void setDeveloper(String Developer)
         {
+            if (Developer.Equals("") || Developer.Length > 20)
+            {
+                throw new ArgumentException();
+            }
             this.developer = Developer;
         }
 
@@ -96,6 +109,10 @@ namespace ShippingApplication
         }
         public void setPublisher(String Publisher)
         {
+            if (Publisher.Equals("") || Publisher.Length > 20)
+            {
+                throw new ArgumentException();
+            }
             this.publisher = Publisher;
         }
 
@@ -105,6 +122,10 @@ namespace ShippingApplication
         }
         public void setGenre(String Genre)
         {
+            if (Genre.Equals("") || Genre.Length > 20)
+            {
+                throw new ArgumentException();
+            }
             this.genre = Genre;
         }
 
@@ -114,6 +135,10 @@ namespace ShippingApplication
         }
         public void setDescription(String Description)
         {
+            if (Description.Equals("") || Description.Length > 50)
+            {
+                throw new ArgumentException();
+            }
             this.description = Description;
         }
 
@@ -121,9 +146,14 @@ namespace ShippingApplication
         {
             return this.quantity;
         }
-        public void setQuantity(int Quantity)
+        public void setQuantity(Int32 Quantity)
         {
-            this.quantity = Quantity;
+            if (Quantity > 0 && Quantity < Int32.MaxValue)
+            {
+                this.quantity = Quantity;
+            }
+            else
+                throw new ArgumentException();
         }
 
         public decimal getBuyPrice()
@@ -132,7 +162,12 @@ namespace ShippingApplication
         }
         public void setBuyPrice(decimal BuyPrice)
         {
-            this.buyPrice = BuyPrice;
+            if (BuyPrice > 0 && BuyPrice < 1000)
+            {
+                this.buyPrice = BuyPrice;
+            }
+            else
+                throw new ArgumentException();
         }
 
         public decimal getSalePrice()
@@ -141,7 +176,12 @@ namespace ShippingApplication
         }
         public void setSalePrice(decimal SalePrice)
         {
-            this.salePrice = SalePrice;
+            if (SalePrice > 0 && SalePrice < 1000)
+            {
+                this.salePrice = SalePrice;
+            }
+            else
+                throw new ArgumentException();
         }
 
         public String getStatus()
@@ -185,7 +225,7 @@ namespace ShippingApplication
             String sqlQuery = "INSERT INTO Games VALUES (" + getNextGameID() + ",'" +
                 this.title + "','" + this.developer + "','" + this.publisher + "','" +
                 this.genre + "','" + this.description + "'," + this.buyPrice + "," +
-                this.salePrice + "," + this.quantity + ",'R')";
+                this.salePrice + "," + this.quantity + ",'Registered')";
 
             /*    INSERT INTO Games VALUES (id,'title','DEV','PUB','DESC','GENRE',12,12,12,'R')         */
 
@@ -220,12 +260,13 @@ namespace ShippingApplication
             cmd.ExecuteNonQuery();
             conn.Close();
         }
+
         public void deregisterGame()
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
             String sqlQuery = "UPDATE Games SET " +
-                "Status = 'D' " +
+                "Status = 'Deregistered' " +
                 "WHERE Game_Id = " + this.gameId;
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
@@ -233,12 +274,13 @@ namespace ShippingApplication
             cmd.ExecuteNonQuery();
             conn.Close();
         }
+
         public static DataSet findGameByTitle(String title)
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            String sqlQuery = "SELECT Game_Id, Title FROM Games " +
-                "WHERE Title LIKE '%" + title + "%' AND Status = 'R' ORDER BY Title";
+            String sqlQuery = "SELECT Game_Id, Title, Developer, Publisher, Genre," +
+                "Description, salePrice FROM Games WHERE Title LIKE '%" + title + "%' AND Status='Registered'";
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
             OracleDataAdapter da = new OracleDataAdapter(cmd);
@@ -247,6 +289,7 @@ namespace ShippingApplication
             conn.Close();
             return ds;
         }
+
         public static int getNextGameID()
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
@@ -267,10 +310,26 @@ namespace ShippingApplication
             conn.Close();
             return nextId;
         }
+
+        public void reduceQuantity()
+        {
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+
+            String sqlQuery = "UPDATE Games SET Quantity = Quantity - 1 WHERE Game_ID = " + this.gameId;
+
+            Console.WriteLine(sqlQuery);
+
+            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+
         public String orderString()
         {
-            return "Title: " + getTitle() + " Price" + getSalePrice().ToString("#000.00");
+            return "Game ID: " + getGameId().ToString("00000") + " Title: " + getTitle() + " Price: " + getSalePrice().ToString("#000.00");
         }
+
         public String toString()
         {
             return "Game ID: " + getGameId() +

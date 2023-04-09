@@ -35,16 +35,6 @@ namespace ShippingApplication
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnReturn = new System.Windows.Forms.Button();
             this.grdGames = new System.Windows.Forms.DataGridView();
-            this.gAMEIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tITLEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dEVELOPERDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pUBLISHERDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.gENREDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dESCRIPTIONDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bUYPRICEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sALEPRICEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.qUANTITYDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sTATUSDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gAMESBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataSet1 = new ShippingApplication.DataSet1();
             this.gAMESTableAdapter = new ShippingApplication.DataSet1TableAdapters.GAMESTableAdapter();
@@ -70,6 +60,10 @@ namespace ShippingApplication
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.btnUpdateGame = new System.Windows.Forms.Button();
             this.btnDeregisterGame = new System.Windows.Forms.Button();
+            this.GAME_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tITLEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dEVELOPERDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pUBLISHERDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.grdGames)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gAMESBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
@@ -97,9 +91,9 @@ namespace ShippingApplication
             // btnSearch
             // 
             this.btnSearch.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.btnSearch.Location = new System.Drawing.Point(265, 67);
+            this.btnSearch.Location = new System.Drawing.Point(67, 134);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(140, 23);
+            this.btnSearch.Size = new System.Drawing.Size(100, 23);
             this.btnSearch.TabIndex = 2;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = false;
@@ -123,82 +117,16 @@ namespace ShippingApplication
             this.grdGames.AutoGenerateColumns = false;
             this.grdGames.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdGames.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.gAMEIDDataGridViewTextBoxColumn,
+            this.GAME_ID,
             this.tITLEDataGridViewTextBoxColumn,
             this.dEVELOPERDataGridViewTextBoxColumn,
-            this.pUBLISHERDataGridViewTextBoxColumn,
-            this.gENREDataGridViewTextBoxColumn,
-            this.dESCRIPTIONDataGridViewTextBoxColumn,
-            this.bUYPRICEDataGridViewTextBoxColumn,
-            this.sALEPRICEDataGridViewTextBoxColumn,
-            this.qUANTITYDataGridViewTextBoxColumn,
-            this.sTATUSDataGridViewTextBoxColumn});
+            this.pUBLISHERDataGridViewTextBoxColumn});
             this.grdGames.DataSource = this.gAMESBindingSource;
-            this.grdGames.Location = new System.Drawing.Point(67, 116);
+            this.grdGames.Location = new System.Drawing.Point(371, 0);
             this.grdGames.Name = "grdGames";
-            this.grdGames.Size = new System.Drawing.Size(1067, 73);
+            this.grdGames.Size = new System.Drawing.Size(443, 244);
             this.grdGames.TabIndex = 27;
             this.grdGames.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdGames_CellClick);
-            // 
-            // gAMEIDDataGridViewTextBoxColumn
-            // 
-            this.gAMEIDDataGridViewTextBoxColumn.DataPropertyName = "GAME_ID";
-            this.gAMEIDDataGridViewTextBoxColumn.HeaderText = "GAME_ID";
-            this.gAMEIDDataGridViewTextBoxColumn.Name = "gAMEIDDataGridViewTextBoxColumn";
-            // 
-            // tITLEDataGridViewTextBoxColumn
-            // 
-            this.tITLEDataGridViewTextBoxColumn.DataPropertyName = "TITLE";
-            this.tITLEDataGridViewTextBoxColumn.HeaderText = "TITLE";
-            this.tITLEDataGridViewTextBoxColumn.Name = "tITLEDataGridViewTextBoxColumn";
-            // 
-            // dEVELOPERDataGridViewTextBoxColumn
-            // 
-            this.dEVELOPERDataGridViewTextBoxColumn.DataPropertyName = "DEVELOPER";
-            this.dEVELOPERDataGridViewTextBoxColumn.HeaderText = "DEVELOPER";
-            this.dEVELOPERDataGridViewTextBoxColumn.Name = "dEVELOPERDataGridViewTextBoxColumn";
-            // 
-            // pUBLISHERDataGridViewTextBoxColumn
-            // 
-            this.pUBLISHERDataGridViewTextBoxColumn.DataPropertyName = "PUBLISHER";
-            this.pUBLISHERDataGridViewTextBoxColumn.HeaderText = "PUBLISHER";
-            this.pUBLISHERDataGridViewTextBoxColumn.Name = "pUBLISHERDataGridViewTextBoxColumn";
-            // 
-            // gENREDataGridViewTextBoxColumn
-            // 
-            this.gENREDataGridViewTextBoxColumn.DataPropertyName = "GENRE";
-            this.gENREDataGridViewTextBoxColumn.HeaderText = "GENRE";
-            this.gENREDataGridViewTextBoxColumn.Name = "gENREDataGridViewTextBoxColumn";
-            // 
-            // dESCRIPTIONDataGridViewTextBoxColumn
-            // 
-            this.dESCRIPTIONDataGridViewTextBoxColumn.DataPropertyName = "DESCRIPTION";
-            this.dESCRIPTIONDataGridViewTextBoxColumn.HeaderText = "DESCRIPTION";
-            this.dESCRIPTIONDataGridViewTextBoxColumn.Name = "dESCRIPTIONDataGridViewTextBoxColumn";
-            // 
-            // bUYPRICEDataGridViewTextBoxColumn
-            // 
-            this.bUYPRICEDataGridViewTextBoxColumn.DataPropertyName = "BUYPRICE";
-            this.bUYPRICEDataGridViewTextBoxColumn.HeaderText = "BUYPRICE";
-            this.bUYPRICEDataGridViewTextBoxColumn.Name = "bUYPRICEDataGridViewTextBoxColumn";
-            // 
-            // sALEPRICEDataGridViewTextBoxColumn
-            // 
-            this.sALEPRICEDataGridViewTextBoxColumn.DataPropertyName = "SALEPRICE";
-            this.sALEPRICEDataGridViewTextBoxColumn.HeaderText = "SALEPRICE";
-            this.sALEPRICEDataGridViewTextBoxColumn.Name = "sALEPRICEDataGridViewTextBoxColumn";
-            // 
-            // qUANTITYDataGridViewTextBoxColumn
-            // 
-            this.qUANTITYDataGridViewTextBoxColumn.DataPropertyName = "QUANTITY";
-            this.qUANTITYDataGridViewTextBoxColumn.HeaderText = "QUANTITY";
-            this.qUANTITYDataGridViewTextBoxColumn.Name = "qUANTITYDataGridViewTextBoxColumn";
-            // 
-            // sTATUSDataGridViewTextBoxColumn
-            // 
-            this.sTATUSDataGridViewTextBoxColumn.DataPropertyName = "STATUS";
-            this.sTATUSDataGridViewTextBoxColumn.HeaderText = "STATUS";
-            this.sTATUSDataGridViewTextBoxColumn.Name = "sTATUSDataGridViewTextBoxColumn";
             // 
             // gAMESBindingSource
             // 
@@ -357,7 +285,7 @@ namespace ShippingApplication
             // 
             this.txtStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtStatus.Location = new System.Drawing.Point(227, 175);
-            this.txtStatus.MaxLength = 1;
+            this.txtStatus.MaxLength = 15;
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.Size = new System.Drawing.Size(141, 26);
             this.txtStatus.TabIndex = 22;
@@ -421,9 +349,9 @@ namespace ShippingApplication
             // btnUpdateGame
             // 
             this.btnUpdateGame.BackColor = System.Drawing.Color.HotPink;
-            this.btnUpdateGame.Location = new System.Drawing.Point(1013, 67);
+            this.btnUpdateGame.Location = new System.Drawing.Point(1024, 67);
             this.btnUpdateGame.Name = "btnUpdateGame";
-            this.btnUpdateGame.Size = new System.Drawing.Size(171, 23);
+            this.btnUpdateGame.Size = new System.Drawing.Size(160, 23);
             this.btnUpdateGame.TabIndex = 39;
             this.btnUpdateGame.Text = "Update Details";
             this.btnUpdateGame.UseVisualStyleBackColor = false;
@@ -432,13 +360,37 @@ namespace ShippingApplication
             // btnDeregisterGame
             // 
             this.btnDeregisterGame.BackColor = System.Drawing.Color.SandyBrown;
-            this.btnDeregisterGame.Location = new System.Drawing.Point(790, 68);
+            this.btnDeregisterGame.Location = new System.Drawing.Point(1024, 154);
             this.btnDeregisterGame.Name = "btnDeregisterGame";
             this.btnDeregisterGame.Size = new System.Drawing.Size(160, 23);
             this.btnDeregisterGame.TabIndex = 41;
             this.btnDeregisterGame.Text = "Deregister Game";
             this.btnDeregisterGame.UseVisualStyleBackColor = false;
             this.btnDeregisterGame.Click += new System.EventHandler(this.btnDeregisterGame_Click);
+            // 
+            // GAME_ID
+            // 
+            this.GAME_ID.DataPropertyName = "GAME_ID";
+            this.GAME_ID.HeaderText = "GAME_ID";
+            this.GAME_ID.Name = "GAME_ID";
+            // 
+            // tITLEDataGridViewTextBoxColumn
+            // 
+            this.tITLEDataGridViewTextBoxColumn.DataPropertyName = "TITLE";
+            this.tITLEDataGridViewTextBoxColumn.HeaderText = "TITLE";
+            this.tITLEDataGridViewTextBoxColumn.Name = "tITLEDataGridViewTextBoxColumn";
+            // 
+            // dEVELOPERDataGridViewTextBoxColumn
+            // 
+            this.dEVELOPERDataGridViewTextBoxColumn.DataPropertyName = "DEVELOPER";
+            this.dEVELOPERDataGridViewTextBoxColumn.HeaderText = "DEVELOPER";
+            this.dEVELOPERDataGridViewTextBoxColumn.Name = "dEVELOPERDataGridViewTextBoxColumn";
+            // 
+            // pUBLISHERDataGridViewTextBoxColumn
+            // 
+            this.pUBLISHERDataGridViewTextBoxColumn.DataPropertyName = "PUBLISHER";
+            this.pUBLISHERDataGridViewTextBoxColumn.HeaderText = "PUBLISHER";
+            this.pUBLISHERDataGridViewTextBoxColumn.Name = "pUBLISHERDataGridViewTextBoxColumn";
             // 
             // frmUpdateGame
             // 
@@ -482,16 +434,6 @@ namespace ShippingApplication
         private DataSet1 dataSet1;
         private System.Windows.Forms.BindingSource gAMESBindingSource;
         private DataSet1TableAdapters.GAMESTableAdapter gAMESTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn gAMEIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tITLEDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dEVELOPERDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pUBLISHERDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn gENREDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dESCRIPTIONDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn bUYPRICEDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sALEPRICEDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn qUANTITYDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sTATUSDataGridViewTextBoxColumn;
         private System.Windows.Forms.GroupBox bxGameDetails;
         private System.Windows.Forms.TextBox txtGenre;
         private System.Windows.Forms.Label lblGenre;
@@ -514,5 +456,9 @@ namespace ShippingApplication
         private System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.Button btnUpdateGame;
         private System.Windows.Forms.Button btnDeregisterGame;
+        private System.Windows.Forms.DataGridViewTextBoxColumn GAME_ID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tITLEDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dEVELOPERDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn pUBLISHERDataGridViewTextBoxColumn;
     }
 }

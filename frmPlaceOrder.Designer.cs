@@ -76,6 +76,7 @@ namespace ShippingApplication
             // txtTitle
             // 
             this.txtTitle.Location = new System.Drawing.Point(182, 43);
+            this.txtTitle.MaxLength = 20;
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(100, 20);
             this.txtTitle.TabIndex = 28;
@@ -120,7 +121,7 @@ namespace ShippingApplication
             // btnPlaceOrder
             // 
             this.btnPlaceOrder.BackColor = System.Drawing.Color.HotPink;
-            this.btnPlaceOrder.Location = new System.Drawing.Point(655, 228);
+            this.btnPlaceOrder.Location = new System.Drawing.Point(877, 226);
             this.btnPlaceOrder.Name = "btnPlaceOrder";
             this.btnPlaceOrder.Size = new System.Drawing.Size(221, 23);
             this.btnPlaceOrder.TabIndex = 33;
@@ -144,14 +145,14 @@ namespace ShippingApplication
             this.grdGames.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.grdGames.Location = new System.Drawing.Point(62, 82);
             this.grdGames.Name = "grdGames";
-            this.grdGames.Size = new System.Drawing.Size(490, 113);
+            this.grdGames.Size = new System.Drawing.Size(744, 113);
             this.grdGames.TabIndex = 35;
             this.grdGames.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdGames_CellClick);
             // 
             // lstCart
             // 
             this.lstCart.FormattingEnabled = true;
-            this.lstCart.Location = new System.Drawing.Point(604, 84);
+            this.lstCart.Location = new System.Drawing.Point(826, 82);
             this.lstCart.Name = "lstCart";
             this.lstCart.Size = new System.Drawing.Size(272, 108);
             this.lstCart.TabIndex = 36;
@@ -159,7 +160,7 @@ namespace ShippingApplication
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(777, 195);
+            this.label1.Location = new System.Drawing.Point(999, 193);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(31, 13);
             this.label1.TabIndex = 37;
@@ -167,7 +168,7 @@ namespace ShippingApplication
             // 
             // txtTotal
             // 
-            this.txtTotal.Location = new System.Drawing.Point(814, 192);
+            this.txtTotal.Location = new System.Drawing.Point(1036, 190);
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.Size = new System.Drawing.Size(62, 20);
             this.txtTotal.TabIndex = 38;
@@ -176,7 +177,7 @@ namespace ShippingApplication
             // 
             // btnRemove
             // 
-            this.btnRemove.Location = new System.Drawing.Point(892, 168);
+            this.btnRemove.Location = new System.Drawing.Point(1114, 166);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(69, 24);
             this.btnRemove.TabIndex = 39;

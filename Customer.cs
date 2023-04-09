@@ -36,7 +36,7 @@ namespace ShippingApplication
             this.email = "null@gmail.com";
             this.cardNumber = "Null";
             this.county = "No county data!";
-            this.status = "R";
+            this.status = "Registered";
         }
         //Int32 custId, String forename, String surname, String town, String EIRCode, String password, String phone, String email, String cardNumber, String county, String status
         public Customer(Int32 custId, String forename, String surname, String town, String EIRCode, String password, String phone, String email, String cardNumber, String status, String county)
@@ -73,7 +73,12 @@ namespace ShippingApplication
         }
         public void setCustomerId(int CustID)
         {
-            this.custId = CustID;
+            if (CustID > 0 && CustID < Int32.MaxValue)
+            {
+                this.custId = CustID;
+            }
+            else
+                throw new ArgumentException();
         }
 
         public String getSurname()
@@ -82,6 +87,10 @@ namespace ShippingApplication
         }
         public void setSurname(String Surname)
         {
+            if (Surname.Equals("") || Surname.Length > 20)
+            {
+                throw new ArgumentException();
+            }
             this.surname = Surname;
         }
 
@@ -91,6 +100,10 @@ namespace ShippingApplication
         }
         public void setForename(String Forename)
         {
+            if (Forename.Equals("") || Forename.Length > 20)
+            {
+                throw new ArgumentException();
+            }
             this.forename = Forename;
         }
 
@@ -100,6 +113,10 @@ namespace ShippingApplication
         }
         public void setTown(String Town)
         {
+            if (Town.Equals("") || Town.Length > 20)
+            {
+                throw new ArgumentException();
+            }
             this.town = Town;
         }
 
@@ -109,6 +126,10 @@ namespace ShippingApplication
         }
         public void setCounty(String County)
         {
+            if (County.Equals("") || County.Length > 9)
+            {
+                throw new ArgumentException();
+            }
             this.county = County;
         }
 
@@ -233,7 +254,7 @@ namespace ShippingApplication
         public void getCustomer(Int32 Id)
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
-            String sqlQuery = "SELECT * FROM Customers WHERE Cust_ID = " + Id;
+            String sqlQuery = "SELECT * FROM Customers WHERE Cust_ID=" + Id;
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
             conn.Open();
 
@@ -264,7 +285,7 @@ namespace ShippingApplication
                     this.surname + "','" + this.forename + "','" +
                     this.town + "','" + this.EIRCode + "','" +
                     this.password + "','" + this.phone + "','" + this.email + "','" +
-                    this.cardNumber + "','R','" + this.county + "')";
+                    this.cardNumber + "','Registered','" + this.county + "')";
 
                 /*
                  INSERT INTO Customers Values(id,'sname','fname','town','EIRcode','
@@ -304,7 +325,7 @@ namespace ShippingApplication
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
             String sqlQuery = "UPDATE Customers SET " +
-                "Status = 'D' " +
+                "Status = 'Deregistered' " +
                 "WHERE Cust_Id = " + this.custId;
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
@@ -315,12 +336,10 @@ namespace ShippingApplication
         public void findCustomerByEmail(String email)
         {
             // Login form uses this to tie an email to a password for a given account.
-            // Had a problem with unescaped strings leading to ORA 04054 error. Fixed.
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             String sqlQuery = "SELECT Cust_ID, forename, password, email FROM Customers WHERE email = '" + email + "'";
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
             conn.Open();
-
             OracleDataReader dr = cmd.ExecuteReader();
             dr.Read();
 
@@ -335,7 +354,7 @@ namespace ShippingApplication
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            String sqlQuery = "SELECT Cust_Id, forename, surname, town, county, EIRcode, phone, email, status, cardnumber FROM Customers " +
+            String sqlQuery = "SELECT Cust_Id, forename, surname FROM Customers " +
                 "WHERE forename LIKE '%" + forename + "%' ORDER BY Forename";
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);

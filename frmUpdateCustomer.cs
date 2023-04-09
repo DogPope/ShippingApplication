@@ -55,7 +55,6 @@ namespace ShippingApplication
             if (txtEnterForename.Text.Equals(""))
             {
                 MessageBox.Show("You must enter a valid forename to continue!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtEnterForename.Text = "";
                 txtEnterForename.Focus();
                 return;
             }
@@ -85,16 +84,6 @@ namespace ShippingApplication
                 txtEnterForename.Text = "";
                 txtEnterForename.Focus();
                 return;
-            }
-            foreach (char c in txtForename.Text)
-            {
-                if (!char.IsDigit(c))
-                {
-                    MessageBox.Show("This field only accepts numbers!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtEnterForename.Text = "";
-                    txtEnterForename.Focus();
-                    return;
-                }
             }
             if (grdCustomers.RowCount == 1)
             {

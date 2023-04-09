@@ -65,7 +65,7 @@ namespace ShippingApplication
             txtBuyPrice.Text = updateGame.getBuyPrice().ToString("#0.00");
             txtSalePrice.Text = updateGame.getSalePrice().ToString("#0.00");
             txtQuantity.Text = updateGame.getQuantity().ToString();
-            txtStatus.Text = updateGame.getStatus();
+            txtStatus.Text = Convert.ToString(updateGame.getStatus());
 
             grdGames.Visible = true;
         }
@@ -125,22 +125,12 @@ namespace ShippingApplication
 
         private void btnDeregisterGame_Click(object sender, EventArgs e)
         {
-            if(txtGameTitle.Text == "")
+            if (txtGameTitle.Text == "")
             {
                 MessageBox.Show("You must select a game to deregister or press return to go back to the main menu!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtGameTitle.Text = "";
                 txtGameTitle.Focus();
                 return;
-            }
-            foreach(char c in txtGameTitle.Text)
-            {
-                if (!char.IsDigit(c))
-                {
-                    MessageBox.Show("This field only accepts numbers!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtGameTitle.Text = "";
-                    txtGameTitle.Focus();
-                    return;
-                }
             }
             if(grdGames.RowCount == 1)
             {

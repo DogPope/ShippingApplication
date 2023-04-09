@@ -38,14 +38,6 @@ namespace ShippingApplication
             this.cUSTIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sURNAMEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fORENAMEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tOWNDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.eIRCODEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pASSWORDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pHONEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.eMAILDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cARDNUMBERDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sTATUSDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cOUNTYDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cUSTOMERSBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.custDataSet = new ShippingApplication.CustDataSet();
             this.cUSTOMERSTableAdapter = new ShippingApplication.CustDataSetTableAdapters.CUSTOMERSTableAdapter();
@@ -112,9 +104,9 @@ namespace ShippingApplication
             // btnSearch
             // 
             this.btnSearch.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.btnSearch.Location = new System.Drawing.Point(207, 52);
+            this.btnSearch.Location = new System.Drawing.Point(43, 114);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(114, 23);
+            this.btnSearch.Size = new System.Drawing.Size(100, 23);
             this.btnSearch.TabIndex = 31;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = false;
@@ -127,19 +119,11 @@ namespace ShippingApplication
             this.grdCustomers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.cUSTIDDataGridViewTextBoxColumn,
             this.sURNAMEDataGridViewTextBoxColumn,
-            this.fORENAMEDataGridViewTextBoxColumn,
-            this.tOWNDataGridViewTextBoxColumn,
-            this.eIRCODEDataGridViewTextBoxColumn,
-            this.pASSWORDDataGridViewTextBoxColumn,
-            this.pHONEDataGridViewTextBoxColumn,
-            this.eMAILDataGridViewTextBoxColumn,
-            this.cARDNUMBERDataGridViewTextBoxColumn,
-            this.sTATUSDataGridViewTextBoxColumn,
-            this.cOUNTYDataGridViewTextBoxColumn});
+            this.fORENAMEDataGridViewTextBoxColumn});
             this.grdCustomers.DataSource = this.cUSTOMERSBindingSource;
-            this.grdCustomers.Location = new System.Drawing.Point(0, 112);
+            this.grdCustomers.Location = new System.Drawing.Point(370, 0);
             this.grdCustomers.Name = "grdCustomers";
-            this.grdCustomers.Size = new System.Drawing.Size(1184, 150);
+            this.grdCustomers.Size = new System.Drawing.Size(344, 269);
             this.grdCustomers.TabIndex = 32;
             this.grdCustomers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdCustomers_CellClick);
             // 
@@ -160,54 +144,6 @@ namespace ShippingApplication
             this.fORENAMEDataGridViewTextBoxColumn.DataPropertyName = "FORENAME";
             this.fORENAMEDataGridViewTextBoxColumn.HeaderText = "FORENAME";
             this.fORENAMEDataGridViewTextBoxColumn.Name = "fORENAMEDataGridViewTextBoxColumn";
-            // 
-            // tOWNDataGridViewTextBoxColumn
-            // 
-            this.tOWNDataGridViewTextBoxColumn.DataPropertyName = "TOWN";
-            this.tOWNDataGridViewTextBoxColumn.HeaderText = "TOWN";
-            this.tOWNDataGridViewTextBoxColumn.Name = "tOWNDataGridViewTextBoxColumn";
-            // 
-            // eIRCODEDataGridViewTextBoxColumn
-            // 
-            this.eIRCODEDataGridViewTextBoxColumn.DataPropertyName = "EIRCODE";
-            this.eIRCODEDataGridViewTextBoxColumn.HeaderText = "EIRCODE";
-            this.eIRCODEDataGridViewTextBoxColumn.Name = "eIRCODEDataGridViewTextBoxColumn";
-            // 
-            // pASSWORDDataGridViewTextBoxColumn
-            // 
-            this.pASSWORDDataGridViewTextBoxColumn.DataPropertyName = "PASSWORD";
-            this.pASSWORDDataGridViewTextBoxColumn.HeaderText = "PASSWORD";
-            this.pASSWORDDataGridViewTextBoxColumn.Name = "pASSWORDDataGridViewTextBoxColumn";
-            // 
-            // pHONEDataGridViewTextBoxColumn
-            // 
-            this.pHONEDataGridViewTextBoxColumn.DataPropertyName = "PHONE";
-            this.pHONEDataGridViewTextBoxColumn.HeaderText = "PHONE";
-            this.pHONEDataGridViewTextBoxColumn.Name = "pHONEDataGridViewTextBoxColumn";
-            // 
-            // eMAILDataGridViewTextBoxColumn
-            // 
-            this.eMAILDataGridViewTextBoxColumn.DataPropertyName = "EMAIL";
-            this.eMAILDataGridViewTextBoxColumn.HeaderText = "EMAIL";
-            this.eMAILDataGridViewTextBoxColumn.Name = "eMAILDataGridViewTextBoxColumn";
-            // 
-            // cARDNUMBERDataGridViewTextBoxColumn
-            // 
-            this.cARDNUMBERDataGridViewTextBoxColumn.DataPropertyName = "CARDNUMBER";
-            this.cARDNUMBERDataGridViewTextBoxColumn.HeaderText = "CARDNUMBER";
-            this.cARDNUMBERDataGridViewTextBoxColumn.Name = "cARDNUMBERDataGridViewTextBoxColumn";
-            // 
-            // sTATUSDataGridViewTextBoxColumn
-            // 
-            this.sTATUSDataGridViewTextBoxColumn.DataPropertyName = "STATUS";
-            this.sTATUSDataGridViewTextBoxColumn.HeaderText = "STATUS";
-            this.sTATUSDataGridViewTextBoxColumn.Name = "sTATUSDataGridViewTextBoxColumn";
-            // 
-            // cOUNTYDataGridViewTextBoxColumn
-            // 
-            this.cOUNTYDataGridViewTextBoxColumn.DataPropertyName = "COUNTY";
-            this.cOUNTYDataGridViewTextBoxColumn.HeaderText = "COUNTY";
-            this.cOUNTYDataGridViewTextBoxColumn.Name = "cOUNTYDataGridViewTextBoxColumn";
             // 
             // cUSTOMERSBindingSource
             // 
@@ -414,7 +350,7 @@ namespace ShippingApplication
             // 
             this.txtStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtStatus.Location = new System.Drawing.Point(934, 443);
-            this.txtStatus.MaxLength = 20;
+            this.txtStatus.MaxLength = 15;
             this.txtStatus.Name = "txtStatus";
             this.txtStatus.Size = new System.Drawing.Size(141, 26);
             this.txtStatus.TabIndex = 36;
@@ -492,7 +428,7 @@ namespace ShippingApplication
             // btnDeregisterAccount
             // 
             this.btnDeregisterAccount.BackColor = System.Drawing.Color.SandyBrown;
-            this.btnDeregisterAccount.Location = new System.Drawing.Point(744, 52);
+            this.btnDeregisterAccount.Location = new System.Drawing.Point(1013, 139);
             this.btnDeregisterAccount.Name = "btnDeregisterAccount";
             this.btnDeregisterAccount.Size = new System.Drawing.Size(160, 23);
             this.btnDeregisterAccount.TabIndex = 40;
@@ -544,17 +480,6 @@ namespace ShippingApplication
         private CustDataSet custDataSet;
         private System.Windows.Forms.BindingSource cUSTOMERSBindingSource;
         private CustDataSetTableAdapters.CUSTOMERSTableAdapter cUSTOMERSTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cUSTIDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sURNAMEDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn fORENAMEDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tOWNDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn eIRCODEDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pASSWORDDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn pHONEDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn eMAILDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cARDNUMBERDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn sTATUSDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn cOUNTYDataGridViewTextBoxColumn;
         private System.Windows.Forms.GroupBox grpCustDetails;
         private System.Windows.Forms.Label lblSurname;
         private System.Windows.Forms.Label lblForename;
@@ -579,5 +504,8 @@ namespace ShippingApplication
         private System.Windows.Forms.Button btnUpdateCustomer;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnDeregisterAccount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn cUSTIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn sURNAMEDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn fORENAMEDataGridViewTextBoxColumn;
     }
 }
