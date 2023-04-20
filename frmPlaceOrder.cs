@@ -14,8 +14,9 @@ namespace ShippingApplication
     public partial class frmPlaceOrder : Form
     {
         frmMain parent;
-        //List<OrderItem> games = new List<OrderItem> { };
         Customer loginCustomer = new Customer();
+        List<Game> games = new List<Game>();
+        Game thisGame = new Game();
         Order thisOrder = new Order();
         decimal totalPrice = 0;
         int counter = 3;
@@ -38,27 +39,55 @@ namespace ShippingApplication
 
         private void frmManageOrders_Load(object sender, EventArgs e)
         {
+            // On loading the form, Gets the next available Order ID and presents it at the top of the page.
             txtOrderId.Text = Order.getNextOrderID().ToString("00000");
         }
 
         private void grdGames_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            OrderItem orderItem = new OrderItem();
-            Game thisGame = new Game();
-
-            int gameId = Convert.ToInt32(grdGames.Rows[grdGames.CurrentCell.RowIndex].Cells[0].Value.ToString());
-            orderItem.setGameId(gameId);
+            // Get the game data from the cell in the data grid view.
+            Int32 gameId = Convert.ToInt32(grdGames.Rows[grdGames.CurrentCell.RowIndex].Cells[0].Value.ToString());
             thisGame.getGame(gameId);
-            MessageBox.Show(thisGame.orderString());
 
-            // Next line will have to be changed. Cost is no longer the seventh item.
+            // Quantity is needed for stock control later.
+            Int32 quantity = thisGame.getQuantity();
+            thisGame.setQuantity(thisGame.getQuantity() - 1);
+
+            // Check if the number of instances in the database is less than the amount the user is trying to order.
+            if(quantity < 1)
+            {
+                MessageBox.Show("There is currently no stock left of this item. Please try again later!","Information",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                return;
+            }
+
+            int instances = 0;
+
+            // Add the game to a list array for INSERT INTO Order_Items Query.
+            games.Add(thisGame);
+
+            // Gets the price from the grid.
             decimal salePrice = Convert.ToDecimal(grdGames.Rows[grdGames.CurrentCell.RowIndex].Cells[6].Value.ToString());
-            orderItem.setCost(salePrice);
 
+            // converts the price to be added to the shopping cart. Displays total where TXTtotal appears below the shopping cart.
             totalPrice += salePrice;
             txtTotal.Text = totalPrice.ToString();
-            //games.Add(orderItem);
             lstCart.Items.Add(thisGame.orderString());
+
+            // This is my attempt at stock control.
+
+            /* Loops through each item in lstCart.Items and adds to a counter each time it sees an occurence of the same object.
+               If the counter is greater than the games Quantity, it removes it from the cart and gives the customer an error message. */
+            foreach(string list in lstCart.Items)
+            {
+                if (list.Contains(gameId.ToString()))
+                    instances++;
+                if(instances > quantity)
+                {
+                    MessageBox.Show("The quantity you are trying to order is greater than the quantity we have!", "Removing!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    lstCart.Items.RemoveAt(lstCart.Items.IndexOf(list));
+                    return;
+                }
+            }
         }
 
         private void btnPlaceOrder_Click(object sender, EventArgs e)
@@ -72,50 +101,55 @@ namespace ShippingApplication
                 return;
             }
 
-            // Check if orderItem list, called games, is empty and prevent user from placing an empty order.
-
+            // Check if list cart is empty and prevent user from placing an empty order.
             if (lstCart.Items.Count == 0)
             {
                 MessageBox.Show("You need to select something to add to your order!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            foreach (String i in lstCart.Items)
-            {
-                // Note. Substring with 2 arguments takes in Starting character and LENGTH of string, unlike Java.
-                i.ToString();
-                int id = Convert.ToInt32(i.Substring(9, 5));
-                MessageBox.Show(i.Substring(9,5));
-            }
 
-            /*if (games.Any() != true)
-            {
-                MessageBox.Show("You need to select something to add to your order!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }*/
-
-            // This line needs refactoring.
+            // Gets the customers details based on the information supplied.
             int custId = loginCustomer.getCustomerId();
 
             // Adding order details
-            Int32 orderId = Order.getNextOrderID();
             thisOrder.setCost(totalPrice);
             thisOrder.setCustId(custId);
-            thisOrder.setOrderId(orderId);
+            thisOrder.setOrderId(Convert.ToInt32(txtOrderId.Text));
             thisOrder.addOrder();
 
-            /*foreach (OrderItem i in games)
+            foreach (String i in lstCart.Items)
             {
-                i.setOrderId(orderId);
-                i.addOrderItem();
-            }*/
+                // Note. Substring with 2 arguments takes in Starting character and LENGTH of string, unlike Java.
+                // Sets the fields for each individual item to be inserted as an individual order item.
+                i.ToString();
+                int gameId = Convert.ToInt32(i.Substring(9, 5));
+                decimal thisPrice = Convert.ToDecimal(i.Substring(i.Length - 6, 6));
+                int orderID = Convert.ToInt32(txtOrderId.Text);
 
-            MessageBox.Show("Your order has been added to the system!" + thisOrder.toString(), "Added!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            //btnPlaceOrder.Visible = false;
+                OrderItem newItem = new OrderItem(gameId, orderID, thisPrice);
+                newItem.addOrderItem();
+
+                // Declares a game object to assess its quantity to make sure the user cant order more than is in the database.
+                Game game = new Game();
+                game.getGame(gameId);
+                int quantity = game.getQuantity();
+                if(quantity < 1)
+                {
+                    MessageBox.Show("We are currently out of this item. Please try another time!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                // On successful order placed, reduces the quantity for each item in the system.
+                game.reduceQuantity(gameId);
+            }
+
+            MessageBox.Show("Your order has been added to the system!","Added!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            btnPlaceOrder.Visible = false;
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            // Add validation for a title that does not exist.
+            // Validate title field
             if (txtTitle.Text.Equals(""))
             {
                 MessageBox.Show("The search field must not be empty!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -124,26 +158,38 @@ namespace ShippingApplication
                 return;
             }
 
+            // Retrieves game data from the title given.
             grdGames.DataSource = Game.findGameByTitle(txtTitle.Text).Tables["Games"];
         }
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            //Remove the chosen game from the shopping list
+            if(lstCart.SelectedIndex == -1)
+            {
+                MessageBox.Show("You must select something to remove!","Error!",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+            // Creates a string array from the objects in lstCart.
+            string[] clist = lstCart.SelectedItems.OfType<string>().ToArray();
+
+            // Loops through the array, assigning the last 6 characters to a decimal number, then subtracts that from total price.
+            foreach(String i in clist)
+            {
+                decimal thisPrice = Convert.ToDecimal(i.Substring(i.Length - 6, 6));
+                totalPrice -= thisPrice;
+            }
+            txtTotal.Text = totalPrice.ToString();
+
+            // Then removes the selected item from lstCart.
             if (lstCart.SelectedIndex == -1)
             {
                 lstCart.ClearSelected();
                 return;
             }
             lstCart.Items.RemoveAt(lstCart.SelectedIndex);
-            // Find way to also remove selected item from array.
-            // Title of array.
-            // List<OrderItem> games = new List<OrderItem> { };
-
-            //update cart total - reduce total
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
+            // Note that this will load a Deregistered Customer as registered for some reason.
             if (txtEmail.Text.Equals(""))
             {
                 MessageBox.Show("You need to enter a valid email address to log in!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -151,36 +197,65 @@ namespace ShippingApplication
                 txtEmail.Text = "";
                 return;
             }
-            if (Customer.isValidEmail(txtEmail.Text))
-            {
-                loginCustomer.findCustomerByEmail(txtEmail.Text);
+            // Checks whether email is valid and queries Customers with the given email address.
+            // Uses email given to instantiate the customer object.
+            loginCustomer.findCustomerByEmail(txtEmail.Text);
+            String email = loginCustomer.getEmail();
 
-                if (loginCustomer.getPassword().Equals(txtPassword.Text))
-                {
-                    MessageBox.Show("Welcome: " + loginCustomer.getForename(), "Hello!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    isLoggedIn = true;
-                }
-                else
-                {
-                    counter--;
-                    MessageBox.Show("Invalid password! You have " + counter +
-                        " attempts remaining!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtPassword.Text = "";
-                    txtPassword.Focus();
-                }
-                if (counter == 0)
-                {
-                    MessageBox.Show("You have exceeded the maximum number of attempts! Closing form!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    this.Close();
-                    return;
-                }
+            if (email.Equals(""))
+            {
+                MessageBox.Show("We do not have an account associated with the given address. Please try again!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtEmail.Text = "";
+                txtEmail.Focus();
+                return;
+            }
+
+            String status = loginCustomer.getStatus();
+
+            // Checks if a customers Status is Deregistered and does not allow them to place an order.
+            if (status == "Deregistered")
+            {
+                MessageBox.Show("The account associated with these details is Deactivated! Please register an account to proceed!", "Error!",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Compares the given email address with associated password. Complete with counter that give three attempts at log on.
+            if (loginCustomer.getPassword().Equals(txtPassword.Text))
+            {
+                MessageBox.Show("Welcome: " + loginCustomer.getForename(), "Hello!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                isLoggedIn = true;
+                btnLogin.Visible = false;
+            }
+            else
+            // Displays error message. Decrements counter.
+            {
+                counter--;
+                MessageBox.Show("Invalid password! You have " + counter +
+                    " attempts remaining!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtPassword.Text = "";
+                txtPassword.Focus();
+            }
+            // When counter reaches zero, the form closes.
+            if (counter == 0)
+            {
+                MessageBox.Show("You have exceeded the maximum number of attempts! Closing form!", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                this.Close();
+                return;
             }
         }
 
         private void btnHelp_Click(object sender, EventArgs e)
         {
+            // Displays valid logon credentials for testing purposes. Would be removed for final product.
             MessageBox.Show("The following details are one accurate entry and will work for login purposes.\n" +
                 "Email:\t\temail@email.com\nPassword:\t\tpassword", "Help", MessageBoxButtons.OK);
+        }
+
+        // Selects all registered games, in case the user doesn't quite know what they want.
+        private void btnSelectAll_Click(object sender, EventArgs e)
+        {
+            grdGames.DataSource = Game.selectAllGames().Tables["Games"];
         }
     }
 }

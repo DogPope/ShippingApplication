@@ -35,9 +35,10 @@ namespace ShippingApplication
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnReturn = new System.Windows.Forms.Button();
             this.grdGames = new System.Windows.Forms.DataGridView();
-            this.gAMESBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSet1 = new ShippingApplication.DataSet1();
-            this.gAMESTableAdapter = new ShippingApplication.DataSet1TableAdapters.GAMESTableAdapter();
+            this.GAME_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tITLEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dEVELOPERDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pUBLISHERDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bxGameDetails = new System.Windows.Forms.GroupBox();
             this.txtGenre = new System.Windows.Forms.TextBox();
             this.lblGenre = new System.Windows.Forms.Label();
@@ -51,7 +52,6 @@ namespace ShippingApplication
             this.lblCost = new System.Windows.Forms.Label();
             this.txtBuyPrice = new System.Windows.Forms.TextBox();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.txtStatus = new System.Windows.Forms.TextBox();
             this.txtQuantity = new System.Windows.Forms.TextBox();
             this.lblSalePrice = new System.Windows.Forms.Label();
             this.lblQuantity = new System.Windows.Forms.Label();
@@ -60,13 +60,8 @@ namespace ShippingApplication
             this.txtDescription = new System.Windows.Forms.TextBox();
             this.btnUpdateGame = new System.Windows.Forms.Button();
             this.btnDeregisterGame = new System.Windows.Forms.Button();
-            this.GAME_ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tITLEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dEVELOPERDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.pUBLISHERDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cboStatus = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.grdGames)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gAMESBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
             this.bxGameDetails.SuspendLayout();
             this.bxFinancial.SuspendLayout();
             this.SuspendLayout();
@@ -121,26 +116,35 @@ namespace ShippingApplication
             this.tITLEDataGridViewTextBoxColumn,
             this.dEVELOPERDataGridViewTextBoxColumn,
             this.pUBLISHERDataGridViewTextBoxColumn});
-            this.grdGames.DataSource = this.gAMESBindingSource;
             this.grdGames.Location = new System.Drawing.Point(371, 0);
             this.grdGames.Name = "grdGames";
             this.grdGames.Size = new System.Drawing.Size(443, 244);
             this.grdGames.TabIndex = 27;
             this.grdGames.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdGames_CellClick);
             // 
-            // gAMESBindingSource
+            // GAME_ID
             // 
-            this.gAMESBindingSource.DataMember = "GAMES";
-            this.gAMESBindingSource.DataSource = this.dataSet1;
+            this.GAME_ID.DataPropertyName = "GAME_ID";
+            this.GAME_ID.HeaderText = "GAME_ID";
+            this.GAME_ID.Name = "GAME_ID";
             // 
-            // dataSet1
+            // tITLEDataGridViewTextBoxColumn
             // 
-            this.dataSet1.DataSetName = "DataSet1";
-            this.dataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.tITLEDataGridViewTextBoxColumn.DataPropertyName = "TITLE";
+            this.tITLEDataGridViewTextBoxColumn.HeaderText = "TITLE";
+            this.tITLEDataGridViewTextBoxColumn.Name = "tITLEDataGridViewTextBoxColumn";
             // 
-            // gAMESTableAdapter
+            // dEVELOPERDataGridViewTextBoxColumn
             // 
-            this.gAMESTableAdapter.ClearBeforeFill = true;
+            this.dEVELOPERDataGridViewTextBoxColumn.DataPropertyName = "DEVELOPER";
+            this.dEVELOPERDataGridViewTextBoxColumn.HeaderText = "DEVELOPER";
+            this.dEVELOPERDataGridViewTextBoxColumn.Name = "dEVELOPERDataGridViewTextBoxColumn";
+            // 
+            // pUBLISHERDataGridViewTextBoxColumn
+            // 
+            this.pUBLISHERDataGridViewTextBoxColumn.DataPropertyName = "PUBLISHER";
+            this.pUBLISHERDataGridViewTextBoxColumn.HeaderText = "PUBLISHER";
+            this.pUBLISHERDataGridViewTextBoxColumn.Name = "pUBLISHERDataGridViewTextBoxColumn";
             // 
             // bxGameDetails
             // 
@@ -237,10 +241,10 @@ namespace ShippingApplication
             // 
             // bxFinancial
             // 
+            this.bxFinancial.Controls.Add(this.cboStatus);
             this.bxFinancial.Controls.Add(this.lblCost);
             this.bxFinancial.Controls.Add(this.txtBuyPrice);
             this.bxFinancial.Controls.Add(this.lblStatus);
-            this.bxFinancial.Controls.Add(this.txtStatus);
             this.bxFinancial.Controls.Add(this.txtQuantity);
             this.bxFinancial.Controls.Add(this.lblSalePrice);
             this.bxFinancial.Controls.Add(this.lblQuantity);
@@ -280,15 +284,6 @@ namespace ShippingApplication
             this.lblStatus.Size = new System.Drawing.Size(56, 20);
             this.lblStatus.TabIndex = 21;
             this.lblStatus.Text = "Status";
-            // 
-            // txtStatus
-            // 
-            this.txtStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStatus.Location = new System.Drawing.Point(227, 175);
-            this.txtStatus.MaxLength = 15;
-            this.txtStatus.Name = "txtStatus";
-            this.txtStatus.Size = new System.Drawing.Size(141, 26);
-            this.txtStatus.TabIndex = 22;
             // 
             // txtQuantity
             // 
@@ -368,29 +363,17 @@ namespace ShippingApplication
             this.btnDeregisterGame.UseVisualStyleBackColor = false;
             this.btnDeregisterGame.Click += new System.EventHandler(this.btnDeregisterGame_Click);
             // 
-            // GAME_ID
+            // cboStatus
             // 
-            this.GAME_ID.DataPropertyName = "GAME_ID";
-            this.GAME_ID.HeaderText = "GAME_ID";
-            this.GAME_ID.Name = "GAME_ID";
-            // 
-            // tITLEDataGridViewTextBoxColumn
-            // 
-            this.tITLEDataGridViewTextBoxColumn.DataPropertyName = "TITLE";
-            this.tITLEDataGridViewTextBoxColumn.HeaderText = "TITLE";
-            this.tITLEDataGridViewTextBoxColumn.Name = "tITLEDataGridViewTextBoxColumn";
-            // 
-            // dEVELOPERDataGridViewTextBoxColumn
-            // 
-            this.dEVELOPERDataGridViewTextBoxColumn.DataPropertyName = "DEVELOPER";
-            this.dEVELOPERDataGridViewTextBoxColumn.HeaderText = "DEVELOPER";
-            this.dEVELOPERDataGridViewTextBoxColumn.Name = "dEVELOPERDataGridViewTextBoxColumn";
-            // 
-            // pUBLISHERDataGridViewTextBoxColumn
-            // 
-            this.pUBLISHERDataGridViewTextBoxColumn.DataPropertyName = "PUBLISHER";
-            this.pUBLISHERDataGridViewTextBoxColumn.HeaderText = "PUBLISHER";
-            this.pUBLISHERDataGridViewTextBoxColumn.Name = "pUBLISHERDataGridViewTextBoxColumn";
+            this.cboStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboStatus.FormattingEnabled = true;
+            this.cboStatus.Items.AddRange(new object[] {
+            "Registered",
+            "Deregistered"});
+            this.cboStatus.Location = new System.Drawing.Point(228, 175);
+            this.cboStatus.Name = "cboStatus";
+            this.cboStatus.Size = new System.Drawing.Size(121, 21);
+            this.cboStatus.TabIndex = 29;
             // 
             // frmUpdateGame
             // 
@@ -413,8 +396,6 @@ namespace ShippingApplication
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Update Game";
             ((System.ComponentModel.ISupportInitialize)(this.grdGames)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.gAMESBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
             this.bxGameDetails.ResumeLayout(false);
             this.bxGameDetails.PerformLayout();
             this.bxFinancial.ResumeLayout(false);
@@ -431,9 +412,6 @@ namespace ShippingApplication
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnReturn;
         private System.Windows.Forms.DataGridView grdGames;
-        private DataSet1 dataSet1;
-        private System.Windows.Forms.BindingSource gAMESBindingSource;
-        private DataSet1TableAdapters.GAMESTableAdapter gAMESTableAdapter;
         private System.Windows.Forms.GroupBox bxGameDetails;
         private System.Windows.Forms.TextBox txtGenre;
         private System.Windows.Forms.Label lblGenre;
@@ -447,7 +425,6 @@ namespace ShippingApplication
         private System.Windows.Forms.Label lblCost;
         private System.Windows.Forms.TextBox txtBuyPrice;
         private System.Windows.Forms.Label lblStatus;
-        private System.Windows.Forms.TextBox txtStatus;
         private System.Windows.Forms.TextBox txtQuantity;
         private System.Windows.Forms.Label lblSalePrice;
         private System.Windows.Forms.Label lblQuantity;
@@ -460,5 +437,6 @@ namespace ShippingApplication
         private System.Windows.Forms.DataGridViewTextBoxColumn tITLEDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dEVELOPERDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn pUBLISHERDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ComboBox cboStatus;
     }
 }

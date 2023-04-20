@@ -33,12 +33,6 @@ namespace ShippingApplication
             this.btnReturn = new System.Windows.Forms.Button();
             this.txtTitle = new System.Windows.Forms.TextBox();
             this.lblCustId = new System.Windows.Forms.Label();
-            this.gAMESBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSet1 = new ShippingApplication.DataSet1();
-            this.gAMESTableAdapter = new ShippingApplication.DataSet1TableAdapters.GAMESTableAdapter();
-            this.oRDERSBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataSet2 = new ShippingApplication.DataSet2();
-            this.oRDERSTableAdapter = new ShippingApplication.DataSet2TableAdapters.ORDERSTableAdapter();
             this.btnPlaceOrder = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.grdGames = new System.Windows.Forms.DataGridView();
@@ -53,10 +47,7 @@ namespace ShippingApplication
             this.lblPassword = new System.Windows.Forms.Label();
             this.lblEmail = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.gAMESBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.oRDERSBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet2)).BeginInit();
+            this.btnSelectAll = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdGames)).BeginInit();
             this.SuspendLayout();
             // 
@@ -89,34 +80,6 @@ namespace ShippingApplication
             this.lblCustId.Size = new System.Drawing.Size(117, 13);
             this.lblCustId.TabIndex = 29;
             this.lblCustId.Text = "Game Name (or part of)";
-            // 
-            // gAMESBindingSource
-            // 
-            this.gAMESBindingSource.DataMember = "GAMES";
-            this.gAMESBindingSource.DataSource = this.dataSet1;
-            // 
-            // dataSet1
-            // 
-            this.dataSet1.DataSetName = "DataSet1";
-            this.dataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // gAMESTableAdapter
-            // 
-            this.gAMESTableAdapter.ClearBeforeFill = true;
-            // 
-            // oRDERSBindingSource
-            // 
-            this.oRDERSBindingSource.DataMember = "ORDERS";
-            this.oRDERSBindingSource.DataSource = this.dataSet2;
-            // 
-            // dataSet2
-            // 
-            this.dataSet2.DataSetName = "DataSet2";
-            this.dataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // oRDERSTableAdapter
-            // 
-            this.oRDERSTableAdapter.ClearBeforeFill = true;
             // 
             // btnPlaceOrder
             // 
@@ -169,6 +132,7 @@ namespace ShippingApplication
             // txtTotal
             // 
             this.txtTotal.Location = new System.Drawing.Point(1036, 190);
+            this.txtTotal.MaxLength = 6;
             this.txtTotal.Name = "txtTotal";
             this.txtTotal.Size = new System.Drawing.Size(62, 20);
             this.txtTotal.TabIndex = 38;
@@ -247,12 +211,23 @@ namespace ShippingApplication
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
+            // btnSelectAll
+            // 
+            this.btnSelectAll.Location = new System.Drawing.Point(737, 43);
+            this.btnSelectAll.Name = "btnSelectAll";
+            this.btnSelectAll.Size = new System.Drawing.Size(69, 22);
+            this.btnSelectAll.TabIndex = 48;
+            this.btnSelectAll.Text = "Select All";
+            this.btnSelectAll.UseVisualStyleBackColor = true;
+            this.btnSelectAll.Click += new System.EventHandler(this.btnSelectAll_Click);
+            // 
             // frmPlaceOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FloralWhite;
             this.ClientSize = new System.Drawing.Size(1184, 611);
+            this.Controls.Add(this.btnSelectAll);
             this.Controls.Add(this.btnHelp);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtEmail);
@@ -274,10 +249,6 @@ namespace ShippingApplication
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Place Order";
             this.Load += new System.EventHandler(this.frmManageOrders_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.gAMESBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.oRDERSBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataSet2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.grdGames)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -289,12 +260,6 @@ namespace ShippingApplication
         private System.Windows.Forms.Button btnReturn;
         private System.Windows.Forms.TextBox txtTitle;
         private System.Windows.Forms.Label lblCustId;
-        private DataSet1 dataSet1;
-        private System.Windows.Forms.BindingSource gAMESBindingSource;
-        private DataSet1TableAdapters.GAMESTableAdapter gAMESTableAdapter;
-        private DataSet2 dataSet2;
-        private System.Windows.Forms.BindingSource oRDERSBindingSource;
-        private DataSet2TableAdapters.ORDERSTableAdapter oRDERSTableAdapter;
         private System.Windows.Forms.Button btnPlaceOrder;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.DataGridView grdGames;
@@ -309,5 +274,6 @@ namespace ShippingApplication
         private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.Label lblEmail;
         private System.Windows.Forms.Button btnLogin;
+        private System.Windows.Forms.Button btnSelectAll;
     }
 }

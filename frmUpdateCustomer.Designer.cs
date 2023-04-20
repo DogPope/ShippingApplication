@@ -38,9 +38,6 @@ namespace ShippingApplication
             this.cUSTIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.sURNAMEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fORENAMEDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.cUSTOMERSBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.custDataSet = new ShippingApplication.CustDataSet();
-            this.cUSTOMERSTableAdapter = new ShippingApplication.CustDataSetTableAdapters.CUSTOMERSTableAdapter();
             this.grpCustDetails = new System.Windows.Forms.GroupBox();
             this.lblSurname = new System.Windows.Forms.Label();
             this.lblForename = new System.Windows.Forms.Label();
@@ -66,8 +63,6 @@ namespace ShippingApplication
             this.label1 = new System.Windows.Forms.Label();
             this.btnDeregisterAccount = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.grdCustomers)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cUSTOMERSBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.custDataSet)).BeginInit();
             this.grpCustDetails.SuspendLayout();
             this.grpAccountDetails.SuspendLayout();
             this.SuspendLayout();
@@ -120,7 +115,6 @@ namespace ShippingApplication
             this.cUSTIDDataGridViewTextBoxColumn,
             this.sURNAMEDataGridViewTextBoxColumn,
             this.fORENAMEDataGridViewTextBoxColumn});
-            this.grdCustomers.DataSource = this.cUSTOMERSBindingSource;
             this.grdCustomers.Location = new System.Drawing.Point(370, 0);
             this.grdCustomers.Name = "grdCustomers";
             this.grdCustomers.Size = new System.Drawing.Size(344, 269);
@@ -144,20 +138,6 @@ namespace ShippingApplication
             this.fORENAMEDataGridViewTextBoxColumn.DataPropertyName = "FORENAME";
             this.fORENAMEDataGridViewTextBoxColumn.HeaderText = "FORENAME";
             this.fORENAMEDataGridViewTextBoxColumn.Name = "fORENAMEDataGridViewTextBoxColumn";
-            // 
-            // cUSTOMERSBindingSource
-            // 
-            this.cUSTOMERSBindingSource.DataMember = "CUSTOMERS";
-            this.cUSTOMERSBindingSource.DataSource = this.custDataSet;
-            // 
-            // custDataSet
-            // 
-            this.custDataSet.DataSetName = "CustDataSet";
-            this.custDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // cUSTOMERSTableAdapter
-            // 
-            this.cUSTOMERSTableAdapter.ClearBeforeFill = true;
             // 
             // grpCustDetails
             // 
@@ -459,8 +439,6 @@ namespace ShippingApplication
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Update Customer";
             ((System.ComponentModel.ISupportInitialize)(this.grdCustomers)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cUSTOMERSBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.custDataSet)).EndInit();
             this.grpCustDetails.ResumeLayout(false);
             this.grpCustDetails.PerformLayout();
             this.grpAccountDetails.ResumeLayout(false);
@@ -477,9 +455,6 @@ namespace ShippingApplication
         private System.Windows.Forms.Label lblEnterForename;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.DataGridView grdCustomers;
-        private CustDataSet custDataSet;
-        private System.Windows.Forms.BindingSource cUSTOMERSBindingSource;
-        private CustDataSetTableAdapters.CUSTOMERSTableAdapter cUSTOMERSTableAdapter;
         private System.Windows.Forms.GroupBox grpCustDetails;
         private System.Windows.Forms.Label lblSurname;
         private System.Windows.Forms.Label lblForename;

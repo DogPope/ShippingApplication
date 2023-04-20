@@ -60,14 +60,11 @@ namespace ShippingApplication
             }
 
             txtPhone.Text.Trim(' ');
-            foreach(char a in txtPhone.Text)
+            if (!Customer.isValidPhone(txtPhone.Text))
             {
-                if (!Char.IsDigit(a))
-                {
-                    MessageBox.Show("A phone number contains 10 digits!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txtPhone.Focus();
-                    return;
-                }
+                MessageBox.Show("A phone number contains 10 digits and starts with 08.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtPhone.Focus();
+                return;
             }
 
             if (!Customer.isValidEmail(txtEmail.Text))

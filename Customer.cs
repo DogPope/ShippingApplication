@@ -10,7 +10,7 @@ using System.Text.RegularExpressions;
 
 namespace ShippingApplication
 {
-    class Customer
+    public class Customer
     {
         private Int32 custId;
         private String surname;
@@ -27,31 +27,16 @@ namespace ShippingApplication
         public Customer()
         {
             this.custId = 0;
-            this.forename = "No forename available!";
-            this.surname = "Not available!";
-            this.town = "No town supplied!";
-            this.EIRCode = "None";
-            this.password = "password";
-            this.phone = "0860000000";
-            this.email = "null@gmail.com";
-            this.cardNumber = "Null";
-            this.county = "No county data!";
-            this.status = "Registered";
-        }
-        //Int32 custId, String forename, String surname, String town, String EIRCode, String password, String phone, String email, String cardNumber, String county, String status
-        public Customer(Int32 custId, String forename, String surname, String town, String EIRCode, String password, String phone, String email, String cardNumber, String status, String county)
-        {
-            this.custId = custId;
-            this.forename = forename;
-            this.surname = surname;
-            this.town = town;
-            this.EIRCode = EIRCode;
-            this.password = password;
-            this.phone = phone;
-            this.email = email;
-            this.cardNumber = cardNumber;
-            this.county = county;
-            this.status = status;
+            this.forename = "";
+            this.surname = "";
+            this.town = "";
+            this.EIRCode = "";
+            this.password = "";
+            this.phone = "";
+            this.email = "";
+            this.cardNumber = "";
+            this.county = "";
+            this.status = "Deregistered";
         }
         public Customer(Int32 custId, String forename, String surname, String town, String EIRCode, String password, String phone, String email, String cardNumber, String county)
         {
@@ -66,7 +51,20 @@ namespace ShippingApplication
             this.cardNumber = cardNumber;
             this.county = county;
         }
-
+        public Customer(Int32 custId, String forename, String surname, String town, String EIRCode, String password, String phone, String email, String cardNumber, String county, String status)
+        {
+            this.custId = custId;
+            this.forename = forename;
+            this.surname = surname;
+            this.town = town;
+            this.EIRCode = EIRCode;
+            this.password = password;
+            this.phone = phone;
+            this.email = email;
+            this.cardNumber = cardNumber;
+            this.county = county;
+            this.status = status;
+        }
         public int getCustomerId()
         {
             return this.custId;
@@ -167,7 +165,12 @@ namespace ShippingApplication
         }
         public void setEmail(String Email)
         {
-            this.email = Email;
+            if (isValidEmail(Email))
+            {
+                this.email = Email;
+            }
+            else
+                throw new ArgumentException();
         }
 
         public String getCardNumber()
@@ -176,7 +179,12 @@ namespace ShippingApplication
         }
         public void setCardNumber(String CardNumber)
         {
-            this.cardNumber = CardNumber;
+            if (isValidCardNumber(CardNumber))
+            {
+                this.cardNumber = CardNumber;
+            }
+            else
+                throw new ArgumentException();
         }
         
         public String getStatus()
@@ -187,11 +195,16 @@ namespace ShippingApplication
         {
             this.status = Status;
         }
-
-        private static bool isValidName(String name)
+        public static bool isValidCardNumber(String Cardnumber)
         {
-            // Makes sure all characters entered are alphabetical
-            return Regex.IsMatch(name, @"^[a-zA-Z]+$");
+            foreach(Char c in Cardnumber)
+            {
+                if (!Char.IsNumber(c))
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         public static bool isValidEircode(String EIRCode)
@@ -247,8 +260,20 @@ namespace ShippingApplication
             }
             return false;
         }
-        public bool isLoggedIn()
+        public static bool isValidPhone(String phoneNumber)
         {
+            foreach(Char c in phoneNumber)
+            {
+                if (!Char.IsDigit(c))
+                {
+                    return false;
+                }
+            }
+            String start = phoneNumber.Substring(0,2);
+            if (!start.Equals("08"))
+            {
+                return false;
+            }
             return true;
         }
         public void getCustomer(Int32 Id)
@@ -337,18 +362,27 @@ namespace ShippingApplication
         {
             // Login form uses this to tie an email to a password for a given account.
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
-            String sqlQuery = "SELECT Cust_ID, forename, password, email FROM Customers WHERE email = '" + email + "'";
+            String sqlQuery = "SELECT Cust_id, Forename, Password, Email, Status FROM Customers WHERE email = '" + email + "'";
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
             conn.Open();
             OracleDataReader dr = cmd.ExecuteReader();
             dr.Read();
 
-            setCustomerId(dr.GetInt32(0));
-            setForename(dr.GetString(1));
-            setPassword(dr.GetString(2));
-            setEmail(dr.GetString(3));
-
-            conn.Close();
+            try
+            {
+                setCustomerId(dr.GetInt32(0));
+                setForename(dr.GetString(1));
+                setPassword(dr.GetString(2));
+                setEmail(dr.GetString(3));
+                setStatus(dr.GetString(4));
+            }catch(InvalidOperationException ex)
+            {
+                Console.Write(ex.ToString());
+            }
+            finally
+            {
+                conn.Close();
+            }
         }
         public static DataSet findCustomerByName(String forename)
         {

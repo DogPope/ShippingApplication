@@ -63,11 +63,25 @@ namespace ShippingApplication
             analyse.Show();
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
+        private void mnuManageOrder_Click(object sender, EventArgs e)
         {
             this.Hide();
-            frmLogin login = new frmLogin(this);
-            login.Show();
+            frmManageOrders manage = new frmManageOrders(this);
+            manage.Show();
+        }
+
+        private void mnuShipOrders_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmOrderShipping orderShipping = new frmOrderShipping(this);
+            orderShipping.Show();
+        }
+
+        private void mnuIssueReceipts_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            frmIssueInvoice invoices = new frmIssueInvoice(this);
+            invoices.Show();
         }
     }
 }

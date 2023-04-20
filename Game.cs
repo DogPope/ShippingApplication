@@ -34,21 +34,6 @@ namespace ShippingApplication
             this.salePrice = 0;
             this.status = "Deregistered";
         }
-        
-        public Game(Int32 gameId, String title, String developer, String publisher, String genre, String description, decimal buyPrice, decimal salePrice, Int32 quantity, String status)
-        {
-            // This constructor should be used for update queries.
-            this.gameId = gameId;
-            this.title = title;
-            this.developer = developer;
-            this.publisher = publisher;
-            this.genre = genre;
-            this.description = description;
-            this.buyPrice = buyPrice;
-            this.salePrice = salePrice;
-            this.quantity = quantity;
-            this.status = status;
-        }
         public Game(Int32 gameId, String title, String developer, String publisher, String genre, String description, decimal buyPrice, decimal salePrice, Int32 quantity)
         {
             // This constructor used for INSERT Queries
@@ -61,6 +46,20 @@ namespace ShippingApplication
             this.buyPrice = buyPrice;
             this.salePrice = salePrice;
             this.quantity = quantity;
+        }
+        public Game(Int32 gameId, String title, String developer, String publisher, String genre, String description, decimal buyPrice, decimal salePrice, Int32 quantity, String status)
+        {
+            // This constructor used for INSERT Queries
+            this.gameId = gameId;
+            this.title = title;
+            this.developer = developer;
+            this.publisher = publisher;
+            this.genre = genre;
+            this.description = description;
+            this.buyPrice = buyPrice;
+            this.salePrice = salePrice;
+            this.quantity = quantity;
+            this.status = status;
         }
 
         public Int32 getGameId()
@@ -135,11 +134,12 @@ namespace ShippingApplication
         }
         public void setDescription(String Description)
         {
-            if (Description.Equals("") || Description.Length > 50)
+            if(Description.Length > 50)
             {
                 throw new ArgumentException();
             }
-            this.description = Description;
+            else
+                this.description = Description;
         }
 
         public Int32 getQuantity()
@@ -148,7 +148,7 @@ namespace ShippingApplication
         }
         public void setQuantity(Int32 Quantity)
         {
-            if (Quantity > 0 && Quantity < Int32.MaxValue)
+            if (Quantity < Int32.MaxValue)
             {
                 this.quantity = Quantity;
             }
@@ -280,7 +280,21 @@ namespace ShippingApplication
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
             String sqlQuery = "SELECT Game_Id, Title, Developer, Publisher, Genre," +
-                "Description, salePrice FROM Games WHERE Title LIKE '%" + title + "%' AND Status='Registered'";
+                "Description, salePrice FROM Games WHERE Title LIKE '%" + title + "%' AND Status='Registered' AND Quantity > 0";
+
+            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds, "Games");
+            conn.Close();
+            return ds;
+        }
+
+        public static DataSet selectAllGames()
+        {
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+
+            String sqlQuery = "SELECT game_id, title, developer, publisher, genre, description, saleprice FROM Games WHERE  Status='Registered'";
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
             OracleDataAdapter da = new OracleDataAdapter(cmd);
@@ -311,7 +325,7 @@ namespace ShippingApplication
             return nextId;
         }
 
-        public void reduceQuantity()
+        public void reduceQuantity(Int32 gameId)
         {
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
@@ -324,10 +338,10 @@ namespace ShippingApplication
             cmd.ExecuteNonQuery();
             conn.Close();
         }
-
         public String orderString()
         {
-            return "Game ID: " + getGameId().ToString("00000") + " Title: " + getTitle() + " Price: " + getSalePrice().ToString("#000.00");
+            return "Game ID: " + getGameId().ToString("00000") + " Title: " + getTitle() + " Quantity: " + getQuantity().ToString("00000") 
+                + " Price: " + getSalePrice().ToString("#000.00");
         }
 
         public String toString()

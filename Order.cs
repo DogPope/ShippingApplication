@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ShippingApplication
 {
-    class Order
+    public class Order
     {
         public Int32 orderId;
         private decimal cost;
@@ -23,11 +23,12 @@ namespace ShippingApplication
             this.date = "SYSDATE";
             this.custId = 0;
         }
-        public Order(Int32 OrderId, decimal Cost, String Date, Int32 CustId)
+        public Order(Int32 OrderId, decimal Cost, String Date, String status, Int32 CustId)
         {
             this.orderId = OrderId;
             this.cost = Cost;
             this.date = Date;
+            this.status = status;
             this.custId = CustId;
         }
         public Int32 getOrderId()
@@ -43,7 +44,6 @@ namespace ShippingApplication
             else
                 throw new ArgumentException();
         }
-
         public String getDate()
         {
             return this.date;
@@ -87,20 +87,66 @@ namespace ShippingApplication
         }
         public void setStatus(String status)
         {
-            this.status = status;
+            if (status.Equals("Returned") || status.Equals("Cancelled") || status.Equals("Placed") || status.Equals("In Transit") || status.Equals("Fulfilled"))
+            {
+                this.status = status;
+            }
+            else
+                throw new ArgumentException();
+            
         }
-        // OrderId, OrderItem, Cost, Date, CustId, status
-        // Placed, Returned, Cancelled, On Hold
+
+        public void getOrder(Int32 OrderId)
+        {
+            // Gets all the values associated with an order by its ID
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+
+            String sqlQuery = "SELECT * FROM Orders WHERE Order_Id =" + OrderId;
+
+            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+            conn.Open();
+            OracleDataReader dr = cmd.ExecuteReader();
+            dr.Read();
+
+            setOrderId(dr.GetInt32(0));
+            setDate(dr.GetString(1));
+            setCost(dr.GetInt32(2));
+            setStatus(dr.GetString(3));
+            setCustId(dr.GetInt32(4));
+
+            conn.Close();
+        }
+        public static double getAgeOfOrder(Int32 OrderId)
+        {
+            // Subtracts the Order Date from the system date and returns the age of the order as a double.
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            String sqlQuery = "SELECT CAST(SYSDATE - Order_Date AS INT) AS Age from Orders WHERE Order_Id=" + OrderId;
+            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+            conn.Open();
+            OracleDataReader dr = cmd.ExecuteReader();
+
+            double difference;
+            dr.Read();
+
+            if (dr.IsDBNull(0))
+                difference = 1;
+            else
+            {
+                difference = dr.GetInt32(0) + 1;
+            }
+            conn.Close();
+            return difference;
+        }
         public void addOrder()
         {
+            // Inserts an order into the Orders table.
             OracleConnection connection = new OracleConnection(DBConnect.oradb);
 
-            // SYSDATE DOES NOT HAVE PUNCTUATION.//
             String sqlQuery = "INSERT INTO Orders Values (" + 
                 getNextOrderID() + "," +
                 "SYSDATE," +
                 this.cost + 
-                ",'Placed '," + 
+                ",'Placed'," + 
                 this.custId + ")";
 
             OracleCommand cmd = new OracleCommand(sqlQuery, connection);
@@ -112,6 +158,7 @@ namespace ShippingApplication
         }
         public static int getNextOrderID()
         {
+            // Returns the next available Order ID as an Integer.
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             String sqlQuery = "SELECT MAX(Order_ID) FROM Orders";
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
@@ -130,51 +177,42 @@ namespace ShippingApplication
             conn.Close();
             return nextId;
         }
-        public void cancelOrder()
+        public static void transportOrder(Int32 orderId)
         {
+            // Marks an order as having been assembled and currently in transit.
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            String sqlQuery = "UPDATE Order SET " +
+            String sqlQuery = "UPDATE Orders SET " +
+                "Status = 'In Transit' " +
+                "WHERE Order_Id = " + orderId;
+
+            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+        public static void cancelOrder(Int32 orderId)
+        {
+            // Updates an orders status to Cancelled.
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+
+            String sqlQuery = "UPDATE Orders SET " +
                 "Status = 'Cancelled' " + 
-                "WHERE Cust_Id = " + this.custId + ");";
+                "WHERE Order_Id = " + orderId;
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
             conn.Open();
             cmd.ExecuteNonQuery();
             conn.Close();
         }
-        public void holdOrder()
+        public static DataSet viewOrdersByCustId(Int32 CustId)
         {
+            // Returns eligible orders using Customer ID Field.
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            String sqlQuery = "UPDATE Order SET " +
-                "Status = 'On hold' " +
-                "WHERE Cust_Id = " + this.custId + ");";
-
-            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
-            conn.Open();
-            cmd.ExecuteNonQuery();
-            conn.Close();
-        }
-        public void returnOrder()
-        {
-            OracleConnection conn = new OracleConnection(DBConnect.oradb);
-
-            String sqlQuery = "UPDATE Order SET " +
-                "Status = 'Returned' " +
-                "WHERE Cust_Id = " + this.custId + ");";
-
-            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
-            conn.Open();
-            cmd.ExecuteNonQuery();
-            conn.Close();
-        }
-        public static DataSet findOrderById(Int32 orderId)
-        {
-            OracleConnection conn = new OracleConnection(DBConnect.oradb);
-
-            String sqlQuery = "SELECT * FROM Orders " +
-                "WHERE Order_Id LIKE '%" + orderId + "%;";
+            String sqlQuery = "SELECT DISTINCT Order_Id, Order_Date, Cost, Status FROM Orders " +
+                "WHERE Status != 'Cancelled' AND Status != 'Returned' AND Cust_Id=" + CustId +" " +
+                "ORDER BY Order_Date DESC";
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
             OracleDataAdapter da = new OracleDataAdapter(cmd);
@@ -183,15 +221,114 @@ namespace ShippingApplication
             conn.Close();
             return ds;
         }
-        public String toString()
+        public static void returnOrder(Int32 orderId)
         {
-            return "Order Id: " + getOrderId() +
-                "\nCost :" + getCost() + 
-                "\nStatus: " + getStatus();
+            // Sets an orders status to returned.
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+
+            String sqlQuery = "UPDATE Orders SET " +
+                "Status = 'Returned' " +
+                "WHERE Order_Id = " + orderId;
+
+            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
         }
-        public String addOrderString()
+        public static void finishOrder(Int32 OrderId)
         {
-            return "Order ID: " + getOrderId() + "\nCost: " + getCost() + "\nStatus : Ready to assemble!";
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+
+            String sqlQuery = "UPDATE Orders SET " +
+                "Status = 'Fulfilled' " +
+                "WHERE Order_Id = " + OrderId;
+
+            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
+        public static DataSet findOrdersToPrint()
+        {
+            // Return Order details for staff to print to a receipt.
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+
+            String sqlQuery = "SELECT * FROM Orders WHERE Status='In Transit' ORDER BY Order_Date";
+
+            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds, "Orders");
+            conn.Close();
+            return ds;
+        }
+        public static DataSet generateReceipt(Int32 CustId)
+        {
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+
+            // Customers.email was added later. Remove if unable to get working.
+            String sqlQuery = "SELECT Orders.Order_ID, Customers.forename, Customers.surname, Customers.email, Orders.Order_Date, Orders.Cost, Orders.Cust_Id " +
+                                "FROM Orders " +
+                                "INNER JOIN Customers ON Orders.Cust_ID = Customers.Cust_ID " +
+                                "WHERE Orders.Cust_Id = " + CustId + " AND Orders.Status = 'In Transit'";
+
+            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds, "Orders");
+            conn.Close();
+            return ds;
+        }
+        public static decimal getRevenue(String months, String year)
+        {
+            // Returns the next available Order ID as an Integer.
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            String sqlQuery = "SELECT SUM(Cost) FROM Orders " +
+                "WHERE Order_Date LIKE '%" + months + "-" + year + "%' " +
+                "AND Status='Fulfilled'";
+            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+            conn.Open();
+            OracleDataReader dr = cmd.ExecuteReader();
+
+            decimal cost;
+            dr.Read();
+
+            // If no orders returned.
+            try
+            {
+                if (dr.IsDBNull(0))
+                    cost = 0;
+                else
+                {
+                    cost = dr.GetDecimal(0);
+                }
+            }catch(InvalidOperationException ex)
+            {
+                return 0;
+            }
+            conn.Close();
+            return cost;
+        }
+        public static DataSet showShippingOrders()
+        {
+            // Generates a list of orders that need to be assembled by warehouse.
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+
+            String sqlQuery = "SELECT Order_Id, Order_Date, Cust_Id " +
+                "FROM Orders WHERE Status='Placed' " +
+                "ORDER BY Order_Date";
+
+            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds, "Orders");
+            conn.Close();
+            return ds;
+        }
+
+        public string toString()
+        {
+            return "Order ID: " + getOrderId() + "\nDate: " + getDate() + "\nCost: " + getCost() + "\nCustomer ID: " + getCustId() + "\nStatus: " + getStatus();
         }
     }
 }

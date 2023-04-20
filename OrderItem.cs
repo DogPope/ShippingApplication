@@ -1,5 +1,6 @@
 ﻿using Oracle.ManagedDataAccess.Client;
 using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ShippingApplication
 {
-    class OrderItem
+    public class OrderItem
     {
         private Int32 gameId;
         private Int32 orderId;
@@ -68,6 +69,7 @@ namespace ShippingApplication
         }
         public void addOrderItem()
         {
+            // Inserts individual items into an order.
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
             String sqlQuery = "INSERT INTO Order_Items Values (" +
@@ -82,12 +84,13 @@ namespace ShippingApplication
 
             conn.Close();
         }
-        public void removeOrderItem()
+        public void removeOrderItem(Int32 gameId)
         {
+            // Removes an order item from an order.
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
             String sqlQuery = "DELETE FROM Order_Items " +
-                "WHERE Order_Id = " + this.orderId;
+                "WHERE Game_Id = " + this.gameId;
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
             conn.Open();
@@ -96,12 +99,58 @@ namespace ShippingApplication
 
             conn.Close();
         }
-        public bool isEmpty(List<OrderItem> games)
+        public static decimal getStock(String title, String year)
         {
-            if (games[0] == null)
-                return true;
-            else
-                return false;
+            // Returns the sum of sales for a given item over a certain time period.
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+            String sqlQuery = "SELECT  Sum(Order_Items.Cost) " +
+                                "FROM Games " +
+                                "INNER JOIN Order_items ON Order_Items.Game_id=Games.Game_Id " +
+                                "INNER JOIN Orders ON Order_Items.Order_Id=Orders.Order_Id " +
+                                "WHERE Games.Title LIKE '%" + title + "%' " +
+                                "AND Orders.Status='Fulfilled' " +
+                                "AND Orders.Order_Date LIKE '%" + year + "'";
+            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+            conn.Open();
+            OracleDataReader dr = cmd.ExecuteReader();
+
+            decimal cost;
+            dr.Read();
+
+            // If result set is null
+            try
+            {
+                if (dr.IsDBNull(0))
+                    cost = 0;
+                else
+                {
+                    cost = dr.GetDecimal(0);
+                }
+            }
+            catch (InvalidOperationException ex)
+            {
+                return 0;
+            }
+            conn.Close();
+            return cost;
+        }
+        public static DataSet viewOrderItems(Int32 OrderId)
+        {
+            // Returns a dataSet of the items in an order.
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+
+            String sqlQuery = "SELECT Games.Title, Games.Saleprice, Order_Items.Game_Id " +
+                "FROM Games " +
+                "INNER JOIN Order_Items " +
+                "ON Order_Items.Game_Id = Games.Game_Id " +
+                "WHERE Order_Items.Order_Id = " + OrderId;
+
+            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds, "Order_Items");
+            conn.Close();
+            return ds;
         }
         public String toString()
         {
