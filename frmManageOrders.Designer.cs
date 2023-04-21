@@ -52,7 +52,7 @@ namespace ShippingApplication
             this.btnHelp.Location = new System.Drawing.Point(390, 494);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(107, 37);
-            this.btnHelp.TabIndex = 53;
+            this.btnHelp.TabIndex = 4;
             this.btnHelp.Text = "Help";
             this.btnHelp.UseVisualStyleBackColor = true;
             this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
@@ -60,16 +60,18 @@ namespace ShippingApplication
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(390, 407);
+            this.txtPassword.MaxLength = 20;
             this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(294, 20);
-            this.txtPassword.TabIndex = 52;
+            this.txtPassword.TabIndex = 2;
             // 
             // txtEmail
             // 
             this.txtEmail.Location = new System.Drawing.Point(69, 407);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(294, 20);
-            this.txtEmail.TabIndex = 51;
+            this.txtEmail.TabIndex = 1;
             // 
             // lblPassword
             // 
@@ -95,7 +97,7 @@ namespace ShippingApplication
             this.btnLogin.Location = new System.Drawing.Point(69, 494);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(152, 38);
-            this.btnLogin.TabIndex = 48;
+            this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -107,7 +109,7 @@ namespace ShippingApplication
             this.btnReturn.Location = new System.Drawing.Point(1084, -1);
             this.btnReturn.Name = "btnReturn";
             this.btnReturn.Size = new System.Drawing.Size(101, 24);
-            this.btnReturn.TabIndex = 54;
+            this.btnReturn.TabIndex = 10;
             this.btnReturn.Text = "Return";
             this.btnReturn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnReturn.UseVisualStyleBackColor = false;
@@ -119,7 +121,7 @@ namespace ShippingApplication
             this.grdOrders.Location = new System.Drawing.Point(69, 34);
             this.grdOrders.Name = "grdOrders";
             this.grdOrders.Size = new System.Drawing.Size(615, 111);
-            this.grdOrders.TabIndex = 55;
+            this.grdOrders.TabIndex = 6;
             this.grdOrders.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdOrders_CellClick);
             // 
             // btnViewOrders
@@ -127,7 +129,7 @@ namespace ShippingApplication
             this.btnViewOrders.Location = new System.Drawing.Point(705, 34);
             this.btnViewOrders.Name = "btnViewOrders";
             this.btnViewOrders.Size = new System.Drawing.Size(136, 23);
-            this.btnViewOrders.TabIndex = 56;
+            this.btnViewOrders.TabIndex = 5;
             this.btnViewOrders.Text = "View Orders";
             this.btnViewOrders.UseVisualStyleBackColor = true;
             this.btnViewOrders.Click += new System.EventHandler(this.btnViewOrders_Click);
@@ -146,7 +148,7 @@ namespace ShippingApplication
             this.btnRemove.Location = new System.Drawing.Point(520, 191);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(110, 26);
-            this.btnRemove.TabIndex = 58;
+            this.btnRemove.TabIndex = 9;
             this.btnRemove.Text = "Remove";
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
@@ -156,7 +158,7 @@ namespace ShippingApplication
             this.btnReturnOrder.Location = new System.Drawing.Point(705, 122);
             this.btnReturnOrder.Name = "btnReturnOrder";
             this.btnReturnOrder.Size = new System.Drawing.Size(136, 23);
-            this.btnReturnOrder.TabIndex = 59;
+            this.btnReturnOrder.TabIndex = 8;
             this.btnReturnOrder.Text = "Return Order";
             this.btnReturnOrder.UseVisualStyleBackColor = true;
             this.btnReturnOrder.Click += new System.EventHandler(this.btnReturnOrder_Click);
@@ -166,7 +168,7 @@ namespace ShippingApplication
             this.btnCancelOrder.Location = new System.Drawing.Point(705, 79);
             this.btnCancelOrder.Name = "btnCancelOrder";
             this.btnCancelOrder.Size = new System.Drawing.Size(136, 23);
-            this.btnCancelOrder.TabIndex = 60;
+            this.btnCancelOrder.TabIndex = 7;
             this.btnCancelOrder.Text = "Cancel Order";
             this.btnCancelOrder.UseVisualStyleBackColor = true;
             this.btnCancelOrder.Click += new System.EventHandler(this.btnCancelOrder_Click);

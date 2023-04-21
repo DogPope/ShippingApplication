@@ -23,21 +23,21 @@ namespace ShippingApplication
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             // Validate Customer Fields.
-            if (txtForename.Text == "")
+            if (txtForename.Text == "" || txtForename.Text.Length > 20)
             {
                 MessageBox.Show("A name is required to set up an account!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtForename.Focus();
                 return;
             }
 
-            if (txtSurname.Text == "")
+            if (txtSurname.Text == "" || txtSurname.Text.Length > 20)
             {
                 MessageBox.Show("A name is required to set up an account!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtSurname.Focus();
                 return;
             }
 
-            if (txtTown.Text == "")
+            if (txtTown.Text == "" || txtTown.Text.Length > 20)
             {
                 MessageBox.Show("A town is required to set up an account!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtTown.Focus();
@@ -74,14 +74,14 @@ namespace ShippingApplication
                 return;
             }
 
-            txtCardnumber.Text.Trim(' ');
-            if(txtCardnumber.Text.Length != 16)
+            String card = txtCardnumber.Text.Trim(' ');
+            if(card.Length != 16)
             {
                 MessageBox.Show("A credit card must consist of 16 digits!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtCardnumber.Focus();
                 return;
             }
-            foreach(char c in txtCardnumber.Text)
+            foreach(char c in card)
             {
                 if (!Char.IsDigit(c))
                 {

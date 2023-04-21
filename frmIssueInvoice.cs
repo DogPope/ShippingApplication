@@ -63,6 +63,7 @@ namespace ShippingApplication
 
             Int32 CustId = Convert.ToInt32(grdOrders.Rows[grdOrders.CurrentCell.RowIndex].Cells[4].Value.ToString());
 
+            // Update User interface and brings customer details to a table for receipt generation.
             grdReceipts.Visible = true;
             grdReceipts.DataSource = Order.generateReceipt(CustId).Tables["Orders"];
         }
@@ -108,6 +109,7 @@ namespace ShippingApplication
                 };
                 emailClient.Send("fakeEmailAddress@gmail.com", email, "Receipt for order number" + orderIdAsString, "Receipt for your order!");*/
 
+                // Sets order Id to Fulfilled on successful recieving of Order.
                 Order.finishOrder(orderId);
 
                 MessageBox.Show("The receipt has been generated and the order has been fulfilled!", "Well Done!", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -118,7 +120,7 @@ namespace ShippingApplication
             }
             finally
             {
-                // Always executes if grid is empty.
+                // When grid is empty, Display that no more receipts need to be generated currently.
                 if(grdReceipts.RowCount == 1)
                 {
                     MessageBox.Show("There are no more orders to generate receipts for! Please try again later.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);

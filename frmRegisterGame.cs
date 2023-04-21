@@ -102,10 +102,6 @@ namespace ShippingApplication
             }
 
             //Creates a game object to add to the database.
-            /* Attributes are in order:
-             * Int32 gameId, String title, String developer,
-             * String publisher, String genre, String description,
-             * decimal buyPrice, decimal salePrice, Int32 quantity.*/
             Game newGame = new Game(Game.getNextGameID(), txtTitle.Text, txtDeveloper.Text, txtPublisher.Text, txtGenre.Text, txtDescription.Text,
                                  Convert.ToDecimal(txtBuyPrice.Text), Convert.ToDecimal(txtSalePrice.Text), Convert.ToInt32(txtQuantity.Text));
 

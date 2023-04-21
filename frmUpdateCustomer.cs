@@ -77,7 +77,6 @@ namespace ShippingApplication
             txtEmail.Text = updateCustomer.getEmail();
             txtCardnumber.Text = updateCustomer.getCardNumber();
             cboCounty.Text = updateCustomer.getCounty();
-            txtStatus.Text = updateCustomer.getStatus();
 
             grdCustomers.Visible = true;
         }
@@ -85,11 +84,77 @@ namespace ShippingApplication
         private void btnUpdateCustomer_Click(object sender, EventArgs e)
         {
             // Validate the fields entered by the customer. If nothing is returned, exit.
-            if (txtForename.Text.Equals(""))
+            if (txtForename.Text == "" || txtForename.Text.Length > 20)
             {
-                MessageBox.Show("You must enter a valid ID number to continue!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtEnterForename.Text = "";
-                txtEnterForename.Focus();
+                MessageBox.Show("A name is required to set up an account!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtForename.Focus();
+                return;
+            }
+
+            if (txtSurname.Text == "" || txtSurname.Text.Length > 20)
+            {
+                MessageBox.Show("A name is required to set up an account!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtSurname.Focus();
+                return;
+            }
+
+            if (txtTown.Text == "" || txtTown.Text.Length > 20)
+            {
+                MessageBox.Show("A town is required to set up an account!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtTown.Focus();
+                return;
+            }
+
+            if (!Customer.isValidEircode(txtEircode.Text))
+            {
+                MessageBox.Show("An EIR Code is required to send parcels to your address!\nIt must be a three character Routing code +" +
+                    " a four character unique identifier, punctuated by a space or hyphen.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtEircode.Focus();
+                return;
+            }
+            if (!Customer.isValidPassword(txtPassword.Text))
+            {
+                MessageBox.Show("A password must have at least 1 upper case letter, a lower case letter, a symbol and a number." +
+                    "\nIt must be between 8 and 20 characters long!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtPassword.Focus();
+                return;
+            }
+
+            txtPhone.Text.Trim(' ');
+            if (!Customer.isValidPhone(txtPhone.Text))
+            {
+                MessageBox.Show("A phone number contains 10 digits and starts with 08.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtPhone.Focus();
+                return;
+            }
+
+            if (!Customer.isValidEmail(txtEmail.Text))
+            {
+                MessageBox.Show("An email address is required for receipts!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtEmail.Focus();
+                return;
+            }
+
+            String card = txtCardnumber.Text.Trim(' ');
+            if (card.Length != 16)
+            {
+                MessageBox.Show("A credit card must consist of 16 digits!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txtCardnumber.Focus();
+                return;
+            }
+            foreach (char c in card)
+            {
+                if (!Char.IsDigit(c))
+                {
+                    MessageBox.Show("A credit card must consist of 16 digits!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txtCardnumber.Focus();
+                    return;
+                }
+            }
+            if (cboCounty.SelectedIndex == 0)
+            {
+                MessageBox.Show("You must select a county for deliveries!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                cboCounty.Focus();
                 return;
             }
             if (grdCustomers.RowCount == 1)
@@ -110,7 +175,6 @@ namespace ShippingApplication
             updateCustomer.setEmail(txtEmail.Text);
             updateCustomer.setCardNumber(txtCardnumber.Text);
             updateCustomer.setCounty(cboCounty.Text);
-            updateCustomer.setStatus(txtStatus.Text);
 
             // Update the data in the database
             updateCustomer.updateCustomer();
@@ -129,7 +193,6 @@ namespace ShippingApplication
             txtEmail.Clear();
             txtCardnumber.Clear();
             cboCounty.SelectedIndex = -1;
-            txtStatus.Clear();
             btnDeregisterAccount.Visible = false;
             btnSearch.Visible = false;
             btnUpdateCustomer.Visible = false;
@@ -168,6 +231,18 @@ namespace ShippingApplication
             btnDeregisterAccount.Visible = false;
             btnSearch.Visible = false;
             btnUpdateCustomer.Visible = false;
+
+            // Resets User Interface.
+            grdCustomers.Visible = false;
+            txtForename.Clear();
+            txtSurname.Clear();
+            txtTown.Clear();
+            txtEircode.Clear();
+            txtPassword.Clear();
+            txtPhone.Clear();
+            txtEmail.Clear();
+            txtCardnumber.Clear();
+            cboCounty.SelectedIndex = -1;
         }
     }
 }

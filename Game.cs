@@ -20,7 +20,6 @@ namespace ShippingApplication
         private decimal salePrice;
         private Int32 quantity;
         private String status;
-        //GameId,Title,Developer,Publisher,Genre,Description,BuyPrice,SalePrice,Quantity,Status
         public Game()
         {
             this.gameId = 0;
@@ -36,7 +35,7 @@ namespace ShippingApplication
         }
         public Game(Int32 gameId, String title, String developer, String publisher, String genre, String description, decimal buyPrice, decimal salePrice, Int32 quantity)
         {
-            // This constructor used for INSERT Queries
+            // This constructor used for update queries.
             this.gameId = gameId;
             this.title = title;
             this.developer = developer;
@@ -49,7 +48,7 @@ namespace ShippingApplication
         }
         public Game(Int32 gameId, String title, String developer, String publisher, String genre, String description, decimal buyPrice, decimal salePrice, Int32 quantity, String status)
         {
-            // This constructor used for INSERT Queries
+            // Constructor used for testing purposes.
             this.gameId = gameId;
             this.title = title;
             this.developer = developer;
@@ -195,7 +194,7 @@ namespace ShippingApplication
 
         public void getGame(Int32 Id)
         {
-            //GameId,Title,Developer,Publisher,Genre,Description,BuyPrice,SalePrice,Quantity,Status
+            // Selects the game data to be used by the program. Filters by Game Id.
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             String sqlQuery = "SELECT * FROM Games WHERE Game_ID = " + Id;
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
@@ -220,14 +219,13 @@ namespace ShippingApplication
 
         public void addGame()
         {
+            // Adds the game object data to the database.
             OracleConnection connection = new OracleConnection(DBConnect.oradb);
 
             String sqlQuery = "INSERT INTO Games VALUES (" + getNextGameID() + ",'" +
                 this.title + "','" + this.developer + "','" + this.publisher + "','" +
                 this.genre + "','" + this.description + "'," + this.buyPrice + "," +
                 this.salePrice + "," + this.quantity + ",'Registered')";
-
-            /*    INSERT INTO Games VALUES (id,'title','DEV','PUB','DESC','GENRE',12,12,12,'R')         */
 
             OracleCommand cmd = new OracleCommand(sqlQuery, connection);
             connection.Open();
@@ -238,6 +236,7 @@ namespace ShippingApplication
 
         public void updateGame()
         {
+            // Takes a games details and uses text fields in Update Game to update them.
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
             String sqlQuery = "UPDATE Games SET " +
@@ -263,6 +262,7 @@ namespace ShippingApplication
 
         public void deregisterGame()
         {
+            // Sets a games status to Deregistered.
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
             String sqlQuery = "UPDATE Games SET " +
@@ -277,6 +277,7 @@ namespace ShippingApplication
 
         public static DataSet findGameByTitle(String title)
         {
+            // Finds an instance of Game by the title.
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
             String sqlQuery = "SELECT Game_Id, Title, Developer, Publisher, Genre," +
@@ -292,6 +293,7 @@ namespace ShippingApplication
 
         public static DataSet selectAllGames()
         {
+            // Selects all available game data.
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
             String sqlQuery = "SELECT game_id, title, developer, publisher, genre, description, saleprice FROM Games WHERE  Status='Registered'";
@@ -306,6 +308,7 @@ namespace ShippingApplication
 
         public static int getNextGameID()
         {
+            // Returns the maximum game Id in the database and adds 1 to it.
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             String sqlQuery = "SELECT MAX(Game_ID) FROM Games";
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
@@ -327,6 +330,7 @@ namespace ShippingApplication
 
         public void reduceQuantity(Int32 gameId)
         {
+            // Reduce the quantity of an item in the database.
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
             String sqlQuery = "UPDATE Games SET Quantity = Quantity - 1 WHERE Game_ID = " + this.gameId;
@@ -340,6 +344,7 @@ namespace ShippingApplication
         }
         public String orderString()
         {
+            // Generates a string of important game details for use in shopping cart.
             return "Game ID: " + getGameId().ToString("00000") + " Title: " + getTitle() + " Quantity: " + getQuantity().ToString("00000") 
                 + " Price: " + getSalePrice().ToString("#000.00");
         }

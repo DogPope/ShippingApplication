@@ -12,6 +12,7 @@ namespace ShippingApplication
 
         private void btnExit_Click(object sender, EventArgs e)
         {
+            // Asks the user if they would like to exit.
             DialogResult result = MessageBox.Show("Are you sure you would like to exit?", "Quitting!", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
@@ -21,6 +22,7 @@ namespace ShippingApplication
                 return;
         }
 
+        // All the following entries are for the menu and to navigate to other forms.
         private void mnuRegisterCustomer_Click(object sender, EventArgs e)
         {
             this.Hide();

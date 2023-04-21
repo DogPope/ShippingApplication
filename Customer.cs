@@ -197,6 +197,7 @@ namespace ShippingApplication
         }
         public static bool isValidCardNumber(String Cardnumber)
         {
+            // Validates Credit Card Number. Checks to see if all chars are numeric.
             foreach(Char c in Cardnumber)
             {
                 if (!Char.IsNumber(c))
@@ -209,7 +210,7 @@ namespace ShippingApplication
 
         public static bool isValidEircode(String EIRCode)
         {
-            // This regex string should allow the user to type a recognisable EIR Code.
+            // This regex string accounts for valid EIR Codes.
             return Regex.IsMatch(EIRCode, "(?:^[AC-FHKNPRTV-Y][0-9]{2}|D6W)[ -]?[0-9AC-FHKNPRTV-Y]{4}$");
         }
 
@@ -234,7 +235,7 @@ namespace ShippingApplication
                 return false;
 
             //At least 1 special char
-            string specialCharacters = @"%!@#$%^&*()?/>.<,:;'\|}]{[_~`+=-" + "\"";
+            string specialCharacters = @"%!@#$%^&*()?/>.<,:\|}]{[_~`+=-" + "\"";
             char[] specialCharactersArray = specialCharacters.ToCharArray();
             foreach (char c in specialCharactersArray)
             {
@@ -262,6 +263,7 @@ namespace ShippingApplication
         }
         public static bool isValidPhone(String phoneNumber)
         {
+            // Checks if phone number starts with 08 and returns untrue if it doesn't.
             foreach(Char c in phoneNumber)
             {
                 if (!Char.IsDigit(c))
@@ -278,6 +280,7 @@ namespace ShippingApplication
         }
         public void getCustomer(Int32 Id)
         {
+            // Selects customer details where Customer ID is given
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             String sqlQuery = "SELECT * FROM Customers WHERE Cust_ID=" + Id;
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
@@ -303,29 +306,27 @@ namespace ShippingApplication
 
         public void addCustomer()
         {
-                OracleConnection connection = new OracleConnection(DBConnect.oradb);
+            // Add a customers details to the database.
+            OracleConnection connection = new OracleConnection(DBConnect.oradb);
 
-                //Int32 custId, String forename, String surname, String town, String EIRCode, String password, String phone, String email, String cardNumber, String county, String status
-                String sqlQuery = "INSERT INTO Customers Values (" + getNextCustomerID() + ",'" +
-                    this.surname + "','" + this.forename + "','" +
-                    this.town + "','" + this.EIRCode + "','" +
-                    this.password + "','" + this.phone + "','" + this.email + "','" +
-                    this.cardNumber + "','Registered','" + this.county + "')";
+            String sqlQuery = "INSERT INTO Customers Values (" + getNextCustomerID() + ",'" +
+                this.surname + "','" + this.forename + "','" +
+                this.town + "','" + this.EIRCode + "','" +
+                this.password + "','" + this.phone + "','" + this.email + "','" +
+                this.cardNumber + "','Registered','" + this.county + "')";
 
-                /*
-                 INSERT INTO Customers Values(id,'sname','fname','town','EIRcode','
-                 */
-                OracleCommand cmd = new OracleCommand(sqlQuery, connection);
-                connection.Open();
+            OracleCommand cmd = new OracleCommand(sqlQuery, connection);
+            connection.Open();
 
-                cmd.ExecuteNonQuery();
+            cmd.ExecuteNonQuery();
 
-                connection.Close();
+            connection.Close();
         }
         public void updateCustomer()
         {
+            // Uses given details to update the Customers attributes.
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
-            //Int32 custId, String forename, String surname, String town, String EIRCode, String password, String phone, String email, String cardNumber, String county, String status
+
             String sqlQuery = "UPDATE Customers SET " +
                 "Cust_Id = " + this.custId + "," +
                 "Forename = '" + this.forename + "'," +
@@ -347,6 +348,7 @@ namespace ShippingApplication
         }
         public void deregisterCustomer()
         {
+            // Set a customers Status to 'Deregistered'.
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
             String sqlQuery = "UPDATE Customers SET " +
@@ -386,6 +388,7 @@ namespace ShippingApplication
         }
         public static DataSet findCustomerByName(String forename)
         {
+            // Selects Customers details based on closest match to forename.
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
             String sqlQuery = "SELECT Cust_Id, forename, surname FROM Customers " +
@@ -400,6 +403,7 @@ namespace ShippingApplication
         }
         public static int getNextCustomerID()
         {
+            // Returns the highest Customer ID from the database and adds 1 to it.
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             String sqlQuery = "SELECT MAX(Cust_ID) FROM Customers";
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
@@ -418,18 +422,9 @@ namespace ShippingApplication
             conn.Close();
             return nextId;
         }
-        public String getAddress()
-        {
-            return "Customer Id: " + getCustomerId() + 
-                "\nForename: " + getForename() + 
-                "\nSurname: " + getSurname() + 
-                "\nAnd sent to this address:" +
-                "\nTown: " + getTown() + 
-                "\nCounty: " + getCounty() +
-                "\nEIR Code: " + getEircode();
-        }
         public String toString()
         {
+            // Returns customer details to a message box to confirm successful entry to database.
             return "Customer Id: " + getCustomerId() + 
                 "\nForename: " + getForename() + 
                 "\nSurname: " + getSurname() + 

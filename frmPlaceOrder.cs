@@ -60,8 +60,6 @@ namespace ShippingApplication
                 return;
             }
 
-            int instances = 0;
-
             // Add the game to a list array for INSERT INTO Order_Items Query.
             games.Add(thisGame);
 
@@ -73,11 +71,11 @@ namespace ShippingApplication
             txtTotal.Text = totalPrice.ToString();
             lstCart.Items.Add(thisGame.orderString());
 
-            // This is my attempt at stock control.
+            /* Loops through each item in lstCart.Items and adds to a counter each time it sees an occurence of the same ID Number.
+               If the 'instances' counter is greater than the games Quantity, it removes it from the cart and gives the customer an error message. */
+            int instances = 0;
 
-            /* Loops through each item in lstCart.Items and adds to a counter each time it sees an occurence of the same object.
-               If the counter is greater than the games Quantity, it removes it from the cart and gives the customer an error message. */
-            foreach(string list in lstCart.Items)
+            foreach (string list in lstCart.Items)
             {
                 if (list.Contains(gameId.ToString()))
                     instances++;
@@ -126,6 +124,7 @@ namespace ShippingApplication
                 decimal thisPrice = Convert.ToDecimal(i.Substring(i.Length - 6, 6));
                 int orderID = Convert.ToInt32(txtOrderId.Text);
 
+                // Declare an order Item and add it to database.
                 OrderItem newItem = new OrderItem(gameId, orderID, thisPrice);
                 newItem.addOrderItem();
 
@@ -143,6 +142,7 @@ namespace ShippingApplication
                 game.reduceQuantity(gameId);
             }
 
+            // Display confirmation to user.
             MessageBox.Show("Your order has been added to the system!","Added!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             btnPlaceOrder.Visible = false;
         }
@@ -163,10 +163,12 @@ namespace ShippingApplication
         }
         private void btnRemove_Click(object sender, EventArgs e)
         {
+            // If nothing from the cart has been selected, nothing can be removed.
             if(lstCart.SelectedIndex == -1)
             {
                 MessageBox.Show("You must select something to remove!","Error!",MessageBoxButtons.OK,MessageBoxIcon.Error);
             }
+
             // Creates a string array from the objects in lstCart.
             string[] clist = lstCart.SelectedItems.OfType<string>().ToArray();
 
@@ -228,7 +230,7 @@ namespace ShippingApplication
                 btnLogin.Visible = false;
             }
             else
-            // Displays error message. Decrements counter.
+            // Displays error message. Decrements number of attempts remaining for security purposes.
             {
                 counter--;
                 MessageBox.Show("Invalid password! You have " + counter +
@@ -236,6 +238,7 @@ namespace ShippingApplication
                 txtPassword.Text = "";
                 txtPassword.Focus();
             }
+
             // When counter reaches zero, the form closes.
             if (counter == 0)
             {
@@ -249,7 +252,7 @@ namespace ShippingApplication
         {
             // Displays valid logon credentials for testing purposes. Would be removed for final product.
             MessageBox.Show("The following details are one accurate entry and will work for login purposes.\n" +
-                "Email:\t\temail@email.com\nPassword:\t\tpassword", "Help", MessageBoxButtons.OK);
+                "Email:\t\tPlaceholder@gmail.com\nPassword:\t\tPlaceholder", "Help", MessageBoxButtons.OK);
         }
 
         // Selects all registered games, in case the user doesn't quite know what they want.

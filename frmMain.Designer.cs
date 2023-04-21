@@ -33,11 +33,9 @@ namespace ShippingApplication
             this.mnuCustomers = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuRegisterCustomer = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUpdateCustomer = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewDetailsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuGames = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuRegisterGame = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUpdateDelete = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewDetailsToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuOrders = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPlaceOrder = new System.Windows.Forms.ToolStripMenuItem();
             this.updateCancelOrderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,8 +63,7 @@ namespace ShippingApplication
             // 
             this.mnuCustomers.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuRegisterCustomer,
-            this.mnuUpdateCustomer,
-            this.viewDetailsToolStripMenuItem});
+            this.mnuUpdateCustomer});
             this.mnuCustomers.Name = "mnuCustomers";
             this.mnuCustomers.Size = new System.Drawing.Size(76, 20);
             this.mnuCustomers.Text = "Customers";
@@ -74,29 +71,22 @@ namespace ShippingApplication
             // mnuRegisterCustomer
             // 
             this.mnuRegisterCustomer.Name = "mnuRegisterCustomer";
-            this.mnuRegisterCustomer.Size = new System.Drawing.Size(171, 22);
+            this.mnuRegisterCustomer.Size = new System.Drawing.Size(180, 22);
             this.mnuRegisterCustomer.Text = "Register Customer";
             this.mnuRegisterCustomer.Click += new System.EventHandler(this.mnuRegisterCustomer_Click);
             // 
             // mnuUpdateCustomer
             // 
             this.mnuUpdateCustomer.Name = "mnuUpdateCustomer";
-            this.mnuUpdateCustomer.Size = new System.Drawing.Size(171, 22);
+            this.mnuUpdateCustomer.Size = new System.Drawing.Size(180, 22);
             this.mnuUpdateCustomer.Text = "Update / Delete";
             this.mnuUpdateCustomer.Click += new System.EventHandler(this.mnuCustomerUpdateDelete_Click);
-            // 
-            // viewDetailsToolStripMenuItem
-            // 
-            this.viewDetailsToolStripMenuItem.Name = "viewDetailsToolStripMenuItem";
-            this.viewDetailsToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
-            this.viewDetailsToolStripMenuItem.Text = "View Customers";
             // 
             // mnuGames
             // 
             this.mnuGames.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuRegisterGame,
-            this.mnuUpdateDelete,
-            this.viewDetailsToolStripMenuItem1});
+            this.mnuUpdateDelete});
             this.mnuGames.Name = "mnuGames";
             this.mnuGames.Size = new System.Drawing.Size(55, 20);
             this.mnuGames.Text = "Games";
@@ -104,22 +94,16 @@ namespace ShippingApplication
             // mnuRegisterGame
             // 
             this.mnuRegisterGame.Name = "mnuRegisterGame";
-            this.mnuRegisterGame.Size = new System.Drawing.Size(156, 22);
+            this.mnuRegisterGame.Size = new System.Drawing.Size(180, 22);
             this.mnuRegisterGame.Text = "Register Game";
             this.mnuRegisterGame.Click += new System.EventHandler(this.mnuRegisterGame_Click);
             // 
             // mnuUpdateDelete
             // 
             this.mnuUpdateDelete.Name = "mnuUpdateDelete";
-            this.mnuUpdateDelete.Size = new System.Drawing.Size(156, 22);
+            this.mnuUpdateDelete.Size = new System.Drawing.Size(180, 22);
             this.mnuUpdateDelete.Text = "Update / Delete";
             this.mnuUpdateDelete.Click += new System.EventHandler(this.mnuGameUpdateDelete_Click);
-            // 
-            // viewDetailsToolStripMenuItem1
-            // 
-            this.viewDetailsToolStripMenuItem1.Name = "viewDetailsToolStripMenuItem1";
-            this.viewDetailsToolStripMenuItem1.Size = new System.Drawing.Size(156, 22);
-            this.viewDetailsToolStripMenuItem1.Text = "View Games";
             // 
             // mnuOrders
             // 
@@ -135,28 +119,28 @@ namespace ShippingApplication
             // mnuPlaceOrder
             // 
             this.mnuPlaceOrder.Name = "mnuPlaceOrder";
-            this.mnuPlaceOrder.Size = new System.Drawing.Size(180, 22);
+            this.mnuPlaceOrder.Size = new System.Drawing.Size(155, 22);
             this.mnuPlaceOrder.Text = "Place Order";
             this.mnuPlaceOrder.Click += new System.EventHandler(this.mnuPlaceOrder_Click);
             // 
             // updateCancelOrderToolStripMenuItem
             // 
             this.updateCancelOrderToolStripMenuItem.Name = "updateCancelOrderToolStripMenuItem";
-            this.updateCancelOrderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.updateCancelOrderToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.updateCancelOrderToolStripMenuItem.Text = "Manage Orders";
             this.updateCancelOrderToolStripMenuItem.Click += new System.EventHandler(this.mnuManageOrder_Click);
             // 
             // viewOrderToolStripMenuItem
             // 
             this.viewOrderToolStripMenuItem.Name = "viewOrderToolStripMenuItem";
-            this.viewOrderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewOrderToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.viewOrderToolStripMenuItem.Text = "Ship Orders";
             this.viewOrderToolStripMenuItem.Click += new System.EventHandler(this.mnuShipOrders_Click);
             // 
             // invoiceReceiptsToolStripMenuItem
             // 
             this.invoiceReceiptsToolStripMenuItem.Name = "invoiceReceiptsToolStripMenuItem";
-            this.invoiceReceiptsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.invoiceReceiptsToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.invoiceReceiptsToolStripMenuItem.Text = "Issue Receipts";
             this.invoiceReceiptsToolStripMenuItem.Click += new System.EventHandler(this.mnuIssueReceipts_Click);
             // 
@@ -205,11 +189,9 @@ namespace ShippingApplication
         private System.Windows.Forms.ToolStripMenuItem mnuCustomers;
         private System.Windows.Forms.ToolStripMenuItem mnuRegisterCustomer;
         private System.Windows.Forms.ToolStripMenuItem mnuUpdateCustomer;
-        private System.Windows.Forms.ToolStripMenuItem viewDetailsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mnuGames;
         private System.Windows.Forms.ToolStripMenuItem mnuRegisterGame;
         private System.Windows.Forms.ToolStripMenuItem mnuUpdateDelete;
-        private System.Windows.Forms.ToolStripMenuItem viewDetailsToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem mnuOrders;
         private System.Windows.Forms.ToolStripMenuItem mnuPlaceOrder;
         private System.Windows.Forms.ToolStripMenuItem updateCancelOrderToolStripMenuItem;

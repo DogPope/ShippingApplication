@@ -140,7 +140,7 @@ namespace ShippingApplication
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            OrderItem thisOrderItem = new OrderItem();
+            // Check if the shopping cart is empty.
             if (grdOrderItems.Rows.Count == 1)
             {
                 MessageBox.Show("This Order no longer contains any items. It is being Cancelled.", "Cancelling Order!", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
@@ -148,6 +148,9 @@ namespace ShippingApplication
                 Order.cancelOrder(OrderId);
                 return;
             }
+
+            // Create an Order Object for management purposes.
+            OrderItem thisOrderItem = new OrderItem();
             int gameId = Convert.ToInt32(grdOrderItems.Rows[grdOrderItems.CurrentCell.RowIndex].Cells[2].Value.ToString());
             thisOrderItem.setGameId(gameId);
 

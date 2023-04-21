@@ -36,6 +36,7 @@ namespace ShippingApplication
             }
             String title = txtGameTitle.Text;
 
+            // Returns the game data based on the title provided.
             grdGames.DataSource = Game.findGameByTitle(title).Tables["Games"];
 
             // If no data is returned, inform the customer then return.
@@ -157,7 +158,7 @@ namespace ShippingApplication
             updateGame.setBuyPrice(Convert.ToDecimal(txtBuyPrice.Text));
             updateGame.setSalePrice(Convert.ToDecimal(txtSalePrice.Text));
             updateGame.setQuantity(Convert.ToInt32(txtQuantity.Text));
-            updateGame.setStatus(cboStatus.Text);
+            //updateGame.setStatus(cboStatus.Text);
 
             //update the data in the database
             updateGame.updateGame();
@@ -214,6 +215,18 @@ namespace ShippingApplication
             btnDeregisterGame.Visible = false;
             btnSearch.Visible = false;
             btnUpdateGame.Visible = false;
+
+            //Reset UI
+            grdGames.Visible = false;
+            txtTitle.Clear();
+            txtDeveloper.Clear();
+            txtPublisher.Clear();
+            txtGenre.Clear();
+            txtDescription.Clear();
+            txtBuyPrice.Clear();
+            txtSalePrice.Clear();
+            txtQuantity.Clear();
+            cboStatus.SelectedIndex = -1;
         }
     }
 }

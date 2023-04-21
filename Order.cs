@@ -118,7 +118,7 @@ namespace ShippingApplication
         }
         public static double getAgeOfOrder(Int32 OrderId)
         {
-            // Subtracts the Order Date from the system date and returns the age of the order as a double.
+            // Subtracts the Order Date from the system date and returns the age of the order, in days, as a double.
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
             String sqlQuery = "SELECT CAST(SYSDATE - Order_Date AS INT) AS Age from Orders WHERE Order_Id=" + OrderId;
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
@@ -237,6 +237,7 @@ namespace ShippingApplication
         }
         public static void finishOrder(Int32 OrderId)
         {
+            // Changes an orders status to Fulfilled, where it can be used for Administrative purposes.
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
             String sqlQuery = "UPDATE Orders SET " +
@@ -250,7 +251,7 @@ namespace ShippingApplication
         }
         public static DataSet findOrdersToPrint()
         {
-            // Return Order details for staff to print to a receipt.
+            // Return Order details for staff to print to a receipt. Selects the oldest unassembled orders first.
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
             String sqlQuery = "SELECT * FROM Orders WHERE Status='In Transit' ORDER BY Order_Date";
@@ -264,9 +265,9 @@ namespace ShippingApplication
         }
         public static DataSet generateReceipt(Int32 CustId)
         {
+            // Returns details of an order for the customers receipt.
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
-            // Customers.email was added later. Remove if unable to get working.
             String sqlQuery = "SELECT Orders.Order_ID, Customers.forename, Customers.surname, Customers.email, Orders.Order_Date, Orders.Cost, Orders.Cust_Id " +
                                 "FROM Orders " +
                                 "INNER JOIN Customers ON Orders.Cust_ID = Customers.Cust_ID " +

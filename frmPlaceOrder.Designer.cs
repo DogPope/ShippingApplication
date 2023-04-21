@@ -29,7 +29,6 @@ namespace ShippingApplication
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             this.btnReturn = new System.Windows.Forms.Button();
             this.txtTitle = new System.Windows.Forms.TextBox();
             this.lblCustId = new System.Windows.Forms.Label();
@@ -58,7 +57,7 @@ namespace ShippingApplication
             this.btnReturn.Location = new System.Drawing.Point(1083, 0);
             this.btnReturn.Name = "btnReturn";
             this.btnReturn.Size = new System.Drawing.Size(101, 24);
-            this.btnReturn.TabIndex = 27;
+            this.btnReturn.TabIndex = 12;
             this.btnReturn.Text = "Return";
             this.btnReturn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnReturn.UseVisualStyleBackColor = false;
@@ -70,7 +69,7 @@ namespace ShippingApplication
             this.txtTitle.MaxLength = 20;
             this.txtTitle.Name = "txtTitle";
             this.txtTitle.Size = new System.Drawing.Size(100, 20);
-            this.txtTitle.TabIndex = 28;
+            this.txtTitle.TabIndex = 5;
             // 
             // lblCustId
             // 
@@ -87,7 +86,7 @@ namespace ShippingApplication
             this.btnPlaceOrder.Location = new System.Drawing.Point(877, 226);
             this.btnPlaceOrder.Name = "btnPlaceOrder";
             this.btnPlaceOrder.Size = new System.Drawing.Size(221, 23);
-            this.btnPlaceOrder.TabIndex = 33;
+            this.btnPlaceOrder.TabIndex = 11;
             this.btnPlaceOrder.Text = "Place Order";
             this.btnPlaceOrder.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPlaceOrder.UseVisualStyleBackColor = false;
@@ -98,7 +97,7 @@ namespace ShippingApplication
             this.btnSearch.Location = new System.Drawing.Point(288, 43);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(69, 22);
-            this.btnSearch.TabIndex = 34;
+            this.btnSearch.TabIndex = 6;
             this.btnSearch.Text = "Search";
             this.btnSearch.UseVisualStyleBackColor = true;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
@@ -109,7 +108,7 @@ namespace ShippingApplication
             this.grdGames.Location = new System.Drawing.Point(62, 82);
             this.grdGames.Name = "grdGames";
             this.grdGames.Size = new System.Drawing.Size(744, 113);
-            this.grdGames.TabIndex = 35;
+            this.grdGames.TabIndex = 8;
             this.grdGames.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.grdGames_CellClick);
             // 
             // lstCart
@@ -118,7 +117,7 @@ namespace ShippingApplication
             this.lstCart.Location = new System.Drawing.Point(826, 82);
             this.lstCart.Name = "lstCart";
             this.lstCart.Size = new System.Drawing.Size(272, 108);
-            this.lstCart.TabIndex = 36;
+            this.lstCart.TabIndex = 9;
             // 
             // label1
             // 
@@ -144,7 +143,7 @@ namespace ShippingApplication
             this.btnRemove.Location = new System.Drawing.Point(1114, 166);
             this.btnRemove.Name = "btnRemove";
             this.btnRemove.Size = new System.Drawing.Size(69, 24);
-            this.btnRemove.TabIndex = 39;
+            this.btnRemove.TabIndex = 10;
             this.btnRemove.Text = "Remove";
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
@@ -163,7 +162,7 @@ namespace ShippingApplication
             this.btnHelp.Location = new System.Drawing.Point(383, 409);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(107, 37);
-            this.btnHelp.TabIndex = 47;
+            this.btnHelp.TabIndex = 4;
             this.btnHelp.Text = "Help";
             this.btnHelp.UseVisualStyleBackColor = true;
             this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
@@ -171,16 +170,18 @@ namespace ShippingApplication
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(383, 322);
+            this.txtPassword.MaxLength = 20;
             this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(294, 20);
-            this.txtPassword.TabIndex = 46;
+            this.txtPassword.TabIndex = 2;
             // 
             // txtEmail
             // 
             this.txtEmail.Location = new System.Drawing.Point(62, 322);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(294, 20);
-            this.txtEmail.TabIndex = 45;
+            this.txtEmail.TabIndex = 1;
             // 
             // lblPassword
             // 
@@ -206,7 +207,7 @@ namespace ShippingApplication
             this.btnLogin.Location = new System.Drawing.Point(62, 409);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(152, 38);
-            this.btnLogin.TabIndex = 42;
+            this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -216,7 +217,7 @@ namespace ShippingApplication
             this.btnSelectAll.Location = new System.Drawing.Point(737, 43);
             this.btnSelectAll.Name = "btnSelectAll";
             this.btnSelectAll.Size = new System.Drawing.Size(69, 22);
-            this.btnSelectAll.TabIndex = 48;
+            this.btnSelectAll.TabIndex = 7;
             this.btnSelectAll.Text = "Select All";
             this.btnSelectAll.UseVisualStyleBackColor = true;
             this.btnSelectAll.Click += new System.EventHandler(this.btnSelectAll_Click);
