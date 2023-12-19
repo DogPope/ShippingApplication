@@ -85,5 +85,10 @@ namespace ShippingApplication
             frmIssueInvoice invoices = new frmIssueInvoice(this);
             invoices.Show();
         }
+
+        private void mnuViewCustomers_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(Customer.viewAllCustomers().ToString());
+        }
     }
 }

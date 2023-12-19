@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ShippingApplication
@@ -45,7 +38,7 @@ namespace ShippingApplication
 
             // Get order details from Order field, fill out data table with orders.
             int OrderId = Convert.ToInt32(grdOrders.Rows[grdOrders.CurrentCell.RowIndex].Cells[0].Value.ToString());
-            
+
             // Fills out the table with individual order items, then makes the grid visible.
             grdGames.DataSource = OrderItem.viewOrderItems(OrderId).Tables["Order_Items"];
             grdGames.Visible = true;
@@ -60,8 +53,8 @@ namespace ShippingApplication
                 // Order status gets updated to In Transit.
                 Int32 orderId = Convert.ToInt32(grdOrders.Rows[grdOrders.CurrentCell.RowIndex].Cells[0].Value.ToString());
                 Order.transportOrder(orderId);
-                MessageBox.Show("This order has now been changed to \"In Transit\"","Thank You!",MessageBoxButtons.OK,MessageBoxIcon.Information);
-                
+                MessageBox.Show("This order has now been changed to \"In Transit\"", "Thank You!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 // Make the individual items of the completed order invisible.
                 grdGames.Visible = false;
             }

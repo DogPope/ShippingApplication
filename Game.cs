@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Data;
-using System.Text;
-using System.Threading.Tasks;
-using Oracle.ManagedDataAccess.Client;
 
 namespace ShippingApplication
 {
@@ -81,7 +77,7 @@ namespace ShippingApplication
         }
         public void setTitle(String Title)
         {
-            if(Title.Equals("") || Title.Length > 20)
+            if (Title.Equals("") || Title.Length > 20)
             {
                 throw new ArgumentException();
             }
@@ -345,21 +341,21 @@ namespace ShippingApplication
         public String orderString()
         {
             // Generates a string of important game details for use in shopping cart.
-            return "Game ID: " + getGameId().ToString("00000") + " Title: " + getTitle() + " Quantity: " + getQuantity().ToString("00000") 
+            return "Game ID: " + getGameId().ToString("00000") + " Title: " + getTitle() + " Quantity: " + getQuantity().ToString("00000")
                 + " Price: " + getSalePrice().ToString("#000.00");
         }
 
         public String toString()
         {
             return "Game ID: " + getGameId() +
-                "\nTitle: " + getTitle() + 
-                "\nDeveloper: " + getDeveloper() + 
-                "\nPublisher: " + getPublisher() + 
-                "\nDescription: "+ getDescription() + 
+                "\nTitle: " + getTitle() +
+                "\nDeveloper: " + getDeveloper() +
+                "\nPublisher: " + getPublisher() +
+                "\nDescription: " + getDescription() +
                 "\nGenre: " + getGenre() +
-                "\nQuantity: " + getQuantity() + 
-                "\nCost to buy: " + getBuyPrice() + 
-                "\nSale Price: " + getSalePrice() + 
+                "\nQuantity: " + getQuantity() +
+                "\nCost to buy: " + getBuyPrice() +
+                "\nSale Price: " + getSalePrice() +
                 "\nStatus: " + getStatus();
         }
     }

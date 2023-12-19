@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ShippingApplication
@@ -75,13 +68,13 @@ namespace ShippingApplication
             }
 
             String card = txtCardnumber.Text.Trim(' ');
-            if(card.Length != 16)
+            if (card.Length != 16)
             {
                 MessageBox.Show("A credit card must consist of 16 digits!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtCardnumber.Focus();
                 return;
             }
-            foreach(char c in card)
+            foreach (char c in card)
             {
                 if (!Char.IsDigit(c))
                 {
@@ -90,7 +83,8 @@ namespace ShippingApplication
                     return;
                 }
             }
-            if(cboCounty.SelectedIndex == 0)
+            // Needs looking into. Does not currently work.
+            if (cboCounty.SelectedIndex == -1)
             {
                 MessageBox.Show("You must select a county for deliveries!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 cboCounty.Focus();
@@ -106,8 +100,7 @@ namespace ShippingApplication
             next.addCustomer();
 
             // Displays confirmation to the user.
-            MessageBox.Show(next.toString() + " added successfully", "Success",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(next.toString() + " added successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             // Reset User Interface.
             txtForename.Clear();

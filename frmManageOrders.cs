@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ShippingApplication
@@ -53,7 +46,7 @@ namespace ShippingApplication
             // Check if the user entered a valid email address.
             if (!Customer.isValidEmail(txtEmail.Text))
             {
-                MessageBox.Show("That is not a valid email address. Please ensure everything is spelled correctly!","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("That is not a valid email address. Please ensure everything is spelled correctly!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtEmail.Focus();
                 return;
             }
@@ -105,15 +98,15 @@ namespace ShippingApplication
         private void btnViewOrders_Click(object sender, EventArgs e)
         {
             // Brings up the users orders and allows them to manage them.
-            if(isLoggedIn == false)
+            if (isLoggedIn == false)
             {
-                MessageBox.Show("You need to be logged in to manage an order!","Error!",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("You need to be logged in to manage an order!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             // Gets the customer ID and uses it to query orders belonging to that customer ID
             int custId = loginCustomer.getCustomerId();
-            
+
             // Sets the Order management system to visible.
             grdOrders.Visible = true;
             grdOrders.DataSource = Order.viewOrdersByCustId(custId).Tables["Orders"];
@@ -171,7 +164,7 @@ namespace ShippingApplication
         private void btnCancelOrder_Click(object sender, EventArgs e)
         {
             // If no orders placed, inform the user then do nothing.
-            if(grdOrders.Rows.Count == 1)
+            if (grdOrders.Rows.Count == 1)
             {
                 MessageBox.Show("You do not have any orders placed with us at the moment. Try placing an order first!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -186,18 +179,18 @@ namespace ShippingApplication
             String status = newOrder.getStatus();
 
             // Only allow user to cancel the details of an unfulfilled order.
-            if(status.Equals("Placed") || status.Equals("In Transit"))
+            if (status.Equals("Placed") || status.Equals("In Transit"))
             {
                 Int32 rows = grdOrders.CurrentCell.RowIndex;
                 grdOrders.Rows.RemoveAt(rows);
                 Order.cancelOrder(OrderId);
-                MessageBox.Show("The order has been successfully cancelled. Thanks for your custom!","",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show("The order has been successfully cancelled. Thanks for your custom!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
             // For other classes of order, do nothing.
             else
             {
-                MessageBox.Show("The order cannot be cancelled at this time. You might try the return option instead.","Error",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show("The order cannot be cancelled at this time. You might try the return option instead.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
         }
@@ -219,16 +212,16 @@ namespace ShippingApplication
             // If the order is less than 30 days old, it can be returned.
             // Gets age of order from database, converts it to days.
             double ageOfOrder = Convert.ToDouble(Order.getAgeOfOrder(OrderId));
-            if(ageOfOrder > 30)
+            if (ageOfOrder > 30)
             {
-                MessageBox.Show("This order is over the 30 day return period. We apologize for any inconvenience caused.","Error!",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show("This order is over the 30 day return period. We apologize for any inconvenience caused.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
             // If order older than 30 days, prevent the user from returning it.
             else
             {
-                MessageBox.Show("Order has been successfully returned. Thank you for your co-operation!","Returns",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show("Order has been successfully returned. Thank you for your co-operation!", "Returns", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 Order.returnOrder(OrderId);
                 return;
             }

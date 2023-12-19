@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Net;
-using System.Net.Mail;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ShippingApplication
@@ -39,9 +31,9 @@ namespace ShippingApplication
 
             // Set the receipt data to not visible on starting the form.
             grdReceipts.Visible = false;
-            
+
             // If no orders match the criteria, nothing is brought up and information is displayed to the user.
-            if(grdOrders.RowCount == 1)
+            if (grdOrders.RowCount == 1)
             {
                 MessageBox.Show("There are no orders that need invoices issued at this time. Please try again later!",
                     "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -85,7 +77,7 @@ namespace ShippingApplication
                 sw.WriteLine("Surname         : " + grdReceipts.Rows[grdReceipts.CurrentCell.RowIndex].Cells[2].Value.ToString());
 
                 sw.WriteLine("Email           : " + grdReceipts.Rows[grdReceipts.CurrentCell.RowIndex].Cells[3].Value.ToString());
-                
+
                 String email = grdReceipts.Rows[grdReceipts.CurrentCell.RowIndex].Cells[3].Value.ToString();
 
                 sw.WriteLine("Date            : " + grdReceipts.Rows[grdReceipts.CurrentCell.RowIndex].Cells[4].Value.ToString());
@@ -121,7 +113,7 @@ namespace ShippingApplication
             finally
             {
                 // When grid is empty, Display that no more receipts need to be generated currently.
-                if(grdReceipts.RowCount == 1)
+                if (grdReceipts.RowCount == 1)
                 {
                     MessageBox.Show("There are no more orders to generate receipts for! Please try again later.", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     grdReceipts.Visible = false;

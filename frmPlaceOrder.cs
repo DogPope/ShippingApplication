@@ -1,13 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Oracle.ManagedDataAccess.Client;
 
 namespace ShippingApplication
 {
@@ -54,9 +48,9 @@ namespace ShippingApplication
             thisGame.setQuantity(thisGame.getQuantity() - 1);
 
             // Check if the number of instances in the database is less than the amount the user is trying to order.
-            if(quantity < 1)
+            if (quantity < 1)
             {
-                MessageBox.Show("There is currently no stock left of this item. Please try again later!","Information",MessageBoxButtons.OK,MessageBoxIcon.Information);
+                MessageBox.Show("There is currently no stock left of this item. Please try again later!", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -79,7 +73,7 @@ namespace ShippingApplication
             {
                 if (list.Contains(gameId.ToString()))
                     instances++;
-                if(instances > quantity)
+                if (instances > quantity)
                 {
                     MessageBox.Show("The quantity you are trying to order is greater than the quantity we have!", "Removing!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     lstCart.Items.RemoveAt(lstCart.Items.IndexOf(list));
@@ -91,7 +85,7 @@ namespace ShippingApplication
         private void btnPlaceOrder_Click(object sender, EventArgs e)
         {
             // Make sure that a customer who is not logged in cannot place an order.
-            if(isLoggedIn == false)
+            if (isLoggedIn == false)
             {
                 MessageBox.Show("You must log in to place an order!", "Login Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtEmail.Focus();
@@ -132,7 +126,7 @@ namespace ShippingApplication
                 Game game = new Game();
                 game.getGame(gameId);
                 int quantity = game.getQuantity();
-                if(quantity < 1)
+                if (quantity < 1)
                 {
                     MessageBox.Show("We are currently out of this item. Please try another time!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return;
@@ -143,7 +137,7 @@ namespace ShippingApplication
             }
 
             // Display confirmation to user.
-            MessageBox.Show("Your order has been added to the system!","Added!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Your order has been added to the system!", "Added!", MessageBoxButtons.OK, MessageBoxIcon.Information);
             btnPlaceOrder.Visible = false;
         }
 
@@ -164,16 +158,16 @@ namespace ShippingApplication
         private void btnRemove_Click(object sender, EventArgs e)
         {
             // If nothing from the cart has been selected, nothing can be removed.
-            if(lstCart.SelectedIndex == -1)
+            if (lstCart.SelectedIndex == -1)
             {
-                MessageBox.Show("You must select something to remove!","Error!",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("You must select something to remove!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
             // Creates a string array from the objects in lstCart.
             string[] clist = lstCart.SelectedItems.OfType<string>().ToArray();
 
             // Loops through the array, assigning the last 6 characters to a decimal number, then subtracts that from total price.
-            foreach(String i in clist)
+            foreach (String i in clist)
             {
                 decimal thisPrice = Convert.ToDecimal(i.Substring(i.Length - 6, 6));
                 totalPrice -= thisPrice;

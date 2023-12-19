@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ShippingApplication
@@ -25,7 +18,7 @@ namespace ShippingApplication
             // Validation for fields required here. Genre and Description are nullable.
             if (txtTitle.Text.Equals(""))
             {
-                MessageBox.Show("You must enter a game title to continue!","Error!",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("You must enter a game title to continue!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtTitle.Focus();
                 txtTitle.Text = "";
                 return;
@@ -72,7 +65,7 @@ namespace ShippingApplication
                 txtSalePrice.Text = "";
                 return;
             }
-            foreach(Char c in txtSalePrice.Text)
+            foreach (Char c in txtSalePrice.Text)
             {
                 if (!Char.IsNumber(c) && c != '.')
                 {

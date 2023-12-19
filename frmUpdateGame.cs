@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ShippingApplication
@@ -27,7 +20,7 @@ namespace ShippingApplication
         private void btnSearch_Click(object sender, EventArgs e)
         {
             // Validate given game data.
-            if(txtGameTitle.Text == "")
+            if (txtGameTitle.Text == "")
             {
                 MessageBox.Show("You must enter a title!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtGameTitle.Text = "";
@@ -194,23 +187,23 @@ namespace ShippingApplication
             }
 
             // If no data is returned.
-            if(grdGames.RowCount == 1)
+            if (grdGames.RowCount == 1)
             {
                 MessageBox.Show("You must select a game to Deregister!", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtGameTitle.Text = "";
                 txtGameTitle.Focus();
                 return;
             }
-            
+
             // Get game ID from the data grid view.
             int id = Convert.ToInt32(grdGames.Rows[grdGames.CurrentCell.RowIndex].Cells[0].Value.ToString());
             Game deregister = new Game();
             deregister.getGame(id);
-            
+
             // Deregister the selected Game.
             deregister.deregisterGame();
             MessageBox.Show("The Games status has successfully been changed to Deregistered!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            
+
             // Sets game management buttons to invisible.
             btnDeregisterGame.Visible = false;
             btnSearch.Visible = false;

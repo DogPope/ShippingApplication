@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Oracle.ManagedDataAccess.Client;
+using System;
 using System.Data;
-using System.Text;
-using System.Threading.Tasks;
-using System.Net.Mail;
-using Oracle.ManagedDataAccess.Client;
+using System.Data.Odbc;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace ShippingApplication
 {
     public class Customer
     {
+        OracleConnection conn = new OracleConnection(DBConnect.oradb);
         private Int32 custId;
         private String surname;
         private String forename;
@@ -131,7 +129,7 @@ namespace ShippingApplication
             this.county = County;
         }
 
-        
+
         public String getEircode()
         {
             return this.EIRCode;
@@ -140,7 +138,7 @@ namespace ShippingApplication
         {
             this.EIRCode = EIRcode;
         }
-        
+
         public String getPassword()
         {
             return this.password;
@@ -186,7 +184,7 @@ namespace ShippingApplication
             else
                 throw new ArgumentException();
         }
-        
+
         public String getStatus()
         {
             return status;
@@ -198,7 +196,7 @@ namespace ShippingApplication
         public static bool isValidCardNumber(String Cardnumber)
         {
             // Validates Credit Card Number. Checks to see if all chars are numeric.
-            foreach(Char c in Cardnumber)
+            foreach (Char c in Cardnumber)
             {
                 if (!Char.IsNumber(c))
                 {
@@ -250,7 +248,7 @@ namespace ShippingApplication
             // Email validation should support up to a third level domain, only support one '@' Symbol.
             int numOfAtSymbols = 0;
             int domainSize = 0;
-            foreach(char c in emailaddress)
+            foreach (char c in emailaddress)
             {
                 if (c == '@')
                     numOfAtSymbols++;
@@ -264,14 +262,14 @@ namespace ShippingApplication
         public static bool isValidPhone(String phoneNumber)
         {
             // Checks if phone number starts with 08 and returns untrue if it doesn't.
-            foreach(Char c in phoneNumber)
+            foreach (Char c in phoneNumber)
             {
                 if (!Char.IsDigit(c))
                 {
                     return false;
                 }
             }
-            String start = phoneNumber.Substring(0,2);
+            String start = phoneNumber.Substring(0, 2);
             if (!start.Equals("08"))
             {
                 return false;
@@ -281,7 +279,6 @@ namespace ShippingApplication
         public void getCustomer(Int32 Id)
         {
             // Selects customer details where Customer ID is given
-            OracleConnection conn = new OracleConnection(DBConnect.oradb);
             String sqlQuery = "SELECT * FROM Customers WHERE Cust_ID=" + Id;
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
             conn.Open();
@@ -306,27 +303,28 @@ namespace ShippingApplication
 
         public void addCustomer()
         {
-            // Add a customers details to the database.
-            OracleConnection connection = new OracleConnection(DBConnect.oradb);
+            try
+            {
+                String sqlQuery = "INSERT INTO Customers Values (" + getNextCustomerID() + ",'" +
+                    this.surname + "','" + this.forename + "','" +
+                    this.town + "','" + this.EIRCode + "','" +
+                    this.password + "','" + this.phone + "','" + this.email + "','" +
+                    this.cardNumber + "','Registered','" + this.county + "')";
 
-            String sqlQuery = "INSERT INTO Customers Values (" + getNextCustomerID() + ",'" +
-                this.surname + "','" + this.forename + "','" +
-                this.town + "','" + this.EIRCode + "','" +
-                this.password + "','" + this.phone + "','" + this.email + "','" +
-                this.cardNumber + "','Registered','" + this.county + "')";
+                OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+                conn.Open();
 
-            OracleCommand cmd = new OracleCommand(sqlQuery, connection);
-            connection.Open();
-
-            cmd.ExecuteNonQuery();
-
-            connection.Close();
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                conn.Close();
+                throw ex;
+            }
         }
         public void updateCustomer()
         {
             // Uses given details to update the Customers attributes.
-            OracleConnection conn = new OracleConnection(DBConnect.oradb);
-
             String sqlQuery = "UPDATE Customers SET " +
                 "Cust_Id = " + this.custId + "," +
                 "Forename = '" + this.forename + "'," +
@@ -349,8 +347,6 @@ namespace ShippingApplication
         public void deregisterCustomer()
         {
             // Set a customers Status to 'Deregistered'.
-            OracleConnection conn = new OracleConnection(DBConnect.oradb);
-
             String sqlQuery = "UPDATE Customers SET " +
                 "Status = 'Deregistered' " +
                 "WHERE Cust_Id = " + this.custId;
@@ -363,7 +359,6 @@ namespace ShippingApplication
         public void findCustomerByEmail(String email)
         {
             // Login form uses this to tie an email to a password for a given account.
-            OracleConnection conn = new OracleConnection(DBConnect.oradb);
             String sqlQuery = "SELECT Cust_id, Forename, Password, Email, Status FROM Customers WHERE email = '" + email + "'";
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
             conn.Open();
@@ -377,7 +372,8 @@ namespace ShippingApplication
                 setPassword(dr.GetString(2));
                 setEmail(dr.GetString(3));
                 setStatus(dr.GetString(4));
-            }catch(InvalidOperationException ex)
+            }
+            catch (InvalidOperationException ex)
             {
                 Console.Write(ex.ToString());
             }
@@ -390,9 +386,21 @@ namespace ShippingApplication
         {
             // Selects Customers details based on closest match to forename.
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
-
             String sqlQuery = "SELECT Cust_Id, forename, surname FROM Customers " +
                 "WHERE forename LIKE '%" + forename + "%' ORDER BY Forename";
+
+            OracleCommand cmd = new OracleCommand(sqlQuery, conn);
+            OracleDataAdapter da = new OracleDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            da.Fill(ds, "Customers");
+            conn.Close();
+            return ds;
+        }
+        public static DataSet viewAllCustomers()
+        {
+            OracleConnection conn = new OracleConnection(DBConnect.oradb);
+
+            String sqlQuery = "SELECT * FROM Customers";
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
             OracleDataAdapter da = new OracleDataAdapter(cmd);
@@ -425,14 +433,14 @@ namespace ShippingApplication
         public String toString()
         {
             // Returns customer details to a message box to confirm successful entry to database.
-            return "Customer Id: " + getCustomerId() + 
-                "\nForename: " + getForename() + 
-                "\nSurname: " + getSurname() + 
-                "\nTown: " + getTown() + 
-                "\nCounty: " + getCounty() + 
-                "\nEIR Code: " + getEircode() + 
-                "\nPhone: " + getPhoneNumber() + 
-                "\nEmail: " + getEmail() + 
+            return "Customer Id: " + getCustomerId() +
+                "\nForename: " + getForename() +
+                "\nSurname: " + getSurname() +
+                "\nTown: " + getTown() +
+                "\nCounty: " + getCounty() +
+                "\nEIR Code: " + getEircode() +
+                "\nPhone: " + getPhoneNumber() +
+                "\nEmail: " + getEmail() +
                 "\nStatus: " + getStatus();
         }
     }

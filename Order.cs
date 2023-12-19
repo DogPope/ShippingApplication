@@ -1,10 +1,6 @@
 ﻿using Oracle.ManagedDataAccess.Client;
 using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ShippingApplication
 {
@@ -37,7 +33,7 @@ namespace ShippingApplication
         }
         public void setOrderId(Int32 OrderId)
         {
-            if(OrderId > 0 || OrderId < Int32.MaxValue)
+            if (OrderId > 0 || OrderId < Int32.MaxValue)
             {
                 this.orderId = OrderId;
             }
@@ -93,7 +89,7 @@ namespace ShippingApplication
             }
             else
                 throw new ArgumentException();
-            
+
         }
 
         public void getOrder(Int32 OrderId)
@@ -142,11 +138,11 @@ namespace ShippingApplication
             // Inserts an order into the Orders table.
             OracleConnection connection = new OracleConnection(DBConnect.oradb);
 
-            String sqlQuery = "INSERT INTO Orders Values (" + 
+            String sqlQuery = "INSERT INTO Orders Values (" +
                 getNextOrderID() + "," +
                 "SYSDATE," +
-                this.cost + 
-                ",'Placed'," + 
+                this.cost +
+                ",'Placed'," +
                 this.custId + ")";
 
             OracleCommand cmd = new OracleCommand(sqlQuery, connection);
@@ -197,7 +193,7 @@ namespace ShippingApplication
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
             String sqlQuery = "UPDATE Orders SET " +
-                "Status = 'Cancelled' " + 
+                "Status = 'Cancelled' " +
                 "WHERE Order_Id = " + orderId;
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
@@ -211,7 +207,7 @@ namespace ShippingApplication
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
             String sqlQuery = "SELECT DISTINCT Order_Id, Order_Date, Cost, Status FROM Orders " +
-                "WHERE Status != 'Cancelled' AND Status != 'Returned' AND Cust_Id=" + CustId +" " +
+                "WHERE Status != 'Cancelled' AND Status != 'Returned' AND Cust_Id=" + CustId + " " +
                 "ORDER BY Order_Date DESC";
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
@@ -303,7 +299,8 @@ namespace ShippingApplication
                 {
                     cost = dr.GetDecimal(0);
                 }
-            }catch(InvalidOperationException ex)
+            }
+            catch (InvalidOperationException ex)
             {
                 return 0;
             }

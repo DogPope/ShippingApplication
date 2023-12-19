@@ -29,10 +29,12 @@ namespace ShippingApplication
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.munProgram = new System.Windows.Forms.MenuStrip();
             this.mnuCustomers = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuRegisterCustomer = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUpdateCustomer = new System.Windows.Forms.ToolStripMenuItem();
+            this.viewCustomersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuGames = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuRegisterGame = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUpdateDelete = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,7 +65,8 @@ namespace ShippingApplication
             // 
             this.mnuCustomers.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuRegisterCustomer,
-            this.mnuUpdateCustomer});
+            this.mnuUpdateCustomer,
+            this.viewCustomersToolStripMenuItem});
             this.mnuCustomers.Name = "mnuCustomers";
             this.mnuCustomers.Size = new System.Drawing.Size(76, 20);
             this.mnuCustomers.Text = "Customers";
@@ -82,6 +85,13 @@ namespace ShippingApplication
             this.mnuUpdateCustomer.Text = "Update / Delete";
             this.mnuUpdateCustomer.Click += new System.EventHandler(this.mnuCustomerUpdateDelete_Click);
             // 
+            // viewCustomersToolStripMenuItem
+            // 
+            this.viewCustomersToolStripMenuItem.Name = "viewCustomersToolStripMenuItem";
+            this.viewCustomersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewCustomersToolStripMenuItem.Text = "View Customers";
+            this.viewCustomersToolStripMenuItem.Click += new System.EventHandler(this.mnuViewCustomers_Click);
+            // 
             // mnuGames
             // 
             this.mnuGames.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -94,14 +104,14 @@ namespace ShippingApplication
             // mnuRegisterGame
             // 
             this.mnuRegisterGame.Name = "mnuRegisterGame";
-            this.mnuRegisterGame.Size = new System.Drawing.Size(180, 22);
+            this.mnuRegisterGame.Size = new System.Drawing.Size(156, 22);
             this.mnuRegisterGame.Text = "Register Game";
             this.mnuRegisterGame.Click += new System.EventHandler(this.mnuRegisterGame_Click);
             // 
             // mnuUpdateDelete
             // 
             this.mnuUpdateDelete.Name = "mnuUpdateDelete";
-            this.mnuUpdateDelete.Size = new System.Drawing.Size(180, 22);
+            this.mnuUpdateDelete.Size = new System.Drawing.Size(156, 22);
             this.mnuUpdateDelete.Text = "Update / Delete";
             this.mnuUpdateDelete.Click += new System.EventHandler(this.mnuGameUpdateDelete_Click);
             // 
@@ -119,28 +129,28 @@ namespace ShippingApplication
             // mnuPlaceOrder
             // 
             this.mnuPlaceOrder.Name = "mnuPlaceOrder";
-            this.mnuPlaceOrder.Size = new System.Drawing.Size(155, 22);
+            this.mnuPlaceOrder.Size = new System.Drawing.Size(180, 22);
             this.mnuPlaceOrder.Text = "Place Order";
             this.mnuPlaceOrder.Click += new System.EventHandler(this.mnuPlaceOrder_Click);
             // 
             // updateCancelOrderToolStripMenuItem
             // 
             this.updateCancelOrderToolStripMenuItem.Name = "updateCancelOrderToolStripMenuItem";
-            this.updateCancelOrderToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.updateCancelOrderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.updateCancelOrderToolStripMenuItem.Text = "Manage Orders";
             this.updateCancelOrderToolStripMenuItem.Click += new System.EventHandler(this.mnuManageOrder_Click);
             // 
             // viewOrderToolStripMenuItem
             // 
             this.viewOrderToolStripMenuItem.Name = "viewOrderToolStripMenuItem";
-            this.viewOrderToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.viewOrderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.viewOrderToolStripMenuItem.Text = "Ship Orders";
             this.viewOrderToolStripMenuItem.Click += new System.EventHandler(this.mnuShipOrders_Click);
             // 
             // invoiceReceiptsToolStripMenuItem
             // 
             this.invoiceReceiptsToolStripMenuItem.Name = "invoiceReceiptsToolStripMenuItem";
-            this.invoiceReceiptsToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
+            this.invoiceReceiptsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.invoiceReceiptsToolStripMenuItem.Text = "Issue Receipts";
             this.invoiceReceiptsToolStripMenuItem.Click += new System.EventHandler(this.mnuIssueReceipts_Click);
             // 
@@ -168,6 +178,8 @@ namespace ShippingApplication
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FloralWhite;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1184, 611);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.munProgram);
@@ -199,6 +211,7 @@ namespace ShippingApplication
         private System.Windows.Forms.ToolStripMenuItem invoiceReceiptsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mnuAdmin;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.ToolStripMenuItem viewCustomersToolStripMenuItem;
     }
 }
 

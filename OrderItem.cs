@@ -1,10 +1,6 @@
 ﻿using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Data;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ShippingApplication
 {
@@ -32,7 +28,7 @@ namespace ShippingApplication
         }
         public void setGameId(Int32 gameId)
         {
-            if(gameId > 0 || gameId < Int32.MaxValue)
+            if (gameId > 0 || gameId < Int32.MaxValue)
             {
                 this.gameId = gameId;
             }
@@ -90,7 +86,7 @@ namespace ShippingApplication
             OracleConnection conn = new OracleConnection(DBConnect.oradb);
 
             String sqlQuery = "DELETE FROM Order_Items " +
-                "WHERE Game_Id = " + this.gameId;
+                "WHERE Game_Id = " + gameId;
 
             OracleCommand cmd = new OracleCommand(sqlQuery, conn);
             conn.Open();

@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ShippingApplication
@@ -44,7 +37,7 @@ namespace ShippingApplication
             // If no rows returned, display message and exit.
             if (grdCustomers.Rows.Count == 1)
             {
-                MessageBox.Show("No Data Found!","Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("No Data Found!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txtEnterForename.Focus();
                 txtEnterForename.Text = "";
                 return;
@@ -63,7 +56,7 @@ namespace ShippingApplication
                 txtEnterForename.Focus();
                 return;
             }
-            
+
             int id = Convert.ToInt32(grdCustomers.Rows[grdCustomers.CurrentCell.RowIndex].Cells[0].Value.ToString());
 
             // Assign customer details to the text boxes.
