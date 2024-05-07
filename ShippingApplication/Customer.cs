@@ -207,15 +207,6 @@ namespace ShippingApplication
             }
             return true;
         }
-        protected static String returnEncryptedString(String stringToEncrypt)
-        {
-            String encryptedString = null;
-            if (stringToEncrypt != null)
-            {
-                Aes aes = Aes.Create();
-            }
-            return null;
-        }
 
         public static bool isValidEircode(String EIRCode)
         {

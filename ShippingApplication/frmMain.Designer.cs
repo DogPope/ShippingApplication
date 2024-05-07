@@ -34,7 +34,6 @@ namespace ShippingApplication
             this.mnuCustomers = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuRegisterCustomer = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUpdateCustomer = new System.Windows.Forms.ToolStripMenuItem();
-            this.viewCustomersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuGames = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuRegisterGame = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuUpdateDelete = new System.Windows.Forms.ToolStripMenuItem();
@@ -65,8 +64,7 @@ namespace ShippingApplication
             // 
             this.mnuCustomers.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnuRegisterCustomer,
-            this.mnuUpdateCustomer,
-            this.viewCustomersToolStripMenuItem});
+            this.mnuUpdateCustomer});
             this.mnuCustomers.Name = "mnuCustomers";
             this.mnuCustomers.Size = new System.Drawing.Size(76, 20);
             this.mnuCustomers.Text = "Customers";
@@ -84,13 +82,6 @@ namespace ShippingApplication
             this.mnuUpdateCustomer.Size = new System.Drawing.Size(180, 22);
             this.mnuUpdateCustomer.Text = "Update / Delete";
             this.mnuUpdateCustomer.Click += new System.EventHandler(this.mnuCustomerUpdateDelete_Click);
-            // 
-            // viewCustomersToolStripMenuItem
-            // 
-            this.viewCustomersToolStripMenuItem.Name = "viewCustomersToolStripMenuItem";
-            this.viewCustomersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.viewCustomersToolStripMenuItem.Text = "View Customers";
-            this.viewCustomersToolStripMenuItem.Click += new System.EventHandler(this.mnuViewCustomers_Click);
             // 
             // mnuGames
             // 
@@ -129,28 +120,28 @@ namespace ShippingApplication
             // mnuPlaceOrder
             // 
             this.mnuPlaceOrder.Name = "mnuPlaceOrder";
-            this.mnuPlaceOrder.Size = new System.Drawing.Size(180, 22);
+            this.mnuPlaceOrder.Size = new System.Drawing.Size(155, 22);
             this.mnuPlaceOrder.Text = "Place Order";
             this.mnuPlaceOrder.Click += new System.EventHandler(this.mnuPlaceOrder_Click);
             // 
             // updateCancelOrderToolStripMenuItem
             // 
             this.updateCancelOrderToolStripMenuItem.Name = "updateCancelOrderToolStripMenuItem";
-            this.updateCancelOrderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.updateCancelOrderToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.updateCancelOrderToolStripMenuItem.Text = "Manage Orders";
             this.updateCancelOrderToolStripMenuItem.Click += new System.EventHandler(this.mnuManageOrder_Click);
             // 
             // viewOrderToolStripMenuItem
             // 
             this.viewOrderToolStripMenuItem.Name = "viewOrderToolStripMenuItem";
-            this.viewOrderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.viewOrderToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.viewOrderToolStripMenuItem.Text = "Ship Orders";
             this.viewOrderToolStripMenuItem.Click += new System.EventHandler(this.mnuShipOrders_Click);
             // 
             // invoiceReceiptsToolStripMenuItem
             // 
             this.invoiceReceiptsToolStripMenuItem.Name = "invoiceReceiptsToolStripMenuItem";
-            this.invoiceReceiptsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.invoiceReceiptsToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.invoiceReceiptsToolStripMenuItem.Text = "Issue Receipts";
             this.invoiceReceiptsToolStripMenuItem.Click += new System.EventHandler(this.mnuIssueReceipts_Click);
             // 
@@ -211,7 +202,6 @@ namespace ShippingApplication
         private System.Windows.Forms.ToolStripMenuItem invoiceReceiptsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mnuAdmin;
         private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.ToolStripMenuItem viewCustomersToolStripMenuItem;
     }
 }
 
